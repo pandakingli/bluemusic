@@ -29,7 +29,7 @@
     
     self.myScrollView.pagingEnabled=YES;
     
-    self.myScrollView.backgroundColor = [UIColor redColor];
+    self.myScrollView.backgroundColor = [UIColor whiteColor];
     self.myScrollView.frame = CGRectMake(0, 0.2*kHeight, kWidth, 0.4*kHeight);
     self.myScrollView.contentInset=UIEdgeInsetsMake(0, 0, 0, 0);
     self.myScrollView.contentSize =CGSizeMake(2*kWidth, 0);

@@ -61,165 +61,46 @@ static MusicDataHandle *musicHandle=nil;
     }
     return _projectPath;
 }
--(void)getMusicData_2LC{
-    
-    NSString *string = @"http://project.lanou3g.com/teacher/UIAPI/MusicInfoList.plist";
-    
-    NSURL *url = [NSURL URLWithString:string];
-    
-    NSArray *array = [NSArray arrayWithContentsOfURL:url];
-    //NSLog(@"array=%@",array);
-    
-    for (NSDictionary *dic in array) {
-        MusicModel *m = [[MusicModel alloc]init];
-        [m setValuesForKeysWithDictionary:dic];
-        [self.musicArray addObject:m];
-        NSLog(@"m.singer=%@",m.singer);
-        
-        NSLog(@"m.name=%@",m.name);
-        
-        
-    }
-    
-    
-    
-    
-}
 
--(void)getMusicDataFromLC{
-
-    
-    
-    
-    
-    
+-(void)getMusicDataFromLC
+{
     AVQuery *query = [AVQuery queryWithClassName:@"musicAtLC"];
-    //[query whereKey:@"name" equalTo:@"失忆"];
-    query.limit = 50; // 最多返回 800 条结果
+ 
+    query.limit = 300; // 最多返回 800 条结果
     
     // 按发帖时间升序排列
     [query orderByAscending:@"createdAt"];
-    
-    // 按发帖时间降序排列
-    //[query orderByDescending:@"createdAt"];
-    
+ 
     
   NSArray *arr =  [query findObjects];
-    
-   // NSLog(@"arr=%@",arr);
+
     if (arr) {
         // 检索成功
         
-        for (AVObject *dic in arr) {
-         //    NSLog(@"dic=%@",dic);
-            
-            
+        for (AVObject *dic in arr)
+        {
             MusicModel *m = [[MusicModel alloc]init];
-            
-            NSString *oID = [dic objectForKey:@"objectId"];
             NSDictionary *ddic =[dic objectForKey:@"localData"];
-           // NSLog(@"ddic=%@",ddic);
+
             [m setValuesForKeysWithDictionary:ddic];
             
             [self.musicArray addObject:m];
             
-            
-            //更新lc数据代码
-            /*
-            // 知道 objectId，创建 AVObject
-            AVObject *post = [AVObject objectWithoutDataWithClassName:@"musicAtLC" objectId:oID];
-            //更新属性
-        [post setObject:m.picfile_url forKey:@"picfile_url"];
-            
-            [post setObject:m.MP3file_url forKey:@"MP3file_url"];
-            
-            [post setObject:m.blurpicfile_url forKey:@"blurpicfile_url"];
-            //保存
-            if ([post save]) {
-                NSLog(@"%@更新成功",m.name);
-            }
-            else {
-                 NSLog(@"%@更新失败",m.name);
-            }
-            
-            */
-            
-            
         }
         
-    } else {
-        // 输出错误信息
-       // NSLog(@"Error: %@ %@", error, [error userInfo]);
     }
-    
-    
-    
-    
-    
-    /*
-    
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // 检索成功
-            NSLog(@"Successfully retrieved %lu posts.", (unsigned long)objects.count);
-          // NSLog(@"objects=%@",objects);
-            
-            for (AVObject *dic in objects) {
-                
-                
-                
-                MusicModel *m = [[MusicModel alloc]init];
-                
-                
-                NSDictionary *ddic =[dic objectForKey:@"localData"];
-                
-                [m setValuesForKeysWithDictionary:ddic];
-                
-                [self.musicArray addObject:m];
-            }
-            
-        } else {
-            // 输出错误信息
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    
-    */
-    
-    
-
-
+    else
+    {
+        // 输出错误信息
+    }
 
 }
--(void)getMusicData{
-    
-        NSString *string = @"http://project.lanou3g.com/teacher/UIAPI/MusicInfoList.plist";
-    
-        NSURL *url = [NSURL URLWithString:string];
-        
-        NSArray *array = [NSArray arrayWithContentsOfURL:url];
-        //NSLog(@"array=%@",array);
-    NSLog(@"共有%lu首歌曲",(unsigned long)array.count);
-    self.songNum=array.count;
-    
-        for (NSDictionary *dic in array) {
-            MusicModel *m = [[MusicModel alloc]init];
-            [m setValuesForKeysWithDictionary:dic];
-            [self.musicArray addObject:m];
-           
-            
-        }// for (NSDictionary *dic in array)
 
-   
-    
-    
-            
-            
-}
 //从网址下载音乐
-+(instancetype)shareMusicDataHandleWithFinishBlock:(finishBlock)finishblock{
-    if (musicHandle==nil) {
++(instancetype)shareMusicDataHandleWithFinishBlock:(finishBlock)finishblock
+{
+    if (musicHandle==nil)
+    {
         musicHandle =[[MusicDataHandle alloc]init];
         musicHandle.musicArray =[NSMutableArray array];
 
@@ -239,75 +120,33 @@ static MusicDataHandle *musicHandle=nil;
     }
     return musicHandle;
 }
--(NSInteger)musicDataCount{
+
+-(NSInteger)musicDataCount
+{
     return self.musicArray.count;
 }
--(MusicModel *)musicWithIndex:(NSInteger)index{
+
+-(MusicModel *)musicWithIndex:(NSInteger)index
+{
     return self.musicArray[index];
 }
 
-
-
-//获取桌面路径
--(NSString*)getDesktopPath{
-    NSString * documents=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    // NSLog(@"documents=%@",documents);
-    
-    
-    
-    NSString *s_date=[self getNowDate];
-    NSArray * arr =[documents componentsSeparatedByString:@"/"];
-    // NSLog(@"arr=%@",arr);
-    
-    
-    
-    NSString *s=[NSString stringWithFormat:@"/%@/%@/Desktop/%@程序文件夹",arr[1],arr[2],s_date];
-    return s;
-}
-
-
 //获取当前日期
--(NSString *)getNowDate{
+-(NSString *)getNowDate
+{
     NSDate *date = [NSDate date];
-    
-    // NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    
-    //NSInteger interval = [zone secondsFromGMTForDate: date];
-    
-    // NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-    
-    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH-mm-ss"];
     NSString *destDateString = [dateFormatter stringFromDate:date];
-    // NSLog(@"localeDate=%@", destDateString);
+ 
     return destDateString;
 }
 
-
--(void)copyToDesktop{
-    NSLog(@"将文件夹移动到桌面");
-    
-    NSFileManager *m=[NSFileManager defaultManager];//单例
-    
-    //将程序沙盒文件夹拷贝到桌面
-    [m copyItemAtPath:self.projectPath toPath:[self getDesktopPath] error:nil];
-    
-    
-   // [m removeItemAtPath:self.filesPath error:nil];//删除沙盒中下载的文件
-   // [m removeItemAtPath:self.dbPath error:nil];//删除沙盒中数据库文件
-    
-    
-    
-    NSString * documents=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSLog(@"沙盒文件夹路径=%@",documents);
-}
-
 #pragma mark --下载
--(void)downloadmp3:(NSString *)url{
+-(void)downloadmp3:(NSString *)url
+{
      NSURL *uurl = [NSURL URLWithString:url];
-    
     
     //创建请求对象  默认是get请求
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:uurl];
@@ -318,20 +157,16 @@ static MusicDataHandle *musicHandle=nil;
     //建立连接，传输数据
     NSData *data=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     //打印响应
-    NSLog(@"response=%@",response);
+    //NSLog(@"response=%@",response);
     
     //解析时候，data为空，就会崩溃
     if (data!=nil)
     {
-        /*
-        
-        NSString  *filemp3=  [self.filesPath stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@平凡之路-片段.mp3",[self getNowDate]]];
-        [data writeToFile:filemp3 atomically:YES];
-        */
         self.data_mp3=data;
         
     }
-    else {
+    else
+    {
         NSLog(@"获取MP3数据失败。");
     
         self.Error=YES;
@@ -340,7 +175,9 @@ static MusicDataHandle *musicHandle=nil;
     
 
 }
--(void)downloadpic:(NSString *)url{
+
+-(void)downloadpic:(NSString *)url
+{
     NSURL *uurl = [NSURL URLWithString:url];
     
     
@@ -358,21 +195,16 @@ static MusicDataHandle *musicHandle=nil;
     //解析时候，data为空，就会崩溃
     if (data!=nil)
     {
-        /*
-        
-        NSString  *filePic=  [self.filesPath stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@芦田爱菜.jpg",[self getNowDate]]];
-        
-        [data writeToFile:filePic atomically:YES];
-        */
         self.data_pic=data;
-        
     }
-    else  {
+    else
+    {
         NSLog(@"获取pic数据失败。");
         
         self.Error=YES;
     }
 }
+
 -(void)downloadblurpic:(NSString *)url{
     
     NSURL *uurl = [NSURL URLWithString:url];
@@ -392,14 +224,7 @@ static MusicDataHandle *musicHandle=nil;
     //解析时候，data为空，就会崩溃
     if (data!=nil)
     {
-        
-        /*
-        NSString  *filePic=  [self.filesPath stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@芦田爱菜blur.jpg",[self getNowDate]]];
-        
-        [data writeToFile:filePic atomically:YES];
-        */
         self.data_blurpic = data;
-        
     }
     else
     {
@@ -490,7 +315,6 @@ static MusicDataHandle *musicHandle=nil;
 }
 -(BOOL)savetoLC:(MusicModel*)m
 {
-    
     
     AVObject *post = [AVObject objectWithClassName:@"musicAtLC"];
     //歌曲名字
