@@ -2,7 +2,7 @@
 //  MusicListViewController.h
 //  MusicPlay1102
 //
-//  Created by 李宁 on 15/11/2.
+//  Created by biubiu on 15/11/2.
 //  Copyright © 2015年 lining. All rights reserved.
 //
 

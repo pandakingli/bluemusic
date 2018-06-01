@@ -2,7 +2,7 @@
 //  MusicPlayer.m
 //  MusicPlay1102
 //
-//  Created by 李宁 on 15/11/3.
+//  Created by biubiu on 15/11/3.
 //  Copyright © 2015年 lining. All rights reserved.
 //
 
