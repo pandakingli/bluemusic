@@ -66,7 +66,7 @@ static MusicDataHandle *musicHandle=nil;
 {
     AVQuery *query = [AVQuery queryWithClassName:@"musicAtLC"];
  
-    query.limit = 300; // 最多返回 800 条结果
+    query.limit = 220; // 最多返回 800 条结果
     
     // 按发帖时间升序排列
     [query orderByAscending:@"createdAt"];
@@ -83,8 +83,9 @@ static MusicDataHandle *musicHandle=nil;
             NSDictionary *ddic =[dic objectForKey:@"localData"];
 
             [m setValuesForKeysWithDictionary:ddic];
-            
-            [self.musicArray addObject:m];
+            m.objectid = [dic objectForKey:@"objectId"];
+            [self updatetoLC:m];
+          //  [self.musicArray addObject:m];
             
         }
         
@@ -313,9 +314,27 @@ static MusicDataHandle *musicHandle=nil;
    else return NO;
     
 }
+
+-(void)updatetoLC:(MusicModel*)m
+{
+    // 第一个参数是 className，第二个参数是 objectId
+    AVObject *todo =[AVObject objectWithClassName:@"musicAtLC" objectId:m.objectid];
+    // 修改属性
+    [todo setObject:m.playurl_mp3 forKey:@"mp3Url"];
+    [todo setObject:m.picurl_normal forKey:@"picUrl"];
+    [todo setObject:m.picurl_normal forKey:@"picfile_url"];
+    [todo setObject:m.picurl_blur forKey:@"blurPicUrl"];
+    [todo setObject:m.picurl_blur forKey:@"blurpicfile_url"];
+    
+    // 保存到云端
+    [todo saveInBackground];
+    
+    
+}
+
 -(BOOL)savetoLC:(MusicModel*)m
 {
-    
+    /*
     AVObject *post = [AVObject objectWithClassName:@"musicAtLC"];
     //歌曲名字
     post[@"name"] =m.name;
@@ -395,6 +414,8 @@ static MusicDataHandle *musicHandle=nil;
     
     }
     
-    
+    */
+    return NO;
+     
 }
 @end

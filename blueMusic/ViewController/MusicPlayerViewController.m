@@ -121,7 +121,7 @@ NSLog(@"获取model=%@",self.model);
     self.songV.SongName.text = model.name;
     self.songV.SingerName.text = model.singer;
     
-    [self.songV.myImageViewblur sd_setImageWithURL:[NSURL URLWithString:model.blurpicfile_url] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self.songV.myImageViewblur sd_setImageWithURL:[NSURL URLWithString:model.picurl_blur] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
             self.songV.myImageViewblur.image = image;

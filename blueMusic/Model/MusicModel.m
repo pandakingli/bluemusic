@@ -9,13 +9,14 @@
 {
     //[super setValue:value forUndefinedKey:key];
     
-    /*
+    
     
     if ([key isEqualToString:@"MP3file"]) {
         
         AVFile *av1 =( AVFile *)value;
-        
-        self.MP3file_url = [av1 valueForKey:@"url"];
+        NSDictionary *raw = [av1 valueForKey:@"rawJSONData"];
+        self.MP3file_url = [raw valueForKey:@"url"];
+        self.playurl_mp3 = [raw valueForKey:@"url"];
         NSLog(@"        self.MP3file_url=%@",self.MP3file_url);
     }
     
@@ -23,9 +24,9 @@
         
         
         AVFile *av2 =( AVFile *)value;
-        
-        
-        self.blurpicfile_url =[av2 valueForKey:@"url"];
+        NSDictionary *raw = [av2 valueForKey:@"rawJSONData"];
+        self.picurl_blur = [raw valueForKey:@"url"];
+        self.blurpicfile_url =[raw valueForKey:@"url"];
     }
     
     if ([key isEqualToString:@"picfile"]) {
@@ -33,9 +34,11 @@
         
         
         AVFile *av3 =( AVFile *)value;
-        self.picfile_url = [av3 valueForKey:@"url"];
+        NSDictionary *raw = [av3 valueForKey:@"rawJSONData"];
+        self.picfile_url = [raw valueForKey:@"url"];
+        self.picurl_normal = [raw valueForKey:@"url"];;
     }
-    */
+    
     
     
 }
