@@ -84,8 +84,8 @@ static MusicDataHandle *musicHandle=nil;
 
             [m setValuesForKeysWithDictionary:ddic];
             m.objectid = [dic objectForKey:@"objectId"];
-            [self updatetoLC:m];
-          //  [self.musicArray addObject:m];
+          //  [self updatetoLC:m];
+            [self.musicArray addObject:m];
             
         }
         
