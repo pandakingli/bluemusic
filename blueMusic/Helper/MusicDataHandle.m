@@ -1,22 +1,21 @@
 //
 //  MusicDataHandle.m
-//  MusicPlay1102
+//
 //
 //  Created by biubiu on 15/11/3.
 //  Copyright © 2015年 lining. All rights reserved.
 //
 #import "Headers.h"
 #import "MusicDataHandle.h"
+
 static MusicDataHandle *musicHandle=nil;
+
 @interface MusicDataHandle()<NSURLSessionDataDelegate,NSURLSessionDownloadDelegate>
+
 @property(nonatomic,strong)NSMutableArray *musicArray;
-
-
 @property(nonatomic,copy)NSString *dbPath;//数据库的路径
 @property(nonatomic,copy)NSString *filesPath;//存放从数据库获取的文件的文件夹
 @property(nonatomic,copy)NSString *projectPath;//沙盒文件夹路径
-
-
 
 @property(nonatomic,strong)NSURLRequest *request;
 @property(nonatomic,strong)NSURLSession *session;
@@ -31,13 +30,15 @@ static MusicDataHandle *musicHandle=nil;
 
 @property(nonatomic,strong)NSData *data_blurpic;
 @property(nonatomic,assign)NSInteger songNum;
+
 @end
 
 @implementation MusicDataHandle
 
--(NSString*)filesPath{
-    
-    if (_filesPath==nil) {
+-(NSString*)filesPath
+{
+    if (_filesPath==nil)
+    {
         NSString * cachesPath=NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
         
         //创建一个新文件夹存放从数据库获得的数据
@@ -50,14 +51,13 @@ static MusicDataHandle *musicHandle=nil;
     
     
 }
--(NSString *)projectPath{
-    if (_projectPath==nil) {
-        
+
+-(NSString *)projectPath
+{
+    if (_projectPath==nil)
+    {
         NSString * documents=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        
         self.projectPath = [documents substringWithRange:NSMakeRange(0, [documents length] - 10)];//    /documents->正好10个字符
-        
-        
     }
     return _projectPath;
 }
@@ -65,36 +65,21 @@ static MusicDataHandle *musicHandle=nil;
 -(void)getMusicDataFromLC
 {
     AVQuery *query = [AVQuery queryWithClassName:@"musicAtLC"];
- 
     query.limit = 220; // 最多返回 800 条结果
-    
     // 按发帖时间升序排列
     [query orderByAscending:@"createdAt"];
- 
-    
-  NSArray *arr =  [query findObjects];
-
-    if (arr) {
-        // 检索成功
-        
+    NSArray *arr =  [query findObjects];
+    if (arr)
+    {
         for (AVObject *dic in arr)
         {
             MusicModel *m = [[MusicModel alloc]init];
             NSDictionary *ddic =[dic objectForKey:@"localData"];
-
             [m setValuesForKeysWithDictionary:ddic];
             m.objectid = [dic objectForKey:@"objectId"];
-          //  [self updatetoLC:m];
             [self.musicArray addObject:m];
-            
         }
-        
     }
-    else
-    {
-        // 输出错误信息
-    }
-
 }
 
 //从网址下载音乐
@@ -107,16 +92,9 @@ static MusicDataHandle *musicHandle=nil;
 
         //开辟一个子线程
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            
-            
            [musicHandle getMusicDataFromLC];
-            
-            
             finishblock();
-            
-            
-            
-            
+           
         });//开辟一个子线程
     }
     return musicHandle;
@@ -164,24 +142,18 @@ static MusicDataHandle *musicHandle=nil;
     if (data!=nil)
     {
         self.data_mp3=data;
-        
     }
     else
     {
         NSLog(@"获取MP3数据失败。");
-    
         self.Error=YES;
     }
-    
-    
 
 }
 
 -(void)downloadpic:(NSString *)url
 {
     NSURL *uurl = [NSURL URLWithString:url];
-    
-    
     //创建请求对象  默认是get请求
     NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:uurl];
     //创建响应对象
@@ -254,11 +226,10 @@ static MusicDataHandle *musicHandle=nil;
     
     */
     
-    
-    
 }
 //下载完成
--(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location{
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+{
     
     NSLog(@"下载完成");
     NSLog(@"location=%@",location);
@@ -269,17 +240,20 @@ static MusicDataHandle *musicHandle=nil;
     [data writeToFile:filemp3 atomically:YES];
     
 }
+
 //下载多少
 -(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes{
     
     
     
 }
+
 //下载进度下载总量---进度--文件大小
 //BytesWritten--当前写入文件的大小
 //totalBytesWritten--已经写入文件的大小
 //totalBytesExpectedToWrite--文件总大小
--(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite{
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
+{
   //  NSLog(@"正在下载。");
    // NSLog(@"bytesWritten=%lld",bytesWritten/1024);
   //  NSLog(@"totalBytesExpectedToWrite=%lld",totalBytesExpectedToWrite/1024);
@@ -293,26 +267,20 @@ static MusicDataHandle *musicHandle=nil;
 //        
 //    });
     
-    
-    
 }
 
 
-#pragma mark --leancloud
-
-
+#pragma mark --Leancloud操作
 -(BOOL)haveThisMp3:(MusicModel*)m
 {
-    
-    
     AVQuery *query = [AVQuery queryWithClassName:@"musicAtLC"];
     [query whereKey:@"name" equalTo:m.name];
     NSArray *postArray = [query findObjects];
-    if (postArray.count>0) {
+    if (postArray.count>0)
+    {
        return YES;
     }
    else return NO;
-    
 }
 
 -(void)updatetoLC:(MusicModel*)m
@@ -328,8 +296,6 @@ static MusicDataHandle *musicHandle=nil;
     
     // 保存到云端
     [todo saveInBackground];
-    
-    
 }
 
 -(BOOL)savetoLC:(MusicModel*)m
@@ -373,11 +339,7 @@ static MusicDataHandle *musicHandle=nil;
     
     [post setObject:MP3file  forKey:@"MP3file"];
     
-    
-    
-    
-    
-    
+  
     NSString *picname =[NSString stringWithFormat:@"%@.jpg",m.name];
     AVFile *picfile = [AVFile fileWithName:picname data:self.data_pic];
     
@@ -386,11 +348,7 @@ static MusicDataHandle *musicHandle=nil;
     
     [post setObject:picfile  forKey:@"picfile"];
     
-    
-    
-    
-    
-    
+  
     NSString *blurpicname =[NSString stringWithFormat:@"blur-%@.jpg",m.name];
     AVFile *blurpicfile = [AVFile fileWithName:blurpicname data:self.data_blurpic];
     
