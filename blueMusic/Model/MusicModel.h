@@ -4,6 +4,9 @@
 #import <UIKit/UIKit.h>
 @interface MusicModel : NSObject
 
+/**
+ objectid
+ */
 @property (nonatomic, copy) NSString *objectid;
 @property (nonatomic, copy) NSString *playurl_mp3;
 @property (nonatomic, copy) NSString *picurl_blur;
