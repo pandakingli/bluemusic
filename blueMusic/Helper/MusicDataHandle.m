@@ -7,6 +7,9 @@
 //
 #import "Headers.h"
 #import "MusicDataHandle.h"
+#import <AFNetworking/AFNetworking.h>
+#import "NSString+BLUEAES256.h"
+#import "RSA.h"
 
 static MusicDataHandle *musicHandle=nil;
 
@@ -92,7 +95,7 @@ static MusicDataHandle *musicHandle=nil;
 
         //开辟一个子线程
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-           [musicHandle getMusicDataFromLC];
+           [musicHandle getNetDataFromWangyi:nil];
             finishblock();
            
         });//开辟一个子线程
@@ -375,5 +378,97 @@ static MusicDataHandle *musicHandle=nil;
     */
     return NO;
      
+}
+
+- (void)getNetDataFromWangyi:(NSString *)type
+{
+    
+    // 请求管理者
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSDictionary *dd = @{@"ids":@[@"432698442"],@"br":@320000,@"csrf_token":@""};
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dd options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *orr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    NSString *nonce = @"0CoJUm6Qyw8W8jud";
+    NSString *sec_orr = [orr blueaes256_encrypt:nonce];
+    NSString *s16Key = [self createSecretKeyWithLength:16];
+    NSString *final = [sec_orr blueaes256_encrypt:s16Key];
+    
+    // 拼接请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *encSecKey =  @"31388bb91825072084fff26b924073c452c9fdbdc1d76aa6001b7209d28f9331d4e8c4a78b4410c111effb17e2e4ac9d2b2dcb7f33e1c53fd7e2a06bcf6b91a0e486673e497445c088972ad0f245b70092cd991e50e1e4042d9c99a3a60665afe1d39379eb45ff735e1fa49245cf1305982440bb4d7fa38a02521c2a35e2dcef";
+    
+    [params setObject:[self dsl_encodeUrl:encSecKey] forKey:@"encSecKey"];
+    NSString *pa = @"abAaKG3/k83n9nOGyfrcm+Fwv+TX6nEIy0VHOpiybwZR60IIlYxePy43ZRjZqDewNK5hZZrPTH8hNAe676M7bnw3h/uAHIiBAn1tuOCIm6UNKltYd/6SorZzYR4zukDB";
+    [params setObject:[self dsl_encodeUrl:pa] forKey:@"params"];
+    
+    NSString *url = @"http://music.163.com/weapi/song/enhance/player/url?csrf_token=";
+    
+    [manager.requestSerializer
+     setValue:@"application/x-www-form-urlencoded"
+     forHTTPHeaderField:@"Content-Type"];
+    
+    [manager POST:url
+       parameters:params
+         progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"responseObject = %@",responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"error = %@",error);
+    }];
+    
+}
+-(NSString* )dsl_encodeUrl:(NSString*)sss{
+    if (![sss isKindOfClass:[NSString class]]||sss.length == 0)
+    {
+        return nil;
+    }
+    
+    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                    (CFStringRef)sss,
+                                                                                                    (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                                                                    NULL,
+                                                                                                    kCFStringEncodingUTF8));
+    return encodedString;
+}
+
+/*
+ function createSecretKey($length=16){
+ $str='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+ $r='';
+ for($i=0;$i<$length;$i++){
+ $r.=$str[rand(0,strlen($str)-1)];
+ }
+ return $r;
+ }
+ 
+ 
+ */
+
+-(NSString*)createSecretKeyWithLength:(NSInteger)len
+{
+    NSString *str = @"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    NSString *result = nil;
+    
+    for (int i=0; i<len; i++)
+    {
+        NSInteger randomIndex  = arc4random() % str.length;
+        
+        NSRange    rangeOne = NSMakeRange(randomIndex, 1);
+        
+        if (!result)
+        {
+            result = [str substringWithRange:rangeOne];
+        }
+        else
+        {
+            result = [NSString stringWithFormat:@"%@%@",result,[str substringWithRange:rangeOne]];
+        }
+    }
+    
+    return result;
 }
 @end

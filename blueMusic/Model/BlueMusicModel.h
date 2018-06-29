@@ -7,7 +7,7 @@
 //
 
 #import "JSONModel.h"
-
+#import <UIKit/UIKit.h>
 @interface BlueMusicModel : JSONModel
 
 @property (strong, nonatomic) NSString<Optional>* objectid;
