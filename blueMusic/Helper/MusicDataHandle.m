@@ -8,8 +8,7 @@
 #import "Headers.h"
 #import "MusicDataHandle.h"
 #import <AFNetworking/AFNetworking.h>
-#import "NSString+BLUEAES256.h"
-#import "RSA.h"
+#import <bluebox/bluebox.h>
 
 static MusicDataHandle *musicHandle=nil;
 
@@ -405,17 +404,22 @@ static MusicDataHandle *musicHandle=nil;
     [params setObject:[self dsl_encodeUrl:pa] forKey:@"params"];
     
     NSString *url = @"http://music.163.com/weapi/song/enhance/player/url?csrf_token=";
-    
     [manager.requestSerializer
      setValue:@"application/x-www-form-urlencoded"
      forHTTPHeaderField:@"Content-Type"];
+   
     
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+   
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager POST:url
        parameters:params
          progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"responseObject = %@",responseObject);
+       
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error = %@",error);
     }];
