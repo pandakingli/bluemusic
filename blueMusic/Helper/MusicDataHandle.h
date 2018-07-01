@@ -21,5 +21,5 @@ typedef void(^finishBlock)();
 
 //记录上次播放的音乐
 @property (nonatomic, copy) NSString *lastmp3Url;
-- (void)getNetDataFromWangyi:(NSString *)type;
+- (void)getNetDataFromWangyi:(NSString *)type WithFinishBlock:(finishBlock)finishblock;
 @end

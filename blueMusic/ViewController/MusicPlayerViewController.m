@@ -165,16 +165,16 @@ NSLog(@"获取model=%@",self.model);
             
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
             
+            if (weakSelf.model.lyric)
+            {
+                [weakSelf.songV.tableview selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+                
+                
+            }
             
-            [weakSelf.songV.tableview selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-            
-            
+      
             if (weakSelf.songV.mySlider.value==weakSelf.songV.mySlider.maximumValue)
             {
-                
-                
-                
-                
                 NSLog(@"播放完毕");
                 [weakSelf nextSongClick:nil];
                 

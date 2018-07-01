@@ -94,8 +94,8 @@ static MusicDataHandle *musicHandle=nil;
 
         //开辟一个子线程
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-           [musicHandle getNetDataFromWangyi:nil];
-            finishblock();
+           [musicHandle getNetDataFromWangyi:nil WithFinishBlock:finishblock];
+           // finishblock();
            
         });//开辟一个子线程
     }
@@ -379,8 +379,10 @@ static MusicDataHandle *musicHandle=nil;
      
 }
 
-- (void)getNetDataFromWangyi:(NSString *)type
+- (void)getNetDataFromWangyi:(NSString *)type WithFinishBlock:(finishBlock)finishblock;
 {
+    
+      typeof(self) weakSelf = self;
     
     // 请求管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -397,10 +399,10 @@ static MusicDataHandle *musicHandle=nil;
     
     // 拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    NSString *encSecKey =  @"31388bb91825072084fff26b924073c452c9fdbdc1d76aa6001b7209d28f9331d4e8c4a78b4410c111effb17e2e4ac9d2b2dcb7f33e1c53fd7e2a06bcf6b91a0e486673e497445c088972ad0f245b70092cd991e50e1e4042d9c99a3a60665afe1d39379eb45ff735e1fa49245cf1305982440bb4d7fa38a02521c2a35e2dcef";
+    NSString *encSecKey =  @"834992196222ca64d5c19411adfa14314ef0ca0a391aa464a3c455f2f0ad3af80e505abdc03d3e33d70dc5d8bb1524998e45c35218228658b739978e68bb42c9f9a2a4578c4325186128832875f248c84e203a5e457ba46b65f417933daf9e2a0500ab6d7719b6f8f5bfa612aa3117a2dabfb285e98c54e7878d2b93c99ad615";
     
     [params setObject:[self dsl_encodeUrl:encSecKey] forKey:@"encSecKey"];
-    NSString *pa = @"abAaKG3/k83n9nOGyfrcm+Fwv+TX6nEIy0VHOpiybwZR60IIlYxePy43ZRjZqDewNK5hZZrPTH8hNAe676M7bnw3h/uAHIiBAn1tuOCIm6UNKltYd/6SorZzYR4zukDB";
+    NSString *pa = @"2lWI3l2wsaLDHUeLQ43C+1D6DrreF1CcY3CZqgVdvlPAsiS86GpYXHvc4XGOpEkvLGPNGBlcwum6yHp+XLN8QGrHCveQgowydnLyuPTZnLaw68yZEok6zD2zFYUFc/cX";
     [params setObject:[self dsl_encodeUrl:pa] forKey:@"params"];
     
     NSString *url = @"http://music.163.com/weapi/song/enhance/player/url?csrf_token=";
@@ -418,10 +420,25 @@ static MusicDataHandle *musicHandle=nil;
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"responseObject = %@",responseObject);
-       
+        NSArray *arr = [responseObject objectForKey:@"data"];
+        NSDictionary *data = arr.firstObject;
+        if (data)
+        {
+            NSString *url = [data objectForKey:@"url"];
+            NSNumber *title = [data objectForKey:@"id"];
+            MusicModel *m = [[MusicModel alloc]init];
+            m.name = title.stringValue;
+            m.mp3Url = url;
+            m.playurl_mp3 = url;
+            m.MP3file_url = url;
+            m.duration = [data objectForKey:@"br"];
+              [weakSelf.musicArray addObject:m];
+        }
         
+        finishblock();
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error = %@",error);
+        finishblock();
     }];
     
 }
