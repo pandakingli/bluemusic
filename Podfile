@@ -9,4 +9,5 @@ pod 'Masonry'
 pod 'bluebox'
 pod 'ReactiveCocoa'
 pod 'AFNetworking'
+pod 'TFHpple'
 end

@@ -12,6 +12,7 @@
 #import "SecurityUtil.h"
 #import "NSData+Encryption.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "TFHpple.h"
 static MusicDataHandle *musicHandle=nil;
 
 @interface MusicDataHandle()<NSURLSessionDataDelegate,NSURLSessionDownloadDelegate>
@@ -629,11 +630,24 @@ static MusicDataHandle *musicHandle=nil;
 -(void)setua
 {
     //https://blog.csdn.net/chenyufeng1991/article/details/47425799
-    NSString *url = @"http://music.163.com/discover/playlist/?order=hot&limit=35&offset=70";
+    NSString *url = @"http://music.163.com/discover/playlist/?order=hot&limit=35&offset=0";
     NSURL *rr = [NSURL URLWithString:url];
     //NSData *data = [NSData dataWithContentsOfURL:url];
     NSString *ss = [NSString stringWithContentsOfURL:rr encoding:NSUTF8StringEncoding error:nil];
     NSLog(@"ss= %@",ss);
     
+    
+}
+
+-(void)testttt{
+    
+    NSURL *url = [NSURL URLWithString:@"http://music.163.com/discover/playlist/?order=hot&limit=35&offset=0"];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    TFHpple *xpthParser = [[TFHpple alloc]initWithHTMLData:data];
+    NSArray *dataArr = [xpthParser searchWithXPathQuery:@"//li"];
+    for (TFHppleElement *hppleElement in dataArr) {
+        NSLog(@"%@",hppleElement.raw);//查看标签
+        NSLog(@"%@",hppleElement.text);//查看标签内容
+    }
 }
 @end
