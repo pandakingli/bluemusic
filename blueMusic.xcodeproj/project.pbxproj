@@ -34,7 +34,6 @@
 		E6634C2320E89D1000655ADD /* NSData+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = E6634C2220E89D1000655ADD /* NSData+Encryption.m */; };
 		E6634C2520E8B42600655ADD /* jshi.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2420E8B42500655ADD /* jshi.js */; };
 		E6634C2720E8B46E00655ADD /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6634C2620E8B46E00655ADD /* JavaScriptCore.framework */; };
-		E6634C2B20E8B93C00655ADD /* bigint.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2A20E8B93C00655ADD /* bigint.js */; };
 		E6634C4720E8BDAA00655ADD /* lastfm.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2D20E8BDA900655ADD /* lastfm.js */; };
 		E6634C4820E8BDAA00655ADD /* lowebutil.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2E20E8BDA900655ADD /* lowebutil.js */; };
 		E6634C4920E8BDAA00655ADD /* myplaylist.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2F20E8BDA900655ADD /* myplaylist.js */; };
@@ -111,7 +110,6 @@
 		E6634C2220E89D1000655ADD /* NSData+Encryption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Encryption.m"; sourceTree = "<group>"; };
 		E6634C2420E8B42500655ADD /* jshi.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jshi.js; sourceTree = "<group>"; };
 		E6634C2620E8B46E00655ADD /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		E6634C2A20E8B93C00655ADD /* bigint.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bigint.js; sourceTree = "<group>"; };
 		E6634C2D20E8BDA900655ADD /* lastfm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = lastfm.js; sourceTree = "<group>"; };
 		E6634C2E20E8BDA900655ADD /* lowebutil.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = lowebutil.js; sourceTree = "<group>"; };
 		E6634C2F20E8BDA900655ADD /* myplaylist.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = myplaylist.js; sourceTree = "<group>"; };
@@ -305,7 +303,6 @@
 		E62989421FE280FE006F9B71 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				E6634C2A20E8B93C00655ADD /* bigint.js */,
 				E6634C2420E8B42500655ADD /* jshi.js */,
 				E6C4C8091FE283B8005DDE0F /* LyricHandle.h */,
 				E6C4C8081FE283B7005DDE0F /* LyricHandle.m */,
@@ -380,6 +377,7 @@
 				E62988FB1FE274B4006F9B71 /* Frameworks */,
 				E62988FC1FE274B4006F9B71 /* Resources */,
 				5798EA83D726F260543843AE /* [CP] Embed Pods Frameworks */,
+				A4F4856572503EB5DCD57A27 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -456,7 +454,6 @@
 				E629890B1FE274B4006F9B71 /* Assets.xcassets in Resources */,
 				E6634C4A20E8BDAA00655ADD /* oauth_callback.js in Resources */,
 				E6634C4B20E8BDAA00655ADD /* github_api.js in Resources */,
-				E6634C2B20E8B93C00655ADD /* bigint.js in Resources */,
 				E6634C5720E8BDAA00655ADD /* timer.js in Resources */,
 				E6634C4F20E8BDAA00655ADD /* qq.js in Resources */,
 				E6634C4820E8BDAA00655ADD /* lowebutil.js in Resources */,
@@ -523,6 +520,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4F4856572503EB5DCD57A27 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -689,6 +701,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S9HRLGS74P;
 				INFOPLIST_FILE = blueMusic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = biubiublue.blueMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -704,6 +717,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S9HRLGS74P;
 				INFOPLIST_FILE = blueMusic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = biubiublue.blueMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";

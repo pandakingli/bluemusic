@@ -383,7 +383,7 @@ static MusicDataHandle *musicHandle=nil;
 
 - (void)getNetDataFromWangyi:(NSString *)type WithFinishBlock:(finishBlock)finishblock;
 {
-    [self testjs];
+   // [self testjs];
 //    NSString *originalString = @"加密这个字符串";
 //    NSString * secretStr = @"秘钥是这个";
 //    //CBC加密字符串
@@ -409,12 +409,12 @@ static MusicDataHandle *musicHandle=nil;
     NSString *finalstr = [SecurityUtil encryptAESData:sec_orr Withkey:s16Key ivkey:@"0102030405060708"];//[sec_orr blueaes256_encrypt:s16Key];
     
     // 拼接请求参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSMutableDictionary *params = [self testjs];
     NSString *encSecKey =  @"92f9a89487c36866e985ec347a0456a81ac0a14263309ac601735517d16375201eb14e43160e35416316ba3713d47f12644fde31f85134e7625abcbed24193f07b4620d57b99e131dab8b5661ca18304e2187a44478b84e8c8e77b8a0639a8061ca510d5fa2f8d0ceb38c092ae5a5b49989f17556cef59a828f8b4c264c1e0e1";
     
-    [params setObject:[self dsl_encodeUrl:encSecKey] forKey:@"encSecKey"];
+   // [params setObject:[self dsl_encodeUrl:encSecKey] forKey:@"encSecKey"];
     NSString *pa = @"wr2aYQTi6pVLvBEMJTBZm1KcKHRJHeE89FzRXeJn6hI4jV+jkEntyHy0WFGjlgiYUv17yZ3gSn6TJfzDnFuOy1Ry42n6UcYlj+vERqovKaZDFhwKGwUx25/JGTu0C4g/";
-    [params setObject:[self dsl_encodeUrl:finalstr] forKey:@"params"];
+    //[params setObject:[self dsl_encodeUrl:finalstr] forKey:@"params"];
     
     NSString *url = @"http://music.163.com/weapi/song/enhance/player/url?csrf_token=";
     [manager.requestSerializer
@@ -557,17 +557,30 @@ static MusicDataHandle *musicHandle=nil;
     return responseString;
 }
 
--(void)testjs
+-(NSDictionary*)testjs
 {
-    NSString *scriptPath = [[NSBundle mainBundle] pathForResource:@"jshi" ofType:@"js"];
-    NSString *scriptString = [NSString stringWithContentsOfFile:scriptPath encoding:NSUTF8StringEncoding error:nil];
+    NSString *aespath = [[NSBundle mainBundle] pathForResource:@"aes" ofType:@"js"];
+    NSString *aespathstr= [NSString stringWithContentsOfFile:aespath encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *bigint = [[NSBundle mainBundle] pathForResource:@"bigint" ofType:@"js"];
+    NSString *bigintstr = [NSString stringWithContentsOfFile:bigint encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *jshi = [[NSBundle mainBundle] pathForResource:@"jshi" ofType:@"js"];
+    NSString *jshiStr = [NSString stringWithContentsOfFile:jshi encoding:NSUTF8StringEncoding error:nil];
+    
     JSContext *context = [[JSContext alloc] init];
-    [context evaluateScript:scriptString];
-    JSValue *function =context[@"rsa_encrypt"];
+    [context evaluateScript:aespathstr];
+    [context evaluateScript:bigintstr];
+    [context evaluateScript:jshiStr];
     
+    JSValue *function =context[@"go_request"];
     
+    NSString *s1 = @"sU49pNzNAZvdv6u9TMxxeFLOb18XniYbISCVtw2qk1oEUaZWQt7Rf/X2Bj/ihKjbYu5lf3vqswAyvNOgpie8iQ==";
+    NSString* s2 = @"a4ad299e9eab0563";
     
-    JSValue *s = [function callWithArguments:@[@"1",@"2",@"3"]];
-    NSLog(@"s=%@",[s toString]);
+    JSValue *s = [function callWithArguments:@[@"29724295"]];//@"34144485"
+    NSLog(@"s=%@",[s toDictionary]);
+    
+    return [s toDictionary];
 }
 @end
