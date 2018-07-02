@@ -594,9 +594,10 @@ static MusicDataHandle *musicHandle=nil;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSString *url = @"http://music.163.com/discover/playlist/?order=hot&limit=35&offset=70";
-    
+       NSString * userAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
     [manager.requestSerializer setValue:@"text/html;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    
+    [manager.requestSerializer setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+    [manager.requestSerializer setValue:userAgent forHTTPHeaderField:@"UserAgent"];
     
     //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
@@ -625,7 +626,9 @@ static MusicDataHandle *musicHandle=nil;
     
 }
 
--(void)setua{
+-(void)setua
+{
+    /*
     // 1. 创建一个空的webView
     //UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     // 2. 取出webView的userAgent
@@ -637,7 +640,8 @@ static MusicDataHandle *musicHandle=nil;
     NSDictionary *userAgentDict = @{@"UserAgent":userAgent};
     // 5. 将字典内容注册到NSUserDefaults中
     [[NSUserDefaults standardUserDefaults] registerDefaults:userAgentDict];
-    
+    */
+  
     
 }
 @end
