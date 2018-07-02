@@ -9,7 +9,9 @@
 #import "MusicDataHandle.h"
 #import <AFNetworking/AFNetworking.h>
 #import <bluebox/bluebox.h>
-
+#import "SecurityUtil.h"
+#import "NSData+Encryption.h"
+#import <JavaScriptCore/JavaScriptCore.h>
 static MusicDataHandle *musicHandle=nil;
 
 @interface MusicDataHandle()<NSURLSessionDataDelegate,NSURLSessionDownloadDelegate>
@@ -381,29 +383,38 @@ static MusicDataHandle *musicHandle=nil;
 
 - (void)getNetDataFromWangyi:(NSString *)type WithFinishBlock:(finishBlock)finishblock;
 {
-    
+    [self testjs];
+//    NSString *originalString = @"加密这个字符串";
+//    NSString * secretStr = @"秘钥是这个";
+//    //CBC加密字符串
+//    NSString * encryptCBC = [SecurityUtil  encryptAESData: originalString Withkey:@"uuid" ivkey: secretStr];
+//    //CBC解密字符串
+//    NSString * decryptCBC = [SecurityUtil  decryptAESData: encryptCBC Withkey:@"uuid" ivkey: secretStr];
+//    
+//  
       typeof(self) weakSelf = self;
     
     // 请求管理者
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSDictionary *dd = @{@"ids":@[@"432698442"],@"br":@320000,@"csrf_token":@""};
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dd options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *orr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *dd = @{@"ids":@[@"502218792"],@"br":@320000,@"csrf_token":@""};
+    NSString *orr = [self convertToJsonData:dd];//[NSJSONSerialization dataWithJSONObject:dd options:NSJSONWritingPrettyPrinted error:nil];
+   // NSString *orr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
     NSString *nonce = @"0CoJUm6Qyw8W8jud";
-    NSString *sec_orr = [orr blueaes256_encrypt:nonce];
+    
+    NSString *sec_orr = [SecurityUtil encryptAESData:orr Withkey:nonce ivkey:@"0102030405060708"];//[orr blueaes256_encrypt:nonce];
     NSString *s16Key = [self createSecretKeyWithLength:16];
-    NSString *final = [sec_orr blueaes256_encrypt:s16Key];
+    NSString *finalstr = [SecurityUtil encryptAESData:sec_orr Withkey:s16Key ivkey:@"0102030405060708"];//[sec_orr blueaes256_encrypt:s16Key];
     
     // 拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    NSString *encSecKey =  @"834992196222ca64d5c19411adfa14314ef0ca0a391aa464a3c455f2f0ad3af80e505abdc03d3e33d70dc5d8bb1524998e45c35218228658b739978e68bb42c9f9a2a4578c4325186128832875f248c84e203a5e457ba46b65f417933daf9e2a0500ab6d7719b6f8f5bfa612aa3117a2dabfb285e98c54e7878d2b93c99ad615";
+    NSString *encSecKey =  @"92f9a89487c36866e985ec347a0456a81ac0a14263309ac601735517d16375201eb14e43160e35416316ba3713d47f12644fde31f85134e7625abcbed24193f07b4620d57b99e131dab8b5661ca18304e2187a44478b84e8c8e77b8a0639a8061ca510d5fa2f8d0ceb38c092ae5a5b49989f17556cef59a828f8b4c264c1e0e1";
     
     [params setObject:[self dsl_encodeUrl:encSecKey] forKey:@"encSecKey"];
-    NSString *pa = @"2lWI3l2wsaLDHUeLQ43C+1D6DrreF1CcY3CZqgVdvlPAsiS86GpYXHvc4XGOpEkvLGPNGBlcwum6yHp+XLN8QGrHCveQgowydnLyuPTZnLaw68yZEok6zD2zFYUFc/cX";
-    [params setObject:[self dsl_encodeUrl:pa] forKey:@"params"];
+    NSString *pa = @"wr2aYQTi6pVLvBEMJTBZm1KcKHRJHeE89FzRXeJn6hI4jV+jkEntyHy0WFGjlgiYUv17yZ3gSn6TJfzDnFuOy1Ry42n6UcYlj+vERqovKaZDFhwKGwUx25/JGTu0C4g/";
+    [params setObject:[self dsl_encodeUrl:finalstr] forKey:@"params"];
     
     NSString *url = @"http://music.163.com/weapi/song/enhance/player/url?csrf_token=";
     [manager.requestSerializer
@@ -431,7 +442,7 @@ static MusicDataHandle *musicHandle=nil;
             m.mp3Url = url;
             m.playurl_mp3 = url;
             m.MP3file_url = url;
-            m.duration = [data objectForKey:@"br"];
+            m.duration =@303000;
               [weakSelf.musicArray addObject:m];
         }
         
@@ -491,5 +502,72 @@ static MusicDataHandle *musicHandle=nil;
     }
     
     return result;
+}
+
+-(NSString *)convertToJsonData:(NSDictionary *)dict
+
+{
+    
+    NSError *error;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSString *jsonString;
+    
+    if (!jsonData) {
+        
+        NSLog(@"%@",error);
+        
+    }else{
+        
+        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+    }
+    
+    NSMutableString *mutStr = [NSMutableString stringWithString:jsonString];
+    
+    NSRange range = {0,jsonString.length};
+    
+    //去掉字符串中的空格
+    
+    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+    
+    NSRange range2 = {0,mutStr.length};
+    
+    //去掉字符串中的换行符
+    
+    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    
+    
+    NSString *ff = [self removeSpecilaStr:mutStr];
+    
+    return ff;
+    
+}
+
+- (NSString *)removeSpecilaStr:(NSString*)sss
+{
+    NSMutableString *responseString = [NSMutableString stringWithString:sss];
+    NSString *character = nil;
+    for (int i = 0; i < responseString.length; i ++) {
+        character = [responseString substringWithRange:NSMakeRange(i, 1)];
+        if ([character isEqualToString:@"\\"])
+            [responseString deleteCharactersInRange:NSMakeRange(i, 1)];
+    }
+    return responseString;
+}
+
+-(void)testjs
+{
+    NSString *scriptPath = [[NSBundle mainBundle] pathForResource:@"jshi" ofType:@"js"];
+    NSString *scriptString = [NSString stringWithContentsOfFile:scriptPath encoding:NSUTF8StringEncoding error:nil];
+    JSContext *context = [[JSContext alloc] init];
+    [context evaluateScript:scriptString];
+    JSValue *function =context[@"rsa_encrypt"];
+    
+    
+    
+    JSValue *s = [function callWithArguments:@[@"1",@"2",@"3"]];
+    NSLog(@"s=%@",[s toString]);
 }
 @end

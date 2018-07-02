@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2CA066B220717F00EDB30941 /* libPods-blueMusic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D43E9FA244AEA06E7F41854E /* libPods-blueMusic.a */; };
+		2B620F0A2CBCC41C5C7A61C1 /* Pods_blueMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */; };
 		E62989031FE274B4006F9B71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989021FE274B4006F9B71 /* AppDelegate.m */; };
 		E62989061FE274B4006F9B71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989051FE274B4006F9B71 /* ViewController.m */; };
 		E62989091FE274B4006F9B71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E62989071FE274B4006F9B71 /* Main.storyboard */; };
@@ -29,6 +29,36 @@
 		E629893D1FE280DA006F9B71 /* SearchMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989321FE280D9006F9B71 /* SearchMusicViewController.m */; };
 		E629893E1FE280DA006F9B71 /* MyMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989341FE280D9006F9B71 /* MyMusicViewController.m */; };
 		E629893F1FE280DA006F9B71 /* MusicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989351FE280D9006F9B71 /* MusicListViewController.m */; };
+		E62A2E6020E317F100CCDABD /* BlueMusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E62A2E5F20E317F100CCDABD /* BlueMusicModel.m */; };
+		E6634C2020E89C9300655ADD /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E6634C1F20E89C9300655ADD /* SecurityUtil.m */; };
+		E6634C2320E89D1000655ADD /* NSData+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = E6634C2220E89D1000655ADD /* NSData+Encryption.m */; };
+		E6634C2520E8B42600655ADD /* jshi.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2420E8B42500655ADD /* jshi.js */; };
+		E6634C2720E8B46E00655ADD /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6634C2620E8B46E00655ADD /* JavaScriptCore.framework */; };
+		E6634C2B20E8B93C00655ADD /* bigint.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2A20E8B93C00655ADD /* bigint.js */; };
+		E6634C4720E8BDAA00655ADD /* lastfm.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2D20E8BDA900655ADD /* lastfm.js */; };
+		E6634C4820E8BDAA00655ADD /* lowebutil.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2E20E8BDA900655ADD /* lowebutil.js */; };
+		E6634C4920E8BDAA00655ADD /* myplaylist.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2F20E8BDA900655ADD /* myplaylist.js */; };
+		E6634C4A20E8BDAA00655ADD /* oauth_callback.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3020E8BDA900655ADD /* oauth_callback.js */; };
+		E6634C4B20E8BDAA00655ADD /* github_api.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3120E8BDA900655ADD /* github_api.js */; };
+		E6634C4C20E8BDAA00655ADD /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3220E8BDA900655ADD /* background.js */; };
+		E6634C4D20E8BDAA00655ADD /* loweb.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3320E8BDA900655ADD /* loweb.js */; };
+		E6634C4E20E8BDAA00655ADD /* xiami.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3520E8BDA900655ADD /* xiami.js */; };
+		E6634C4F20E8BDAA00655ADD /* qq.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3620E8BDA900655ADD /* qq.js */; };
+		E6634C5020E8BDAA00655ADD /* kuwo.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3720E8BDA900655ADD /* kuwo.js */; };
+		E6634C5120E8BDAA00655ADD /* kugou.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3820E8BDA900655ADD /* kugou.js */; };
+		E6634C5220E8BDAA00655ADD /* netease.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3920E8BDA900655ADD /* netease.js */; };
+		E6634C5320E8BDAA00655ADD /* github.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3A20E8BDA900655ADD /* github.js */; };
+		E6634C5420E8BDAA00655ADD /* app.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3B20E8BDA900655ADD /* app.js */; };
+		E6634C5520E8BDAA00655ADD /* aes.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3D20E8BDA900655ADD /* aes.js */; };
+		E6634C5620E8BDAA00655ADD /* angular.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3E20E8BDA900655ADD /* angular.min.js */; };
+		E6634C5720E8BDAA00655ADD /* timer.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C3F20E8BDA900655ADD /* timer.js */; };
+		E6634C5820E8BDAA00655ADD /* angular-ui-notification.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C4020E8BDA900655ADD /* angular-ui-notification.js */; };
+		E6634C5920E8BDAA00655ADD /* angular-soundmanager2.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C4120E8BDA900655ADD /* angular-soundmanager2.js */; };
+		E6634C5A20E8BDAA00655ADD /* hotkeys.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C4220E8BDA900655ADD /* hotkeys.js */; };
+		E6634C5B20E8BDAA00655ADD /* bigint.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C4320E8BDA900655ADD /* bigint.js */; };
+		E6634C5C20E8BDAA00655ADD /* async.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C4420E8BDA900655ADD /* async.min.js */; };
+		E6634C5D20E8BDAA00655ADD /* jquery-2.2.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C4520E8BDA900655ADD /* jquery-2.2.3.min.js */; };
+		E6634C5E20E8BDAA00655ADD /* md5.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C4620E8BDA900655ADD /* md5.js */; };
 		E6C4C7FA1FE28364005DDE0F /* MusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C4C7F61FE28364005DDE0F /* MusicModel.m */; };
 		E6C4C7FB1FE28364005DDE0F /* LyricModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C4C7F71FE28364005DDE0F /* LyricModel.m */; };
 		E6C4C8001FE2836C005DDE0F /* songPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C4C7FD1FE2836C005DDE0F /* songPlayView.m */; };
@@ -39,8 +69,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blueMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A85CAC3391D158371F209A3 /* Pods-blueMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blueMusic.release.xcconfig"; path = "Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic.release.xcconfig"; sourceTree = "<group>"; };
-		D43E9FA244AEA06E7F41854E /* libPods-blueMusic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-blueMusic.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E62988FE1FE274B4006F9B71 /* blueMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blueMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E62989011FE274B4006F9B71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E62989021FE274B4006F9B71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -73,6 +103,39 @@
 		E62989361FE280D9006F9B71 /* MusicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicListViewController.h; sourceTree = "<group>"; };
 		E62989371FE280DA006F9B71 /* ShareMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMusicViewController.h; sourceTree = "<group>"; };
 		E62989381FE280DA006F9B71 /* MyMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMusicViewController.h; sourceTree = "<group>"; };
+		E62A2E5E20E317F100CCDABD /* BlueMusicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueMusicModel.h; sourceTree = "<group>"; };
+		E62A2E5F20E317F100CCDABD /* BlueMusicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueMusicModel.m; sourceTree = "<group>"; };
+		E6634C1E20E89C9300655ADD /* SecurityUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityUtil.h; sourceTree = "<group>"; };
+		E6634C1F20E89C9300655ADD /* SecurityUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecurityUtil.m; sourceTree = "<group>"; };
+		E6634C2120E89D1000655ADD /* NSData+Encryption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Encryption.h"; sourceTree = "<group>"; };
+		E6634C2220E89D1000655ADD /* NSData+Encryption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Encryption.m"; sourceTree = "<group>"; };
+		E6634C2420E8B42500655ADD /* jshi.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jshi.js; sourceTree = "<group>"; };
+		E6634C2620E8B46E00655ADD /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		E6634C2A20E8B93C00655ADD /* bigint.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bigint.js; sourceTree = "<group>"; };
+		E6634C2D20E8BDA900655ADD /* lastfm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = lastfm.js; sourceTree = "<group>"; };
+		E6634C2E20E8BDA900655ADD /* lowebutil.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = lowebutil.js; sourceTree = "<group>"; };
+		E6634C2F20E8BDA900655ADD /* myplaylist.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = myplaylist.js; sourceTree = "<group>"; };
+		E6634C3020E8BDA900655ADD /* oauth_callback.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = oauth_callback.js; sourceTree = "<group>"; };
+		E6634C3120E8BDA900655ADD /* github_api.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = github_api.js; sourceTree = "<group>"; };
+		E6634C3220E8BDA900655ADD /* background.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
+		E6634C3320E8BDA900655ADD /* loweb.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = loweb.js; sourceTree = "<group>"; };
+		E6634C3520E8BDA900655ADD /* xiami.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = xiami.js; sourceTree = "<group>"; };
+		E6634C3620E8BDA900655ADD /* qq.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = qq.js; sourceTree = "<group>"; };
+		E6634C3720E8BDA900655ADD /* kuwo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = kuwo.js; sourceTree = "<group>"; };
+		E6634C3820E8BDA900655ADD /* kugou.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = kugou.js; sourceTree = "<group>"; };
+		E6634C3920E8BDA900655ADD /* netease.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = netease.js; sourceTree = "<group>"; };
+		E6634C3A20E8BDA900655ADD /* github.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = github.js; sourceTree = "<group>"; };
+		E6634C3B20E8BDA900655ADD /* app.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = app.js; sourceTree = "<group>"; };
+		E6634C3D20E8BDA900655ADD /* aes.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = aes.js; sourceTree = "<group>"; };
+		E6634C3E20E8BDA900655ADD /* angular.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = angular.min.js; sourceTree = "<group>"; };
+		E6634C3F20E8BDA900655ADD /* timer.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = timer.js; sourceTree = "<group>"; };
+		E6634C4020E8BDA900655ADD /* angular-ui-notification.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "angular-ui-notification.js"; sourceTree = "<group>"; };
+		E6634C4120E8BDA900655ADD /* angular-soundmanager2.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "angular-soundmanager2.js"; sourceTree = "<group>"; };
+		E6634C4220E8BDA900655ADD /* hotkeys.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hotkeys.js; sourceTree = "<group>"; };
+		E6634C4320E8BDA900655ADD /* bigint.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bigint.js; sourceTree = "<group>"; };
+		E6634C4420E8BDA900655ADD /* async.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = async.min.js; sourceTree = "<group>"; };
+		E6634C4520E8BDA900655ADD /* jquery-2.2.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-2.2.3.min.js"; sourceTree = "<group>"; };
+		E6634C4620E8BDA900655ADD /* md5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = md5.js; sourceTree = "<group>"; };
 		E6C4C7F51FE28355005DDE0F /* Headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Headers.h; sourceTree = "<group>"; };
 		E6C4C7F61FE28364005DDE0F /* MusicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicModel.m; sourceTree = "<group>"; };
 		E6C4C7F71FE28364005DDE0F /* LyricModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricModel.m; sourceTree = "<group>"; };
@@ -96,7 +159,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CA066B220717F00EDB30941 /* libPods-blueMusic.a in Frameworks */,
+				E6634C2720E8B46E00655ADD /* JavaScriptCore.framework in Frameworks */,
+				2B620F0A2CBCC41C5C7A61C1 /* Pods_blueMusic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +179,8 @@
 		566357055D6A2418115ECAC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D43E9FA244AEA06E7F41854E /* libPods-blueMusic.a */,
+				E6634C2620E8B46E00655ADD /* JavaScriptCore.framework */,
+				26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -141,6 +206,7 @@
 		E62989001FE274B4006F9B71 /* blueMusic */ = {
 			isa = PBXGroup;
 			children = (
+				E6634C2C20E8BDA900655ADD /* js */,
 				E629890F1FE274B4006F9B71 /* Info.plist */,
 				E62989421FE280FE006F9B71 /* Helper */,
 				E62989411FE280F9006F9B71 /* View */,
@@ -219,6 +285,8 @@
 				E6C4C7F71FE28364005DDE0F /* LyricModel.m */,
 				E6C4C7F81FE28364005DDE0F /* MusicModel.h */,
 				E6C4C7F61FE28364005DDE0F /* MusicModel.m */,
+				E62A2E5E20E317F100CCDABD /* BlueMusicModel.h */,
+				E62A2E5F20E317F100CCDABD /* BlueMusicModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -237,14 +305,67 @@
 		E62989421FE280FE006F9B71 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				E6634C2A20E8B93C00655ADD /* bigint.js */,
+				E6634C2420E8B42500655ADD /* jshi.js */,
 				E6C4C8091FE283B8005DDE0F /* LyricHandle.h */,
 				E6C4C8081FE283B7005DDE0F /* LyricHandle.m */,
 				E6C4C8031FE28373005DDE0F /* MusicDataHandle.h */,
 				E6C4C8041FE28373005DDE0F /* MusicDataHandle.m */,
 				E6C4C8021FE28373005DDE0F /* MusicPlayerHandle.h */,
 				E6C4C8051FE28374005DDE0F /* MusicPlayerHandle.m */,
+				E6634C1E20E89C9300655ADD /* SecurityUtil.h */,
+				E6634C1F20E89C9300655ADD /* SecurityUtil.m */,
+				E6634C2120E89D1000655ADD /* NSData+Encryption.h */,
+				E6634C2220E89D1000655ADD /* NSData+Encryption.m */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		E6634C2C20E8BDA900655ADD /* js */ = {
+			isa = PBXGroup;
+			children = (
+				E6634C2D20E8BDA900655ADD /* lastfm.js */,
+				E6634C2E20E8BDA900655ADD /* lowebutil.js */,
+				E6634C2F20E8BDA900655ADD /* myplaylist.js */,
+				E6634C3020E8BDA900655ADD /* oauth_callback.js */,
+				E6634C3120E8BDA900655ADD /* github_api.js */,
+				E6634C3220E8BDA900655ADD /* background.js */,
+				E6634C3320E8BDA900655ADD /* loweb.js */,
+				E6634C3420E8BDA900655ADD /* provider */,
+				E6634C3A20E8BDA900655ADD /* github.js */,
+				E6634C3B20E8BDA900655ADD /* app.js */,
+				E6634C3C20E8BDA900655ADD /* vendor */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		E6634C3420E8BDA900655ADD /* provider */ = {
+			isa = PBXGroup;
+			children = (
+				E6634C3520E8BDA900655ADD /* xiami.js */,
+				E6634C3620E8BDA900655ADD /* qq.js */,
+				E6634C3720E8BDA900655ADD /* kuwo.js */,
+				E6634C3820E8BDA900655ADD /* kugou.js */,
+				E6634C3920E8BDA900655ADD /* netease.js */,
+			);
+			path = provider;
+			sourceTree = "<group>";
+		};
+		E6634C3C20E8BDA900655ADD /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E6634C3D20E8BDA900655ADD /* aes.js */,
+				E6634C3E20E8BDA900655ADD /* angular.min.js */,
+				E6634C3F20E8BDA900655ADD /* timer.js */,
+				E6634C4020E8BDA900655ADD /* angular-ui-notification.js */,
+				E6634C4120E8BDA900655ADD /* angular-soundmanager2.js */,
+				E6634C4220E8BDA900655ADD /* hotkeys.js */,
+				E6634C4320E8BDA900655ADD /* bigint.js */,
+				E6634C4420E8BDA900655ADD /* async.min.js */,
+				E6634C4520E8BDA900655ADD /* jquery-2.2.3.min.js */,
+				E6634C4620E8BDA900655ADD /* md5.js */,
+			);
+			path = vendor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,8 +379,7 @@
 				E62988FA1FE274B4006F9B71 /* Sources */,
 				E62988FB1FE274B4006F9B71 /* Frameworks */,
 				E62988FC1FE274B4006F9B71 /* Resources */,
-				942A870B21EADD4D6403239D /* [CP] Embed Pods Frameworks */,
-				B051665F9381ACA67A9D91E9 /* [CP] Copy Pods Resources */,
+				5798EA83D726F260543843AE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -308,66 +428,101 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6634C5020E8BDAA00655ADD /* kuwo.js in Resources */,
+				E6634C2520E8B42600655ADD /* jshi.js in Resources */,
+				E6634C5420E8BDAA00655ADD /* app.js in Resources */,
 				E62989251FE27FB3006F9B71 /* blue_music_blue.png in Resources */,
+				E6634C5A20E8BDAA00655ADD /* hotkeys.js in Resources */,
 				E629890E1FE274B4006F9B71 /* LaunchScreen.storyboard in Resources */,
+				E6634C4920E8BDAA00655ADD /* myplaylist.js in Resources */,
+				E6634C5C20E8BDAA00655ADD /* async.min.js in Resources */,
+				E6634C4C20E8BDAA00655ADD /* background.js in Resources */,
 				E62989291FE27FB3006F9B71 /* blue_music_white.png in Resources */,
+				E6634C5520E8BDAA00655ADD /* aes.js in Resources */,
 				E62989231FE27FB3006F9B71 /* blue_user_blue.png in Resources */,
+				E6634C4720E8BDAA00655ADD /* lastfm.js in Resources */,
+				E6634C5E20E8BDAA00655ADD /* md5.js in Resources */,
+				E6634C4D20E8BDAA00655ADD /* loweb.js in Resources */,
+				E6634C5320E8BDAA00655ADD /* github.js in Resources */,
 				E62989241FE27FB3006F9B71 /* blue_user_white.png in Resources */,
+				E6634C5820E8BDAA00655ADD /* angular-ui-notification.js in Resources */,
 				E62989221FE27FB3006F9B71 /* blue_share_white.png in Resources */,
+				E6634C5620E8BDAA00655ADD /* angular.min.js in Resources */,
+				E6634C5B20E8BDAA00655ADD /* bigint.js in Resources */,
 				E62989261FE27FB3006F9B71 /* blue_search_white.png in Resources */,
 				E62989271FE27FB3006F9B71 /* blue_share_blue.png in Resources */,
 				E62989281FE27FB3006F9B71 /* blue_search_blue.png in Resources */,
+				E6634C5920E8BDAA00655ADD /* angular-soundmanager2.js in Resources */,
 				E629890B1FE274B4006F9B71 /* Assets.xcassets in Resources */,
+				E6634C4A20E8BDAA00655ADD /* oauth_callback.js in Resources */,
+				E6634C4B20E8BDAA00655ADD /* github_api.js in Resources */,
+				E6634C2B20E8B93C00655ADD /* bigint.js in Resources */,
+				E6634C5720E8BDAA00655ADD /* timer.js in Resources */,
+				E6634C4F20E8BDAA00655ADD /* qq.js in Resources */,
+				E6634C4820E8BDAA00655ADD /* lowebutil.js in Resources */,
+				E6634C5D20E8BDAA00655ADD /* jquery-2.2.3.min.js in Resources */,
+				E6634C5120E8BDAA00655ADD /* kugou.js in Resources */,
 				E62989091FE274B4006F9B71 /* Main.storyboard in Resources */,
+				E6634C5220E8BDAA00655ADD /* netease.js in Resources */,
+				E6634C4E20E8BDAA00655ADD /* xiami.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8612B19D8270058570636686 /* [CP] Check Pods Manifest.lock */ = {
+		5798EA83D726F260543843AE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		942A870B21EADD4D6403239D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/bluebox/bluebox.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bluebox.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B051665F9381ACA67A9D91E9 /* [CP] Copy Pods Resources */ = {
+		8612B19D8270058570636686 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-blueMusic-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -383,7 +538,10 @@
 				E629893B1FE280DA006F9B71 /* RootTabBarController.m in Sources */,
 				E6C4C8061FE28374005DDE0F /* MusicDataHandle.m in Sources */,
 				E6C4C8001FE2836C005DDE0F /* songPlayView.m in Sources */,
+				E6634C2020E89C9300655ADD /* SecurityUtil.m in Sources */,
+				E6634C2320E89D1000655ADD /* NSData+Encryption.m in Sources */,
 				E629893D1FE280DA006F9B71 /* SearchMusicViewController.m in Sources */,
+				E62A2E6020E317F100CCDABD /* BlueMusicModel.m in Sources */,
 				E629893C1FE280DA006F9B71 /* LoginViewController.m in Sources */,
 				E6C4C8071FE28374005DDE0F /* MusicPlayerHandle.m in Sources */,
 				E629893E1FE280DA006F9B71 /* MyMusicViewController.m in Sources */,
