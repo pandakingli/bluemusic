@@ -96,9 +96,9 @@ static MusicDataHandle *musicHandle=nil;
 
         //开辟一个子线程
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
-           [musicHandle getNetDataFromWangyi:nil WithFinishBlock:finishblock];
+          // [musicHandle getNetDataFromWangyi:nil WithFinishBlock:finishblock];
            // finishblock();
-           
+           [musicHandle getNetPlaylistDataFromWangyi:nil WithFinishBlock:finishblock];
         });//开辟一个子线程
     }
     return musicHandle;
@@ -578,9 +578,66 @@ static MusicDataHandle *musicHandle=nil;
     NSString *s1 = @"sU49pNzNAZvdv6u9TMxxeFLOb18XniYbISCVtw2qk1oEUaZWQt7Rf/X2Bj/ihKjbYu5lf3vqswAyvNOgpie8iQ==";
     NSString* s2 = @"a4ad299e9eab0563";
     
-    JSValue *s = [function callWithArguments:@[@"29724295"]];//@"34144485"
+    JSValue *s = [function callWithArguments:@[@"26352841"]];//@"34144485"
     NSLog(@"s=%@",[s toDictionary]);
     
     return [s toDictionary];
+}
+
+- (void)getNetPlaylistDataFromWangyi:(NSString *)type WithFinishBlock:(finishBlock)finishblock;
+{
+    [self setua];
+    
+    typeof(self) weakSelf = self;
+    
+    // 请求管理者
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = @"http://music.163.com/discover/playlist/?order=hot&limit=35&offset=70";
+    
+    [manager.requestSerializer setValue:@"text/html;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
+    //manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
+    
+    [manager GET:url
+      parameters:nil
+        progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"responseObject = %@",responseObject);
+        NSArray *arr = [responseObject objectForKey:@"data"];
+        NSDictionary *data = arr.firstObject;
+        if (data)
+        {
+        }
+        
+        finishblock();
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"error = %@",error);
+        finishblock();
+    }];
+    
+    
+    
+}
+
+-(void)setua{
+    // 1. 创建一个空的webView
+    //UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    // 2. 取出webView的userAgent
+    //NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+    // 3. 给userAgent中添加自己需要的内容
+   // userAgent = [userAgent stringByAppendingString:@" [Hello World] "];
+   NSString * userAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
+    // 4. 创建一个UserAgent字典
+    NSDictionary *userAgentDict = @{@"UserAgent":userAgent};
+    // 5. 将字典内容注册到NSUserDefaults中
+    [[NSUserDefaults standardUserDefaults] registerDefaults:userAgentDict];
+    
+    
 }
 @end

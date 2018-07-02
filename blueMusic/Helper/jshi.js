@@ -4,6 +4,44 @@ function sayHi() {
       return 'jsHi'
     }
 
+var ne_show_playlist() {
+    
+    var order = "hot"
+    var offset = "30"
+    
+    if (offset !=  null) {
+        var target_url = 'http://music.163.com/discover/playlist/?order=' + order + '&limit=35&offset=' + offset;
+    } else {
+        var target_url = 'http://music.163.com/discover/playlist/?order=' + order;
+    }
+    
+    return {
+    success: function(fn) {
+        var result = [];
+        hm.get(target_url).then(function(response) {
+                                var data = response.data;
+                                data = $.parseHTML(data);
+                                $(data).find('.m-cvrlst li').each(function(){
+                                                                  var default_playlist = {
+                                                                  'cover_img_url' : '',
+                                                                  'title': '',
+                                                                  'id': '',
+                                                                  'source_url': ''
+                                                                  };
+                                                                  default_playlist.cover_img_url = $(this).find('img')[0].src;
+                                                                  default_playlist.title = $(this).find('div a')[0].title;
+                                                                  var url = $(this).find('div a')[0].href;
+                                                                  var list_id = getParameterByName('id',url);
+                                                                  default_playlist.id = 'neplaylist_' + list_id;
+                                                                  default_playlist.source_url = 'http://music.163.com/#/playlist?id=' + list_id;
+                                                                  result.push(default_playlist);
+                                                                  });
+                                return fn({"result":result});
+                                });
+    }
+    };
+}
+
 function gobtoa (s) {
     if (/([^\u0000-\u00ff])/.test(s)) {
         throw new Error('INVALID_CHARACTER_ERR');

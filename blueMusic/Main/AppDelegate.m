@@ -22,6 +22,13 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+    NSString *newUserAgent = [userAgent stringByAppendingString:@" native_iOS"];//自定义需要拼接的字符串
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:newUserAgent, @"UserAgent", nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+
+    
     //如果使用美国站点，请加上这行代码 [AVOSCloud useAVCloudUS];
     [AVOSCloud setApplicationId:@"ei8TJNLnVqOjEtK6JE34lkSO-gzGzoHsz"
                       clientKey:@"dQFjmK1LLUnsEPY5g60h2Seh"];
