@@ -599,7 +599,7 @@ static MusicDataHandle *musicHandle=nil;
     [manager.requestSerializer setValue:userAgent forHTTPHeaderField:@"User-Agent"];
     [manager.requestSerializer setValue:userAgent forHTTPHeaderField:@"UserAgent"];
     
-    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
     //manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
@@ -628,20 +628,12 @@ static MusicDataHandle *musicHandle=nil;
 
 -(void)setua
 {
-    /*
-    // 1. 创建一个空的webView
-    //UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    // 2. 取出webView的userAgent
-    //NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-    // 3. 给userAgent中添加自己需要的内容
-   // userAgent = [userAgent stringByAppendingString:@" [Hello World] "];
-   NSString * userAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
-    // 4. 创建一个UserAgent字典
-    NSDictionary *userAgentDict = @{@"UserAgent":userAgent};
-    // 5. 将字典内容注册到NSUserDefaults中
-    [[NSUserDefaults standardUserDefaults] registerDefaults:userAgentDict];
-    */
-  
+    //https://blog.csdn.net/chenyufeng1991/article/details/47425799
+    NSString *url = @"http://music.163.com/discover/playlist/?order=hot&limit=35&offset=70";
+    NSURL *rr = [NSURL URLWithString:url];
+    //NSData *data = [NSData dataWithContentsOfURL:url];
+    NSString *ss = [NSString stringWithContentsOfURL:rr encoding:NSUTF8StringEncoding error:nil];
+    NSLog(@"ss= %@",ss);
     
 }
 @end
