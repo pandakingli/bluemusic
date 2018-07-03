@@ -98,16 +98,4 @@
      
 }
 
-- (void)awakeFromNib {
-    
-    //拖控件出来的cell会走这个方法
-  
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 @end

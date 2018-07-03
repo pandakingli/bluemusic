@@ -19,7 +19,7 @@ static MusicDataHandle *musicHandle=nil;
 
 @interface MusicDataHandle()<NSURLSessionDataDelegate,NSURLSessionDownloadDelegate>
 
-@property(nonatomic,strong)NSMutableArray *musicArray;
+
 @property(nonatomic,copy)NSString *dbPath;//数据库的路径
 @property(nonatomic,copy)NSString *filesPath;//存放从数据库获取的文件的文件夹
 @property(nonatomic,copy)NSString *projectPath;//沙盒文件夹路径
@@ -96,7 +96,7 @@ static MusicDataHandle *musicHandle=nil;
     {
         musicHandle =[[MusicDataHandle alloc]init];
         musicHandle.musicArray =[NSMutableArray array];
-
+        musicHandle.musicPLArray =[NSMutableArray array];
         //开辟一个子线程
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
           // [musicHandle getNetDataFromWangyi:nil WithFinishBlock:finishblock];
@@ -108,6 +108,16 @@ static MusicDataHandle *musicHandle=nil;
         });//开辟一个子线程
     }
     return musicHandle;
+}
+
+-(BlueMusicPlayListModel *)musicPlayListWithIndex:(NSInteger)index
+{
+    return self.musicPLArray[index];
+}
+
+-(NSInteger)musicPLDataCount
+{
+    return self.musicPLArray.count;
 }
 
 -(NSInteger)musicDataCount
@@ -640,7 +650,7 @@ static MusicDataHandle *musicHandle=nil;
 
 -(void)getPlayListFromHTMLWithFinishBlock:(finishBlock)finishblock
 {
-    NSString *titlesArr = [NSMutableArray array];
+    //NSString *titlesArr = [NSMutableArray array];
     
     NSURL *url = [NSURL URLWithString:@"http://music.163.com/discover/playlist/?order=hot&limit=35&offset=0"];
     NSData *data = [NSData dataWithContentsOfURL:url];
@@ -674,8 +684,15 @@ static MusicDataHandle *musicHandle=nil;
                 NSArray *tArray = [HppleElement searchWithXPathQuery:@"//div//a"];
                 TFHppleElement *pp = tArray.firstObject;
                 NSString *title = pp.attributes[@"title"];
+                 NSString *href = pp.attributes[@"href"];
+                if (href)
+                {
+                    NSArray *arr = [href componentsSeparatedByString:@"="];
+                    href = arr.lastObject;
+                }
                 plModel.title = title;
-                
+                plModel.pl_id = href;
+                plModel.source_url = [NSString stringWithFormat:@"http://music.163.com/#/playlist?id=%@",plModel.pl_id];
                 NSArray *imgArray = [HppleElement searchWithXPathQuery:@"//div//img"];
                 TFHppleElement *imgtt = imgArray.firstObject;
                 NSString *img = imgtt.attributes[@"src"];
@@ -691,6 +708,12 @@ static MusicDataHandle *musicHandle=nil;
     if (plArr.count>0)
     {
         NSLog(@"plArr = %@",plArr);
+        [musicHandle.musicPLArray addObjectsFromArray:plArr];
+    }
+    
+    if (finishblock)
+    {
+        finishblock();
     }
 }
 

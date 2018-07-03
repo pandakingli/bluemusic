@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "MusicModel.h"
+@class BlueMusicPlayListModel;
 
 typedef void(^finishBlock)();
 
 @interface MusicDataHandle : NSObject
 
 +(instancetype)shareMusicDataHandleWithFinishBlock:(finishBlock)finishblock;
-
+@property(nonatomic,strong)NSMutableArray *musicArray;
+@property(nonatomic,strong)NSMutableArray *musicPLArray;
 -(NSInteger)musicDataCount;
 
 -(MusicModel *)musicWithIndex:(NSInteger)index;
@@ -22,4 +24,8 @@ typedef void(^finishBlock)();
 //记录上次播放的音乐
 @property (nonatomic, copy) NSString *lastmp3Url;
 - (void)getNetDataFromWangyi:(NSString *)type WithFinishBlock:(finishBlock)finishblock;
+
+
+-(BlueMusicPlayListModel *)musicPlayListWithIndex:(NSInteger)index;
+-(NSInteger)musicPLDataCount;
 @end

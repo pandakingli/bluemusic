@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0AC1DDA820EB182200C15573 /* TFHpple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC1DDA720EB182200C15573 /* TFHpple.framework */; };
 		0AC1DDAB20EB273900C15573 /* BlueMusicPlayListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */; };
+		0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */; };
+		0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B320EB8185002B3357 /* PLDetailVC.m */; };
+		0AE3F4B720EB84A2002B3357 /* PLDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B620EB84A2002B3357 /* PLDetailView.m */; };
 		2B620F0A2CBCC41C5C7A61C1 /* Pods_blueMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */; };
 		E62989031FE274B4006F9B71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989021FE274B4006F9B71 /* AppDelegate.m */; };
 		E62989061FE274B4006F9B71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989051FE274B4006F9B71 /* ViewController.m */; };
@@ -73,6 +76,12 @@
 		0AC1DDA720EB182200C15573 /* TFHpple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TFHpple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC1DDA920EB273900C15573 /* BlueMusicPlayListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueMusicPlayListModel.h; sourceTree = "<group>"; };
 		0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueMusicPlayListModel.m; sourceTree = "<group>"; };
+		0AE3F4AF20EB77A6002B3357 /* MusicPLCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicPLCell.h; sourceTree = "<group>"; };
+		0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPLCell.m; sourceTree = "<group>"; };
+		0AE3F4B220EB8185002B3357 /* PLDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailVC.h; sourceTree = "<group>"; };
+		0AE3F4B320EB8185002B3357 /* PLDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLDetailVC.m; sourceTree = "<group>"; };
+		0AE3F4B520EB84A2002B3357 /* PLDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailView.h; sourceTree = "<group>"; };
+		0AE3F4B620EB84A2002B3357 /* PLDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLDetailView.m; sourceTree = "<group>"; };
 		26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blueMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A85CAC3391D158371F209A3 /* Pods-blueMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blueMusic.release.xcconfig"; path = "Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic.release.xcconfig"; sourceTree = "<group>"; };
 		E62988FE1FE274B4006F9B71 /* blueMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blueMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +278,10 @@
 				E629892E1FE280D9006F9B71 /* LoginViewController.m */,
 				E62989361FE280D9006F9B71 /* MusicListViewController.h */,
 				E62989351FE280D9006F9B71 /* MusicListViewController.m */,
+				0AE3F4B220EB8185002B3357 /* PLDetailVC.h */,
+				0AE3F4B320EB8185002B3357 /* PLDetailVC.m */,
+				0AE3F4B520EB84A2002B3357 /* PLDetailView.h */,
+				0AE3F4B620EB84A2002B3357 /* PLDetailView.m */,
 				E62989331FE280D9006F9B71 /* MusicPlayerViewController.h */,
 				E629892C1FE280D9006F9B71 /* MusicPlayerViewController.m */,
 				E62989381FE280DA006F9B71 /* MyMusicViewController.h */,
@@ -305,6 +318,8 @@
 				E6C4C7FE1FE2836C005DDE0F /* MusicListTableViewCell.m */,
 				E6C4C7FF1FE2836C005DDE0F /* songPlayView.h */,
 				E6C4C7FD1FE2836C005DDE0F /* songPlayView.m */,
+				0AE3F4AF20EB77A6002B3357 /* MusicPLCell.h */,
+				0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -564,8 +579,11 @@
 				E6634C2020E89C9300655ADD /* SecurityUtil.m in Sources */,
 				E6634C2320E89D1000655ADD /* NSData+Encryption.m in Sources */,
 				E629893D1FE280DA006F9B71 /* SearchMusicViewController.m in Sources */,
+				0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */,
 				E62A2E6020E317F100CCDABD /* BlueMusicModel.m in Sources */,
+				0AE3F4B720EB84A2002B3357 /* PLDetailView.m in Sources */,
 				E629893C1FE280DA006F9B71 /* LoginViewController.m in Sources */,
+				0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */,
 				E6C4C8071FE28374005DDE0F /* MusicPlayerHandle.m in Sources */,
 				E629893E1FE280DA006F9B71 /* MyMusicViewController.m in Sources */,
 				E62989111FE274B4006F9B71 /* main.m in Sources */,

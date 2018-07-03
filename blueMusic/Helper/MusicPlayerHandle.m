@@ -47,7 +47,7 @@ static MusicPlayerHandle *myMusicPlayer=nil;
     //
     AVPlayerItem *item = [[AVPlayerItem alloc] initWithURL:url];
     [self.player replaceCurrentItemWithPlayerItem:item];
-    
+   
     [self play];
 }
 -(void)play{

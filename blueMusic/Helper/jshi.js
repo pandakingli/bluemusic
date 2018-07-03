@@ -4,43 +4,7 @@ function sayHi() {
       return 'jsHi'
     }
 
-function go_show_playlist(order,offset) {
-    //var hm = $http
-    var order = "hot"
-    var offset = "30"
-    
-    if (offset !=  null) {
-        var target_url = 'http://music.163.com/discover/playlist/?order=' + order + '&limit=35&offset=' + offset;
-    } else {
-        var target_url = 'http://music.163.com/discover/playlist/?order=' + order;
-    }
-    
-    return {
-    success: function(fn) {
-        var result = [];
-       return $http.get(target_url).then(function(response) {
-                                var data = response.data;
-                                data = $.parseHTML(data);
-                                $(data).find('.m-cvrlst li').each(function(){
-                                                                  var default_playlist = {
-                                                                  'cover_img_url' : '',
-                                                                  'title': '',
-                                                                  'id': '',
-                                                                  'source_url': ''
-                                                                  };
-                                                                  default_playlist.cover_img_url = $(this).find('img')[0].src;
-                                                                  default_playlist.title = $(this).find('div a')[0].title;
-                                                                  var url = $(this).find('div a')[0].href;
-                                                                  var list_id = getParameterByName('id',url);
-                                                                  default_playlist.id = 'neplaylist_' + list_id;
-                                                                  default_playlist.source_url = 'http://music.163.com/#/playlist?id=' + list_id;
-                                                                  result.push(default_playlist);
-                                                                  });
-                                return fn({"result":result});
-                                });
-    }
-    };
-}
+
 
 function gobtoa (s) {
     if (/([^\u0000-\u00ff])/.test(s)) {
@@ -93,68 +57,6 @@ function gobtoa (s) {
     return result.join('');
 }
 
-
-function Base64Encode(str) {
-    if (/([^\u0000-\u00ff])/.test(str)) throw Error('String must be ASCII');
-    
-    var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    var o1, o2, o3, bits, h1, h2, h3, h4, e=[], pad = '', c;
-    
-    c = str.length % 3;  // pad string to length of multiple of 3
-    if (c > 0) { while (c++ < 3) { pad += '='; str += '\0'; } }
-    // note: doing padding here saves us doing special-case packing for trailing 1 or 2 chars
-    
-    for (c=0; c<str.length; c+=3) {  // pack three octets into four hexets
-        o1 = str.charCodeAt(c);
-        o2 = str.charCodeAt(c+1);
-        o3 = str.charCodeAt(c+2);
-        
-        bits = o1<<16 | o2<<8 | o3;
-        
-        h1 = bits>>18 & 0x3f;
-        h2 = bits>>12 & 0x3f;
-        h3 = bits>>6 & 0x3f;
-        h4 = bits & 0x3f;
-        
-        // use hextets to index into code string
-        e[c/3] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
-    }
-    str = e.join('');  // use Array.join() for better performance than repeated string appends
-    
-    // replace 'A's from padded nulls with '='s
-    str = str.slice(0, str.length-pad.length) + pad;
-    
-    return str;
-}
-
-
-function Base64Decode(str) {
-    if (!(/^[a-z0-9+/]+={0,2}$/i.test(str)) || str.length%4 != 0) throw Error('Not base64 string');
-    
-    var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    var o1, o2, o3, h1, h2, h3, h4, bits, d=[];
-    
-    for (var c=0; c<str.length; c+=4) {  // unpack four hexets into three octets
-        h1 = b64.indexOf(str.charAt(c));
-        h2 = b64.indexOf(str.charAt(c+1));
-        h3 = b64.indexOf(str.charAt(c+2));
-        h4 = b64.indexOf(str.charAt(c+3));
-        
-        bits = h1<<18 | h2<<12 | h3<<6 | h4;
-        
-        o1 = bits>>>16 & 0xff;
-        o2 = bits>>>8 & 0xff;
-        o3 = bits & 0xff;
-        
-        d[c/4] = String.fromCharCode(o1, o2, o3);
-        // check for padding
-        if (h4 == 0x40) d[c/4] = String.fromCharCode(o1, o2);
-        if (h3 == 0x40) d[c/4] = String.fromCharCode(o1);
-    }
-    str = d.join('');  // use Array.join() for better performance than repeated string appends
-    
-    return str;
-}
 
 function _aes_encrypt(text, sec_key) {
     
@@ -266,4 +168,19 @@ function go_request(song_id) {
     return data;
 }
 
+function go_requestpldetail(pl_id) {
+    
+    var d = {
+    "id": pl_id,
+    "offset": 0,
+    "total": true,
+    "limit": 1000,
+    "n": 1000,
+    "csrf_token": ""
+    };
+    
+    
+    var data = encrypted_request(d);
+    return data;
+}
 

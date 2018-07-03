@@ -8,6 +8,8 @@
  objectid
  */
 @property (nonatomic, copy) NSString *objectid;
+@property (nonatomic, copy) NSString *songid;
+
 @property (nonatomic, copy) NSString *playurl_mp3;
 @property (nonatomic, copy) NSString *picurl_blur;
 @property (nonatomic, copy) NSString *picurl_normal;

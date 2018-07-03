@@ -120,7 +120,10 @@ NSLog(@"获取model=%@",self.model);
     //修改歌曲名称、歌手、图片
     self.songV.SongName.text = model.name;
     self.songV.SingerName.text = model.singer;
-    
+    if (!model.picurl_blur)
+    {
+        model.picurl_blur = @"http://d.hiphotos.baidu.com/zhidao/pic/item/f3d3572c11dfa9ec192cf07061d0f703918fc153.jpg";
+    }
     [self.songV.myImageViewblur sd_setImageWithURL:[NSURL URLWithString:model.picurl_blur] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -128,8 +131,15 @@ NSLog(@"获取model=%@",self.model);
         });
     }];
     
-    self.songV.myImageView.image=model.image;
-    NSLog(@"model.name歌曲名称=%@", model.name);
+    [self.songV.myImageView sd_setImageWithURL:[NSURL URLWithString:model.picurl_blur] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            self.songV.myImageView.image = image;
+        });
+    }];
+    
+    //self.songV.myImageView.image=model.image;
+    //NSLog(@"model.name歌曲名称=%@", model.name);
     //设置进度条最大值
     [self setSliderMaxValue];
     
