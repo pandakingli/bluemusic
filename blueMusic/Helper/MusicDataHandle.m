@@ -12,7 +12,9 @@
 #import "SecurityUtil.h"
 #import "NSData+Encryption.h"
 #import <JavaScriptCore/JavaScriptCore.h>
-#import "TFHpple.h"
+#import <TFHpple/TFHpple.h>
+#import "BlueMusicPlayListModel.h"
+
 static MusicDataHandle *musicHandle=nil;
 
 @interface MusicDataHandle()<NSURLSessionDataDelegate,NSURLSessionDownloadDelegate>
@@ -99,7 +101,10 @@ static MusicDataHandle *musicHandle=nil;
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
           // [musicHandle getNetDataFromWangyi:nil WithFinishBlock:finishblock];
            // finishblock();
-           [musicHandle getNetPlaylistDataFromWangyi:nil WithFinishBlock:finishblock];
+           //[musicHandle getNetPlaylistDataFromWangyi:nil WithFinishBlock:finishblock];
+            
+            [musicHandle getPlayListFromHTMLWithFinishBlock:finishblock];
+            //[musicHandle getPlayListFromHTMLByJSWithFinishBlock:finishblock];
         });//开辟一个子线程
     }
     return musicHandle;
@@ -585,10 +590,8 @@ static MusicDataHandle *musicHandle=nil;
     return [s toDictionary];
 }
 
-- (void)getNetPlaylistDataFromWangyi:(NSString *)type WithFinishBlock:(finishBlock)finishblock;
+- (void)getNetPlaylistDataFromWangyi:(NSString *)type WithFinishBlock:(finishBlock)finishblock
 {
-    [self setua];
-    
     typeof(self) weakSelf = self;
     
     // 请求管理者
@@ -622,9 +625,7 @@ static MusicDataHandle *musicHandle=nil;
         NSLog(@"error = %@",error);
         finishblock();
     }];
-    
-    
-    
+   
 }
 
 -(void)setua
@@ -635,19 +636,86 @@ static MusicDataHandle *musicHandle=nil;
     //NSData *data = [NSData dataWithContentsOfURL:url];
     NSString *ss = [NSString stringWithContentsOfURL:rr encoding:NSUTF8StringEncoding error:nil];
     NSLog(@"ss= %@",ss);
-    
-    
 }
 
--(void)testttt{
+-(void)getPlayListFromHTMLWithFinishBlock:(finishBlock)finishblock
+{
+    NSString *titlesArr = [NSMutableArray array];
     
     NSURL *url = [NSURL URLWithString:@"http://music.163.com/discover/playlist/?order=hot&limit=35&offset=0"];
     NSData *data = [NSData dataWithContentsOfURL:url];
     TFHpple *xpthParser = [[TFHpple alloc]initWithHTMLData:data];
-    NSArray *dataArr = [xpthParser searchWithXPathQuery:@"//li"];
-    for (TFHppleElement *hppleElement in dataArr) {
-        NSLog(@"%@",hppleElement.raw);//查看标签
-        NSLog(@"%@",hppleElement.text);//查看标签内容
+    NSArray *dataArr = [xpthParser searchWithXPathQuery:@"//ul"];
+    NSMutableArray *dataArrNew = [NSMutableArray array];
+    for (TFHppleElement *hppleElement in dataArr)
+    {
+        NSString *clssss = hppleElement.attributes[@"class"];
+        if ([clssss containsString:@"m-cvrlst"] ) //@"m-cvrlst"
+        {
+            [dataArrNew addObject:hppleElement];
+          
+        }
     }
+    
+    NSMutableArray *plArr = [NSMutableArray array];
+    
+    if (dataArrNew.count>0)
+    {
+        for (TFHppleElement *hppleElement in dataArrNew)
+        {
+            NSArray *dataArray = [hppleElement searchWithXPathQuery:@"//li"];
+            for (TFHppleElement *HppleElement in dataArray)
+            {
+                //NSLog(@"%@",HppleElement.raw);
+                //NSLog(@"%@",HppleElement.text);
+                
+                BlueMusicPlayListModel *plModel = [[BlueMusicPlayListModel alloc]init];
+                
+                NSArray *tArray = [HppleElement searchWithXPathQuery:@"//div//a"];
+                TFHppleElement *pp = tArray.firstObject;
+                NSString *title = pp.attributes[@"title"];
+                plModel.title = title;
+                
+                NSArray *imgArray = [HppleElement searchWithXPathQuery:@"//div//img"];
+                TFHppleElement *imgtt = imgArray.firstObject;
+                NSString *img = imgtt.attributes[@"src"];
+                
+                plModel.cover_img_url = img;
+                
+                [plArr addObject:plModel];
+            }
+        }
+       
+    }
+    
+    if (plArr.count>0)
+    {
+        NSLog(@"plArr = %@",plArr);
+    }
+}
+
+-(void)getPlayListFromHTMLByJSWithFinishBlock:(finishBlock)finishblock
+{
+    NSString *aespath = [[NSBundle mainBundle] pathForResource:@"angular.min" ofType:@"js"];
+    NSString *aespathstr= [NSString stringWithContentsOfFile:aespath encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *bigint = [[NSBundle mainBundle] pathForResource:@"bigint" ofType:@"js"];
+    NSString *bigintstr = [NSString stringWithContentsOfFile:bigint encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *jshi = [[NSBundle mainBundle] pathForResource:@"jshi" ofType:@"js"];
+    NSString *jshiStr = [NSString stringWithContentsOfFile:jshi encoding:NSUTF8StringEncoding error:nil];
+    
+    JSContext *context = [[JSContext alloc] init];
+    [context evaluateScript:aespathstr];
+    [context evaluateScript:bigintstr];
+    [context evaluateScript:jshiStr];
+    
+    JSValue *function =context[@"go_show_playlist"];
+    
+    NSString *s1 = @"hot";
+    NSString* s2 = @"35";
+    
+    JSValue *s = [function callWithArguments:@[s1,s2]];
+    NSLog(@"s=%@",[s toDictionary]);
 }
 @end

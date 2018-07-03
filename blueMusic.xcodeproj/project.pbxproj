@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AC1DDA820EB182200C15573 /* TFHpple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC1DDA720EB182200C15573 /* TFHpple.framework */; };
+		0AC1DDAB20EB273900C15573 /* BlueMusicPlayListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */; };
 		2B620F0A2CBCC41C5C7A61C1 /* Pods_blueMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */; };
 		E62989031FE274B4006F9B71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989021FE274B4006F9B71 /* AppDelegate.m */; };
 		E62989061FE274B4006F9B71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989051FE274B4006F9B71 /* ViewController.m */; };
@@ -68,6 +70,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AC1DDA720EB182200C15573 /* TFHpple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TFHpple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AC1DDA920EB273900C15573 /* BlueMusicPlayListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueMusicPlayListModel.h; sourceTree = "<group>"; };
+		0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueMusicPlayListModel.m; sourceTree = "<group>"; };
 		26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blueMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A85CAC3391D158371F209A3 /* Pods-blueMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blueMusic.release.xcconfig"; path = "Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic.release.xcconfig"; sourceTree = "<group>"; };
 		E62988FE1FE274B4006F9B71 /* blueMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blueMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AC1DDA820EB182200C15573 /* TFHpple.framework in Frameworks */,
 				E6634C2720E8B46E00655ADD /* JavaScriptCore.framework in Frameworks */,
 				2B620F0A2CBCC41C5C7A61C1 /* Pods_blueMusic.framework in Frameworks */,
 			);
@@ -177,6 +183,7 @@
 		566357055D6A2418115ECAC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AC1DDA720EB182200C15573 /* TFHpple.framework */,
 				E6634C2620E8B46E00655ADD /* JavaScriptCore.framework */,
 				26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */,
 			);
@@ -285,6 +292,8 @@
 				E6C4C7F61FE28364005DDE0F /* MusicModel.m */,
 				E62A2E5E20E317F100CCDABD /* BlueMusicModel.h */,
 				E62A2E5F20E317F100CCDABD /* BlueMusicModel.m */,
+				0AC1DDA920EB273900C15573 /* BlueMusicPlayListModel.h */,
+				0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -564,6 +573,7 @@
 				E6C4C7FA1FE28364005DDE0F /* MusicModel.m in Sources */,
 				E629893F1FE280DA006F9B71 /* MusicListViewController.m in Sources */,
 				E6C4C80A1FE283B8005DDE0F /* LyricHandle.m in Sources */,
+				0AC1DDAB20EB273900C15573 /* BlueMusicPlayListModel.m in Sources */,
 				E62989031FE274B4006F9B71 /* AppDelegate.m in Sources */,
 				E6C4C7FB1FE28364005DDE0F /* LyricModel.m in Sources */,
 			);

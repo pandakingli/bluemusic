@@ -4,8 +4,8 @@ function sayHi() {
       return 'jsHi'
     }
 
-var ne_show_playlist() {
-    
+function go_show_playlist(order,offset) {
+    //var hm = $http
     var order = "hot"
     var offset = "30"
     
@@ -18,7 +18,7 @@ var ne_show_playlist() {
     return {
     success: function(fn) {
         var result = [];
-        hm.get(target_url).then(function(response) {
+       return $http.get(target_url).then(function(response) {
                                 var data = response.data;
                                 data = $.parseHTML(data);
                                 $(data).find('.m-cvrlst li').each(function(){
