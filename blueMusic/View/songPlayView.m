@@ -391,6 +391,17 @@ static songPlayView *MusicPlayeViewCenter = nil;
 
 
 #pragma mark-- 更新数据
+-(void)updateSongList:(NSArray*)arr andindex:(NSInteger)index
+{
+    MusicDataHandle *hm = [MusicDataHandle shareMusicDataHandle];
+    hm.musicArray = arr.mutableCopy;
+    if (index<arr.count)
+    {
+        MusicModel *m = [hm musicWithIndex:index];
+        [self updatesongmodel:m];
+    }
+}
+
 -(void)updatesongmodel:(MusicModel*)model
 {
     if (model)
@@ -420,7 +431,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
                 weakSelf.musicModel.mp3Url = url;
                 weakSelf.musicModel.MP3file_url = url;
                 weakSelf.musicModel.playurl_mp3 = url;
-                [MusicDataHandle shareMusicDataHandle].musicArray = @[weakSelf.musicModel].mutableCopy;
+                
                 [weakSelf hideProgress];
                 [weakSelf changeMusic:weakSelf.musicModel];
             }
@@ -576,18 +587,18 @@ static songPlayView *MusicPlayeViewCenter = nil;
                 self.index += 1;
             }
             self.musicModel = [hm musicWithIndex:self.index];
-            [self changeMusic:self.musicModel];
+            [self updatesongmodel:self.musicModel];
             break;
             
         case 1://随机播放
             self.index = arc4random() % [hm musicDataCount];
             self.musicModel = [hm musicWithIndex:self.index];
-            [self changeMusic:self.musicModel];
+            [self updatesongmodel:self.musicModel];
             break;
             
         case 2://单曲循环
             self.musicModel = [hm musicWithIndex:self.index];
-            [self changeMusic:self.musicModel];
+            [self updatesongmodel:self.musicModel];
             break;
             
         default:

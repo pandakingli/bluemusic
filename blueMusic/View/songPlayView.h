@@ -15,6 +15,7 @@
 
 +(instancetype)shareMusicPlayView;
 
--(void)updatesongmodel:(MusicModel*)model;
+//-(void)updatesongmodel:(MusicModel*)model;
 
+-(void)updateSongList:(NSArray*)arr andindex:(NSInteger)index;
 @end

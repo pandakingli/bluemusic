@@ -87,8 +87,8 @@
 #pragma mark--换歌曲
 -(void)changeMusic:(MusicModel*)model
 {
-    [self.songV updatesongmodel:model];
- 
+  
+    
     //设置进度条最大值
     [self setSliderMaxValue];
 

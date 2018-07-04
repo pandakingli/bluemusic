@@ -257,7 +257,7 @@ typedef void(^finishURLBlock)(NSString *url);
     
     
     songPlayView *vv = [songPlayView getDefaultMusicPlayView];
-    [vv updatesongmodel:mm];
+    [vv updateSongList:self.dataarr andindex:indexPath.row];
     [self.view addSubview:vv];
     
     

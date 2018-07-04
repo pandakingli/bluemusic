@@ -80,7 +80,12 @@ static MusicDataHandle *musicHandle=nil;
 
 -(MusicModel *)musicWithIndex:(NSInteger)index
 {
-    return self.musicArray[index];
+    if (index<self.musicArray.count)
+    {
+        return self.musicArray[index];
+    }
+    return nil;
+    
 }
 
 -(NSString*)filesPath
