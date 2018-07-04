@@ -23,7 +23,7 @@ typedef void(^musicPlaySBlock) (float progress,NSString* currenttime,NSString* c
 - (void)musicPlayTime:(float)time;
 
 // 当前音乐结束播放的代理方法
-//- (void)currentMusicDidFinish;
+- (void)currentMusicDidFinish;
 
 - (void)musicPlayTimecache:(NSString*)time;
 @end

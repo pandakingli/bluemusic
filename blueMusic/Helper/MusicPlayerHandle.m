@@ -44,12 +44,14 @@ static MusicPlayerHandle *myMusicPlayer=nil;
     
     AVPlayerItem *songItem = [[AVPlayerItem alloc] initWithURL:url];
     [songItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:songItem];
 
     [self.player replaceCurrentItemWithPlayerItem:songItem];
    
     [self play];
 }
+
+
 
 -(void)pause
 {
@@ -132,6 +134,14 @@ static MusicPlayerHandle *myMusicPlayer=nil;
         {
             [self.delegate musicPlayTimecache:cachestr];
         }
+    }
+}
+
+-(void)playbackFinished:(id)sender
+{
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(currentMusicDidFinish)])
+    {
+        [self.delegate currentMusicDidFinish];
     }
 }
 @end

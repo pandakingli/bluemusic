@@ -521,6 +521,11 @@ static songPlayView *MusicPlayeViewCenter = nil;
     }
 }
 
+-(void)downloadmp3
+{
+    
+}
+
 -(void)setupcurrentplaystatus:(NSInteger)playStatus
 {
     switch (playStatus)
@@ -602,7 +607,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
             }
             if (weakSelf.progressBar.value==weakSelf.progressBar.maximumValue)
             {
-                [weakSelf nextSongClick:nil];
+               // [weakSelf nextSongClick:nil];
             }
             
             weakSelf.timeNow.text = currenttime;
@@ -668,7 +673,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
             }
             else
             {
-                self.index += 1;
+                self.index = self.index+1;
             }
             self.musicModel = [hm musicWithIndex:self.index];
             [self updatesongmodel:self.musicModel];
@@ -781,5 +786,10 @@ static songPlayView *MusicPlayeViewCenter = nil;
 - (void)musicPlayTimecache:(NSString*)time
 {
     self.timeCache.text = time;
+}
+
+-(void)currentMusicDidFinish
+{
+     [self nextSongClick:nil];
 }
 @end
