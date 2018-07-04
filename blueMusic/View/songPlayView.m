@@ -792,4 +792,17 @@ static songPlayView *MusicPlayeViewCenter = nil;
 {
      [self nextSongClick:nil];
 }
+
+-(void)pause
+{
+    [self playSongAction:nil];
+}
+-(void)playnext
+{
+    [self backButtonAction:nil];
+}
+-(void)playlast
+{
+    [self nextSongClick:nil];
+}
 @end

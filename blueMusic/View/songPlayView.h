@@ -18,4 +18,8 @@
 //-(void)updatesongmodel:(MusicModel*)model;
 
 -(void)updateSongList:(NSArray*)arr andindex:(NSInteger)index;
+
+-(void)pause;
+-(void)playnext;
+-(void)playlast;
 @end
