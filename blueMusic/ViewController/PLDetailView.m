@@ -113,7 +113,7 @@
     
     NSString *ss = self.plModel.pl_id;
     JSValue *s = [function callWithArguments:@[ss]];//@"34144485"
-    NSLog(@"s=%@",[s toDictionary]);
+    //NSLog(@"s=%@",[s toDictionary]);
     
     return [s toDictionary];
 }

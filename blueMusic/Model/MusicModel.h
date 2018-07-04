@@ -26,7 +26,7 @@
 
 
 @property (nonatomic, copy) NSString *duration;
-
+@property (nonatomic, copy) NSString *durationstring;
 @property (nonatomic, copy) NSString *lyric;
 
 @property (nonatomic, copy) NSString *mp3Url;

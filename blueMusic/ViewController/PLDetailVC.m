@@ -173,7 +173,7 @@ typedef void(^finishURLBlock)(NSString *url);
         ss=@"123";
     }
     JSValue *s = [function callWithArguments:@[ss]];//@"34144485"
-    NSLog(@"s=%@",[s toDictionary]);
+    //NSLog(@"s=%@",[s toDictionary]);
     
     return [s toDictionary];
 }
@@ -301,7 +301,7 @@ typedef void(^finishURLBlock)(NSString *url);
     
     
     JSValue *s = [function callWithArguments:@[songid]];
-    NSLog(@"s=%@",[s toDictionary]);
+    //NSLog(@"s=%@",[s toDictionary]);
     
     return [s toDictionary];
 }

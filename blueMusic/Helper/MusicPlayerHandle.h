@@ -7,15 +7,25 @@
 //
 #import "Headers.h"
 #import <Foundation/Foundation.h>
+
 typedef void(^finishBlock) ();
-//有参数无返回值，参数就是要传过去的实时的音乐播放位置
+
+//实时的音乐播放位置
 typedef void(^musicPlayTimeBlock) (float);
+
+typedef void(^musicPlayTBlock) (float progress,float currenttime,float cachetime);
+
+typedef void(^musicPlaySBlock) (float progress,NSString* currenttime,NSString* cachetime);
+
 @protocol MusicPlayerHandleDelegate <NSObject>
-// 这个代理方法的作用是告诉外界当前音乐播放的时间
+
+// 当前音乐播放的时间
 - (void)musicPlayTime:(float)time;
 
 // 当前音乐结束播放的代理方法
 //- (void)currentMusicDidFinish;
+
+- (void)musicPlayTimecache:(NSString*)time;
 @end
 
 
@@ -32,8 +42,7 @@ typedef void(^musicPlayTimeBlock) (float);
 //当前播放的歌曲
 @property(nonatomic,strong) MusicModel *nowModel;
 
-@property(nonatomic,copy) musicPlayTimeBlock mptblock;
-
+@property(nonatomic,copy) musicPlaySBlock mptblock;
 //开始播放
 -(void)playWithURLString:(NSString*)urlString;
 

@@ -100,18 +100,7 @@
     
     self.mpHandle.nowModel = model;
     
-    self.mpHandle.mptblock=^void(float progress){
-        
-        
-        //如果返回目录页，这个对象就不存在了，所以要判断一下
-        if (weakSelf) {
-            
-            
-        }//if (weakSelf)
-        
-        
-    };//^void(float progress)
-    
+ 
     
     [[LyricHandle shareLyricHandle]changeLyricString:model.lyric];
     

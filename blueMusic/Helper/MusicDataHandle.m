@@ -169,7 +169,7 @@ static MusicDataHandle *musicHandle=nil;
     }
     else
     {
-        NSLog(@"获取MP3数据失败。");
+        //NSLog(@"获取MP3数据失败。");
         self.Error=YES;
     }
 
@@ -599,7 +599,7 @@ static MusicDataHandle *musicHandle=nil;
     NSString* s2 = @"a4ad299e9eab0563";
     
     JSValue *s = [function callWithArguments:@[@"26352841"]];//@"34144485"
-    NSLog(@"s=%@",[s toDictionary]);
+   // NSLog(@"s=%@",[s toDictionary]);
     
     return [s toDictionary];
 }
@@ -711,7 +711,7 @@ static MusicDataHandle *musicHandle=nil;
     
     if (plArr.count>0)
     {
-        NSLog(@"plArr = %@",plArr);
+        //NSLog(@"plArr = %@",plArr);
         [musicHandle.musicPLArray addObjectsFromArray:plArr];
     }
     
@@ -743,6 +743,6 @@ static MusicDataHandle *musicHandle=nil;
     NSString* s2 = @"35";
     
     JSValue *s = [function callWithArguments:@[s1,s2]];
-    NSLog(@"s=%@",[s toDictionary]);
+    //NSLog(@"s=%@",[s toDictionary]);
 }
 @end

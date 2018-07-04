@@ -14,6 +14,7 @@ static MusicPlayerHandle *myMusicPlayer=nil;
 @interface MusicPlayerHandle()
 @property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, assign) BOOL isPlaying;
+@property (nonatomic, assign) NSTimeInterval cacheBuffer;
 @property (nonatomic, strong) NSTimer *timer;
 @end
 
@@ -25,6 +26,7 @@ static MusicPlayerHandle *myMusicPlayer=nil;
     {
         myMusicPlayer =[[MusicPlayerHandle alloc]init];
         myMusicPlayer.player =[AVPlayer new];
+        myMusicPlayer.player.automaticallyWaitsToMinimizeStalling = NO;
     }
     return myMusicPlayer;
 }
@@ -33,9 +35,18 @@ static MusicPlayerHandle *myMusicPlayer=nil;
 -(void)playWithURLString:(NSString*)urlString
 {
     NSURL *url = [NSURL URLWithString:urlString];
+    if (self.player.currentItem)
+    {
+        AVPlayerItem *item = self.player.currentItem;
+       // [item removeObserver:self forKeyPath:@" loadedTimeRanges"];
+       
+    }
+    
+    AVPlayerItem *songItem = [[AVPlayerItem alloc] initWithURL:url];
+    [songItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
 
-    AVPlayerItem *item = [[AVPlayerItem alloc] initWithURL:url];
-    [self.player replaceCurrentItemWithPlayerItem:item];
+
+    [self.player replaceCurrentItemWithPlayerItem:songItem];
    
     [self play];
 }
@@ -81,7 +92,12 @@ static MusicPlayerHandle *myMusicPlayer=nil;
     CMTimeValue current = self.player.currentTime.value;
     CMTimeValue total   = self.player.currentTime.timescale;
     float progress = current / total;
-    self.mptblock(progress);
+    NSString * currentstr = [NSString stringWithFormat:@"%.1fs",progress];
+    NSString * cachestr = [NSString stringWithFormat:@"缓冲>>%.1fs",self.cacheBuffer];
+    if (self.mptblock)
+    {
+        self.mptblock(progress, currentstr,cachestr);
+    }
 }
 
 #pragma mark- 定位到某个时间点
@@ -99,4 +115,23 @@ static MusicPlayerHandle *myMusicPlayer=nil;
     }];
 }
 
+#pragma mark- 监测
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    AVPlayerItem * songItem = object;
+    
+    if ([keyPath isEqualToString:@"loadedTimeRanges"])
+    {
+        NSArray * array = songItem.loadedTimeRanges;
+        CMTimeRange timeRange = [array.firstObject CMTimeRangeValue]; //本次缓冲的时间范围
+        NSTimeInterval totalBuffer = CMTimeGetSeconds(timeRange.start) + CMTimeGetSeconds(timeRange.duration); //缓冲总长度
+        self.cacheBuffer = totalBuffer;
+        NSLog(@"共缓冲：%.2f",totalBuffer);
+         NSString * cachestr = [NSString stringWithFormat:@"缓冲>>%.1fs",self.cacheBuffer];
+        if (self.delegate&&[self.delegate respondsToSelector:@selector(musicPlayTimecache:)])
+        {
+            [self.delegate musicPlayTimecache:cachestr];
+        }
+    }
+}
 @end

@@ -32,7 +32,7 @@
 
 typedef void(^finishURLBlock)(NSString *url);
 
-@interface songPlayView ()<UITableViewDataSource, UITableViewDelegate>
+@interface songPlayView ()<UITableViewDataSource, UITableViewDelegate,MusicPlayerHandleDelegate>
 @property (strong, nonatomic)  UILabel *SongName;
 @property (strong, nonatomic)  UILabel *SingerName;
 
@@ -48,6 +48,10 @@ typedef void(^finishURLBlock)(NSString *url);
 @property (strong, nonatomic)  UIButton *backBtn;
 @property (strong, nonatomic)  UISlider *progressBar;
 
+@property (strong, nonatomic)  UILabel *timeNow;//当前播放时间
+@property (strong, nonatomic)  UILabel *timeTotal;//歌曲长度
+@property (strong, nonatomic)  UILabel *timeCache;//缓冲长度
+
 @property(nonatomic,strong)MusicPlayerHandle *corePlayer;
 
 @property(nonatomic,strong)MusicModel *musicModel;
@@ -61,6 +65,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
 +(instancetype)getDefaultMusicPlayView
 {
     songPlayView *v = [songPlayView shareMusicPlayView];
+    [MusicPlayerHandle shareMusicPlayerHandle].delegate = v;
     CGFloat x,y,w,h;
     x = 0;
     y = 0;
@@ -114,7 +119,11 @@ static songPlayView *MusicPlayeViewCenter = nil;
     [self.bgSV addSubview:self.coverIMV];
     [self.bgSV addSubview:self.lyricsTable];
     
+    [self addSubview:self.timeNow];
+    [self addSubview:self.timeCache];
+    [self addSubview:self.timeTotal];
     [self addSubview:self.progressBar];
+    
     [self addSubview:self.modeBtn];
     [self addSubview:self.lastBtn];
     [self addSubview:self.playBtn];
@@ -170,12 +179,45 @@ static songPlayView *MusicPlayeViewCenter = nil;
     }];
     
     
+    [self.timeNow mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(40);
+        make.height.mas_equalTo(15);
+        make.top.mas_equalTo(self.bgSV.mas_bottom).with.offset(20);
+        make.left.mas_equalTo(20);
+        
+    }];
+    
+    [self.timeCache mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(15);
+        make.top.mas_equalTo(self.bgSV.mas_bottom).with.offset(5);
+        make.centerX.mas_equalTo(0);
+        
+    }];
+    
+    [self.timeTotal mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(60);
+        make.height.mas_equalTo(15);
+        make.centerY.mas_equalTo(self.timeNow.mas_centerY);
+        make.right.mas_equalTo(-10);
+    }];
+    
     [self.progressBar mas_makeConstraints:^(MASConstraintMaker *make) {
 
         make.height.mas_equalTo(40);
         make.top.mas_equalTo(self.bgSV.mas_bottom).with.offset(20);
+        make.left.mas_equalTo(self.timeNow.mas_right).with.offset(5);
+        make.right.mas_equalTo(self.timeTotal.mas_left).with.offset(-5);
+    }];
+    
+ 
+    
+    [self.timeNow mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(40);
+        make.height.mas_equalTo(15);
+        make.top.mas_equalTo(self.bgSV.mas_bottom).with.offset(20);
         make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-20);
+        
     }];
     
     [self.modeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -360,6 +402,45 @@ static songPlayView *MusicPlayeViewCenter = nil;
     return _nextBtn;
 }
 
+-(UILabel*)timeNow
+{
+    if (!_timeNow)
+    {
+        _timeNow = [[UILabel alloc]init];
+        _timeNow.textAlignment = NSTextAlignmentCenter;
+        _timeNow.font = [UIFont systemFontOfSize:12];
+        _timeNow.backgroundColor = [UIColor orangeColor];
+    }
+    
+    return _timeNow;
+}
+
+-(UILabel*)timeCache
+{
+    if (!_timeCache)
+    {
+        _timeCache = [[UILabel alloc]init];
+        _timeCache.textAlignment = NSTextAlignmentCenter;
+        _timeCache.font = [UIFont systemFontOfSize:12];
+        _timeCache.backgroundColor = [UIColor orangeColor];
+    }
+    
+    return _timeCache;
+}
+
+-(UILabel*)timeTotal
+{
+    if (!_timeTotal)
+    {
+        _timeTotal = [[UILabel alloc]init];
+        _timeTotal.textAlignment = NSTextAlignmentCenter;
+        _timeTotal.font = [UIFont systemFontOfSize:12];
+        _timeTotal.backgroundColor = [UIColor orangeColor];
+    }
+    
+    return _timeTotal;
+}
+
 - (MusicPlayerHandle *)corePlayer
 {
     if (!_corePlayer)
@@ -431,12 +512,11 @@ static songPlayView *MusicPlayeViewCenter = nil;
                 weakSelf.musicModel.mp3Url = url;
                 weakSelf.musicModel.MP3file_url = url;
                 weakSelf.musicModel.playurl_mp3 = url;
-                
+                weakSelf.timeTotal.text = weakSelf.musicModel.durationstring;
                 [weakSelf hideProgress];
                 [weakSelf changeMusic:weakSelf.musicModel];
             }
-            
-            
+           
         }];
     }
 }
@@ -503,13 +583,14 @@ static songPlayView *MusicPlayeViewCenter = nil;
     
     __weak typeof(self) weakSelf=self;
     self.corePlayer.nowModel = self.musicModel;
-    self.corePlayer.mptblock=^void(float progress){
-        
+    
+    
+    self.corePlayer.mptblock = ^(float progress, NSString *currenttime, NSString *cachetime) {
         if (weakSelf)
         {
             weakSelf.coverIMV.transform = CGAffineTransformRotate(weakSelf.coverIMV.transform, 0.01);
             weakSelf.progressBar.value=progress;
-          
+            
             NSInteger index = [[LyricHandle shareLyricHandle] lyricItemWithTime:progress];
             
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
@@ -524,7 +605,10 @@ static songPlayView *MusicPlayeViewCenter = nil;
                 [weakSelf nextSongClick:nil];
             }
             
+            weakSelf.timeNow.text = currenttime;
+           // weakSelf.timeCache.text = cachetime;
         }
+
     };
     
     [[LyricHandle shareLyricHandle]changeLyricString:model.lyric];
@@ -689,9 +773,13 @@ static songPlayView *MusicPlayeViewCenter = nil;
     
     
     JSValue *s = [function callWithArguments:@[songid]];
-    NSLog(@"s=%@",[s toDictionary]);
+    //NSLog(@"s=%@",[s toDictionary]);
     
     return [s toDictionary];
 }
 
+- (void)musicPlayTimecache:(NSString*)time
+{
+    self.timeCache.text = time;
+}
 @end

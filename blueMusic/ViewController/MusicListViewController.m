@@ -146,7 +146,7 @@
             
             [weakSelf.tableview reloadData];
             [self hideProgress];
-            NSLog(@"请求网络数据完毕-[self.tableview reloadData]");
+            //NSLog(@"请求网络数据完毕-[self.tableview reloadData]");
              [weakSelf showHUDText:@"获取音乐成功。" ];
         
         
