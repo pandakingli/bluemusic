@@ -13,7 +13,7 @@
 typedef void(^finishBlock)();
 
 @interface MusicDataHandle : NSObject
-
++(instancetype)shareMusicDataHandle;
 +(instancetype)shareMusicDataHandleWithFinishBlock:(finishBlock)finishblock;
 @property(nonatomic,strong)NSMutableArray *musicArray;
 @property(nonatomic,strong)NSMutableArray *musicPLArray;

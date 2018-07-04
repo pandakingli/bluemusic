@@ -42,6 +42,47 @@ static MusicDataHandle *musicHandle=nil;
 
 @implementation MusicDataHandle
 
++(instancetype)shareMusicDataHandle
+{
+    return [MusicDataHandle shareMusicDataHandleWithFinishBlock:nil];
+}
+
++(instancetype)shareMusicDataHandleWithFinishBlock:(finishBlock)finishblock
+{
+    if (musicHandle==nil)
+    {
+        musicHandle =[[MusicDataHandle alloc]init];
+        musicHandle.musicArray =[NSMutableArray array];
+        musicHandle.musicPLArray =[NSMutableArray array];
+   
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            
+            [musicHandle getPlayListFromHTMLWithFinishBlock:finishblock];
+        });
+    }
+    return musicHandle;
+}
+
+-(BlueMusicPlayListModel *)musicPlayListWithIndex:(NSInteger)index
+{
+    return self.musicPLArray[index];
+}
+
+-(NSInteger)musicPLDataCount
+{
+    return self.musicPLArray.count;
+}
+
+-(NSInteger)musicDataCount
+{
+    return self.musicArray.count;
+}
+
+-(MusicModel *)musicWithIndex:(NSInteger)index
+{
+    return self.musicArray[index];
+}
+
 -(NSString*)filesPath
 {
     if (_filesPath==nil)
@@ -89,48 +130,6 @@ static MusicDataHandle *musicHandle=nil;
     }
 }
 
-//从网址下载音乐
-+(instancetype)shareMusicDataHandleWithFinishBlock:(finishBlock)finishblock
-{
-    if (musicHandle==nil)
-    {
-        musicHandle =[[MusicDataHandle alloc]init];
-        musicHandle.musicArray =[NSMutableArray array];
-        musicHandle.musicPLArray =[NSMutableArray array];
-        //开辟一个子线程
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-          // [musicHandle getNetDataFromWangyi:nil WithFinishBlock:finishblock];
-           // finishblock();
-           //[musicHandle getNetPlaylistDataFromWangyi:nil WithFinishBlock:finishblock];
-            
-            [musicHandle getPlayListFromHTMLWithFinishBlock:finishblock];
-            //[musicHandle getPlayListFromHTMLByJSWithFinishBlock:finishblock];
-        });//开辟一个子线程
-    }
-    return musicHandle;
-}
-
--(BlueMusicPlayListModel *)musicPlayListWithIndex:(NSInteger)index
-{
-    return self.musicPLArray[index];
-}
-
--(NSInteger)musicPLDataCount
-{
-    return self.musicPLArray.count;
-}
-
--(NSInteger)musicDataCount
-{
-    return self.musicArray.count;
-}
-
--(MusicModel *)musicWithIndex:(NSInteger)index
-{
-    return self.musicArray[index];
-}
-
-//获取当前日期
 -(NSString *)getNowDate
 {
     NSDate *date = [NSDate date];

@@ -12,6 +12,7 @@
 		0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */; };
 		0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B320EB8185002B3357 /* PLDetailVC.m */; };
 		0AE3F4B720EB84A2002B3357 /* PLDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B620EB84A2002B3357 /* PLDetailView.m */; };
+		0AE3F4B920EC6F87002B3357 /* defaultmusic.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B820EC6F86002B3357 /* defaultmusic.png */; };
 		2B620F0A2CBCC41C5C7A61C1 /* Pods_blueMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */; };
 		E62989031FE274B4006F9B71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989021FE274B4006F9B71 /* AppDelegate.m */; };
 		E62989061FE274B4006F9B71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989051FE274B4006F9B71 /* ViewController.m */; };
@@ -82,6 +83,7 @@
 		0AE3F4B320EB8185002B3357 /* PLDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLDetailVC.m; sourceTree = "<group>"; };
 		0AE3F4B520EB84A2002B3357 /* PLDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailView.h; sourceTree = "<group>"; };
 		0AE3F4B620EB84A2002B3357 /* PLDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLDetailView.m; sourceTree = "<group>"; };
+		0AE3F4B820EC6F86002B3357 /* defaultmusic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultmusic.png; sourceTree = "<group>"; };
 		26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blueMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A85CAC3391D158371F209A3 /* Pods-blueMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blueMusic.release.xcconfig"; path = "Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic.release.xcconfig"; sourceTree = "<group>"; };
 		E62988FE1FE274B4006F9B71 /* blueMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blueMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,6 +253,7 @@
 		E62989181FE27CB0006F9B71 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0AE3F4B820EC6F86002B3357 /* defaultmusic.png */,
 				E62989191FE27CBE006F9B71 /* TabBar */,
 			);
 			path = Images;
@@ -461,6 +464,7 @@
 				E6634C4C20E8BDAA00655ADD /* background.js in Resources */,
 				E62989291FE27FB3006F9B71 /* blue_music_white.png in Resources */,
 				E6634C5520E8BDAA00655ADD /* aes.js in Resources */,
+				0AE3F4B920EC6F87002B3357 /* defaultmusic.png in Resources */,
 				E62989231FE27FB3006F9B71 /* blue_user_blue.png in Resources */,
 				E6634C4720E8BDAA00655ADD /* lastfm.js in Resources */,
 				E6634C5E20E8BDAA00655ADD /* md5.js in Resources */,

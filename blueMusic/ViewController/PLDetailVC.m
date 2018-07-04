@@ -21,6 +21,7 @@
 #import "MusicModel.h"
 #import "MusicPlayerViewController.h"
 #import "MusicDataHandle.h"
+#import "songPlayView.h"
 
 //typedef void(^finishBlock)();
 
@@ -254,6 +255,13 @@ typedef void(^finishURLBlock)(NSString *url);
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     MusicModel *mm = [self.dataarr objectAtIndex:indexPath.row];
     
+    
+    songPlayView *vv = [songPlayView getDefaultMusicPlayView];
+    [vv updatesongmodel:mm];
+    [self.view addSubview:vv];
+    
+    
+    /*
     [self getNetDataFromWangyiWithsongid:mm.songid WithFinishBlock:^(NSString *url) {
         mm.mp3Url = url;
         mm.MP3file_url = url;
@@ -265,7 +273,8 @@ typedef void(^finishURLBlock)(NSString *url);
         [weakSelf presentViewController:songPVC animated:YES completion:nil];
     }];
     
- 
+ */
+    
 }
 
 
