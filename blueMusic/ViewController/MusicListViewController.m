@@ -13,6 +13,7 @@
 #import "MusicPLCell.h"
 #import "PLDetailView.h"
 #import "PLDetailVC.h"
+#import "songPlayView.h"
 
 @interface MusicListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -106,9 +107,13 @@
 #pragma mark 直接进入播放页面
 -(void)nowPlaying:(UIBarButtonItem*)sender{
     
-    MusicPlayerViewController *songPVC = [[MusicPlayerViewController alloc]init];
-    songPVC.direct = YES;
-    [self presentViewController:songPVC animated:YES completion:nil];
+//    MusicPlayerViewController *songPVC = [[MusicPlayerViewController alloc]init];
+//    songPVC.direct = YES;
+//    [self presentViewController:songPVC animated:YES completion:nil];
+//
+    songPlayView *vv = [songPlayView getDefaultMusicPlayView];
+ 
+    [self.view addSubview:vv];
 }
 #pragma mark --viewDidLoad
 - (void)viewDidLoad {

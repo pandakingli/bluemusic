@@ -296,6 +296,9 @@ static songPlayView *MusicPlayeViewCenter = nil;
     if (!_backBtn)
     {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backBtn setTitle:@"关闭" forState:UIControlStateNormal];
+        [_backBtn setBackgroundColor:[UIColor orangeColor]];
+        [_backBtn addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backBtn;
 }
@@ -541,7 +544,9 @@ static songPlayView *MusicPlayeViewCenter = nil;
 }
 #pragma mark-- 按钮事件
 -(void)backButtonAction:(UIButton*)sender
-{}
+{
+    [self removeFromSuperview];
+}
 
 - (void)modButtonClick:(id)sender
 {
