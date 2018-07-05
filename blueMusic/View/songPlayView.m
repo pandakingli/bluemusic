@@ -66,6 +66,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
 {
     songPlayView *v = [songPlayView shareMusicPlayView];
     [MusicPlayerHandle shareMusicPlayerHandle].delegate = v;
+    [MusicPlayerHandle shareMusicPlayerHandle].playStatus = 0;
     CGFloat x,y,w,h;
     x = 0;
     y = 0;
@@ -474,10 +475,12 @@ static songPlayView *MusicPlayeViewCenter = nil;
 #pragma mark-- 更新数据
 -(void)updateSongList:(NSArray*)arr andindex:(NSInteger)index
 {
+    self.index = 0;
     MusicDataHandle *hm = [MusicDataHandle shareMusicDataHandle];
     hm.musicArray = arr.mutableCopy;
     if (index<arr.count)
     {
+        self.index = index;
         MusicModel *m = [hm musicWithIndex:index];
         [self updatesongmodel:m];
     }
@@ -708,7 +711,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
     }
     
     self.musicModel = [[MusicDataHandle shareMusicDataHandle] musicWithIndex:self.index];
-    [self changeMusic:self.musicModel];
+    [self updatesongmodel:self.musicModel];
 }
 
 #pragma mark-- 获取数据
