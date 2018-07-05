@@ -15,6 +15,8 @@
 #import <TFHpple/TFHpple.h>
 #import "BlueMusicPlayListModel.h"
 
+#define kNetease @"PlaylistCV"
+
 static MusicDataHandle *musicHandle=nil;
 
 @interface MusicDataHandle()<NSURLSessionDataDelegate,NSURLSessionDownloadDelegate>
@@ -65,6 +67,11 @@ static MusicDataHandle *musicHandle=nil;
         });
     
     return musicHandle;
+}
+
+-(void)netease_RequestPlayListDataWithParameters:(NSDictionary*)parameters andFinishBlock:(finishBlock)finishblock
+{
+    
 }
 
 -(BlueMusicPlayListModel *)musicPlayListWithIndex:(NSInteger)index

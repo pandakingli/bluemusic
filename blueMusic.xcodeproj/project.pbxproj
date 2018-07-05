@@ -66,6 +66,8 @@
 		E6634C5C20E8BDAA00655ADD /* async.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C4420E8BDA900655ADD /* async.min.js */; };
 		E6634C5D20E8BDAA00655ADD /* jquery-2.2.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C4520E8BDA900655ADD /* jquery-2.2.3.min.js */; };
 		E6634C5E20E8BDAA00655ADD /* md5.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C4620E8BDA900655ADD /* md5.js */; };
+		E67C901220EE5FF1001C0D31 /* MusicNetWorkCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E67C901120EE5FF1001C0D31 /* MusicNetWorkCenter.m */; };
+		E67C901520EE61AD001C0D31 /* MusicDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = E67C901420EE61AD001C0D31 /* MusicDataCenter.m */; };
 		E6C4C7FA1FE28364005DDE0F /* MusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C4C7F61FE28364005DDE0F /* MusicModel.m */; };
 		E6C4C7FB1FE28364005DDE0F /* LyricModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C4C7F71FE28364005DDE0F /* LyricModel.m */; };
 		E6C4C8001FE2836C005DDE0F /* songPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C4C7FD1FE2836C005DDE0F /* songPlayView.m */; };
@@ -156,6 +158,11 @@
 		E6634C4420E8BDA900655ADD /* async.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = async.min.js; sourceTree = "<group>"; };
 		E6634C4520E8BDA900655ADD /* jquery-2.2.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-2.2.3.min.js"; sourceTree = "<group>"; };
 		E6634C4620E8BDA900655ADD /* md5.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = md5.js; sourceTree = "<group>"; };
+		E67C901020EE5FF1001C0D31 /* MusicNetWorkCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicNetWorkCenter.h; sourceTree = "<group>"; };
+		E67C901120EE5FF1001C0D31 /* MusicNetWorkCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicNetWorkCenter.m; sourceTree = "<group>"; };
+		E67C901320EE61AD001C0D31 /* MusicDataCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicDataCenter.h; sourceTree = "<group>"; };
+		E67C901420EE61AD001C0D31 /* MusicDataCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicDataCenter.m; sourceTree = "<group>"; };
+		E67C901620EE6673001C0D31 /* MusicConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicConstants.h; sourceTree = "<group>"; };
 		E6C4C7F51FE28355005DDE0F /* Headers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Headers.h; sourceTree = "<group>"; };
 		E6C4C7F61FE28364005DDE0F /* MusicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicModel.m; sourceTree = "<group>"; };
 		E6C4C7F71FE28364005DDE0F /* LyricModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricModel.m; sourceTree = "<group>"; };
@@ -239,6 +246,7 @@
 		E62989001FE274B4006F9B71 /* blueMusic */ = {
 			isa = PBXGroup;
 			children = (
+				E67C900F20EE5FD2001C0D31 /* MainToolCenter */,
 				0AE3F4BA20EDB81E002B3357 /* MainVC */,
 				E6634C2C20E8BDA900655ADD /* js */,
 				E629890F1FE274B4006F9B71 /* Info.plist */,
@@ -410,6 +418,18 @@
 			path = vendor;
 			sourceTree = "<group>";
 		};
+		E67C900F20EE5FD2001C0D31 /* MainToolCenter */ = {
+			isa = PBXGroup;
+			children = (
+				E67C901020EE5FF1001C0D31 /* MusicNetWorkCenter.h */,
+				E67C901120EE5FF1001C0D31 /* MusicNetWorkCenter.m */,
+				E67C901320EE61AD001C0D31 /* MusicDataCenter.h */,
+				E67C901420EE61AD001C0D31 /* MusicDataCenter.m */,
+				E67C901620EE6673001C0D31 /* MusicConstants.h */,
+			);
+			path = MainToolCenter;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -422,7 +442,6 @@
 				E62988FB1FE274B4006F9B71 /* Frameworks */,
 				E62988FC1FE274B4006F9B71 /* Resources */,
 				5798EA83D726F260543843AE /* [CP] Embed Pods Frameworks */,
-				A4F4856572503EB5DCD57A27 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -577,21 +596,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A4F4856572503EB5DCD57A27 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -604,8 +608,10 @@
 				E62989061FE274B4006F9B71 /* ViewController.m in Sources */,
 				E629893B1FE280DA006F9B71 /* RootTabBarController.m in Sources */,
 				E6C4C8061FE28374005DDE0F /* MusicDataHandle.m in Sources */,
+				E67C901220EE5FF1001C0D31 /* MusicNetWorkCenter.m in Sources */,
 				E6C4C8001FE2836C005DDE0F /* songPlayView.m in Sources */,
 				E6634C2020E89C9300655ADD /* SecurityUtil.m in Sources */,
+				E67C901520EE61AD001C0D31 /* MusicDataCenter.m in Sources */,
 				E6634C2320E89D1000655ADD /* NSData+Encryption.m in Sources */,
 				0AE3F4BD20EDB838002B3357 /* HomeVC.m in Sources */,
 				E629893D1FE280DA006F9B71 /* SearchMusicViewController.m in Sources */,

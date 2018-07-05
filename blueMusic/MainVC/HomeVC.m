@@ -11,9 +11,11 @@
 #import <Masonry/Masonry.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "songPlayView.h"
-#import "MusicDataHandle.h"
 #import "BlueMusicPlayListModel.h"
 #import "PLDetailVC.h"
+#import <MJRefresh/MJRefresh.h>
+#import "MusicNetWorkCenter.h"
+#import "MusicDataCenter.h"
 
 #define kReuseIdentifier_PlaylistCVCell @"PlaylistCV"
 
@@ -44,36 +46,102 @@ CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].si
 UICollectionViewDelegateFlowLayout>
 
 @property(nonatomic,strong) UICollectionView *collectionview;
+
+@property(nonatomic,strong) NSString *order;
+@property(nonatomic,assign) NSInteger pagenumber;
+@property(nonatomic,assign) NSInteger size;
 @end
 
 @implementation HomeVC
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-      
-    }
-    return self;
-}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupparams];
     [self setuprightbutton];
     [self addmyviews];
     [self addmyconstrains];
     [self trygetdata];
+    [self setupmjrefresh];
+}
+
+-(void)setupparams
+{
+    self.order = @"hot";
+    self.pagenumber = 0;
+    self.size = 30;
+    
+}
+
+-(NSDictionary*)getRequestParams
+{
+    NSInteger off = self.pagenumber*self.size;
+    NSString *offset = (@(off)).stringValue;
+    NSString*limit = @(self.size).stringValue;
+    return @{@"order":self.order,@"offset":offset,@"limit":limit};
+}
+
+-(void)setupmjrefresh
+{
+    typeof(self) weakSelf = self;
+    self.collectionview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        if (weakSelf)
+        {
+            [weakSelf refresh_header];
+        }
+    }];
+    
+    self.collectionview.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        if (weakSelf)
+        {
+            [weakSelf refresh_footer];
+        }
+    
+    }];
+}
+
+-(void)refresh_header
+{
+    [self.collectionview.mj_header beginRefreshing];
+    typeof(self) weakSelf = self;
+    self.pagenumber = 0;
+    NSDictionary *dic = [self getRequestParams];
+    [[MusicNetWorkCenter shareInstance] netease_RequestPlayListDataWithParameters:dic andFinishBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.collectionview reloadData];
+            [weakSelf.collectionview.mj_header endRefreshing];
+        });
+    }];
+    
+}
+
+-(void)refresh_footer
+{
+    [self.collectionview.mj_footer beginRefreshing];
+    typeof(self) weakSelf = self;
+    self.pagenumber++;
+    NSDictionary *dic = [self getRequestParams];
+    [[MusicNetWorkCenter shareInstance] netease_RequestPlayListDataWithParameters:dic andFinishBlock:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.collectionview reloadData];
+            [weakSelf.collectionview.mj_footer endRefreshing];
+        });
+    }];
+    
 }
 
 -(void)trygetdata
 {
     [self showProgress];
     typeof(self) weakSelf = self;
-    [MusicDataHandle shareMusicDataHandleWithFinishBlock:^{
+    NSDictionary *dic = [self getRequestParams];
+    [[MusicNetWorkCenter shareInstance] netease_RequestPlayListDataWithParameters:dic andFinishBlock:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.collectionview reloadData];
             [weakSelf hideProgress];
         });
     }];
+    
 }
 -(void)setuprightbutton
 {
@@ -133,8 +201,7 @@ UICollectionViewDelegateFlowLayout>
 #pragma mark-- UICollectionViewDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    
-    return [[MusicDataHandle shareMusicDataHandle] musicPLDataCount];
+    return [[MusicDataCenter shareInstance] musicPLDataCount];
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -145,8 +212,9 @@ UICollectionViewDelegateFlowLayout>
 - ( UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PlaylistCV *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseIdentifier_PlaylistCVCell forIndexPath:indexPath];
-    if (indexPath.row<[[MusicDataHandle shareMusicDataHandle] musicPLDataCount]) {
-            BlueMusicPlayListModel *pp = [[MusicDataHandle shareMusicDataHandle] musicPlayListWithIndex:indexPath.row];
+    if (indexPath.row<[[MusicDataCenter shareInstance] musicPLDataCount]) {
+        
+       BlueMusicPlayListModel *pp =  [[MusicDataCenter shareInstance] musicPlayListWithIndex:indexPath.row];
          [cell configModel:pp];
     }
 
@@ -159,7 +227,8 @@ UICollectionViewDelegateFlowLayout>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PLDetailVC *plVC = [[PLDetailVC alloc]init];
-    BlueMusicPlayListModel *pp = [[MusicDataHandle shareMusicDataHandle] musicPlayListWithIndex:indexPath.row];
+    
+    BlueMusicPlayListModel *pp = [[MusicDataCenter shareInstance] musicPlayListWithIndex:indexPath.row];
     plVC.plModel = pp;
     [self.navigationController pushViewController:plVC animated:YES];
 }
