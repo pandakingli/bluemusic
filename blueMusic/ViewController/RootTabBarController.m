@@ -2,6 +2,7 @@
 
 #import "RootTabBarController.h"
 #import "Headers.h"
+#import "HomeVC.h"
 
 #define searchSelected @"blue_music_blue.png"
 #define searchUnSelected @"blue_music_white.png"
@@ -30,7 +31,7 @@
     
     
     
-    MusicListViewController * searchMusicVC = [[MusicListViewController alloc] init];
+    HomeVC * searchMusicVC = [[HomeVC alloc] init];
     
     UINavigationController * searchMusicNC = [[UINavigationController alloc] initWithRootViewController:searchMusicVC];
     

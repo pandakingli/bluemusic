@@ -44,22 +44,26 @@ static MusicDataHandle *musicHandle=nil;
 
 +(instancetype)shareMusicDataHandle
 {
-    return [MusicDataHandle shareMusicDataHandleWithFinishBlock:nil];
-}
-
-+(instancetype)shareMusicDataHandleWithFinishBlock:(finishBlock)finishblock
-{
     if (musicHandle==nil)
     {
         musicHandle =[[MusicDataHandle alloc]init];
         musicHandle.musicArray =[NSMutableArray array];
         musicHandle.musicPLArray =[NSMutableArray array];
+       
+    }
+    return musicHandle;
+}
+
++(instancetype)shareMusicDataHandleWithFinishBlock:(finishBlock)finishblock
+{
    
+       MusicDataHandle* musicHandle =[MusicDataHandle shareMusicDataHandle];
+    
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             
             [musicHandle getPlayListFromHTMLWithFinishBlock:finishblock];
         });
-    }
+    
     return musicHandle;
 }
 

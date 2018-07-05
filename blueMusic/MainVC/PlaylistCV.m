@@ -1,27 +1,27 @@
 //
-//  MusicPLCell.m
+//  PlaylistCV.m
 //  blueMusic
 //
-//  Created by biubiublue on 2018/7/3.
+//  Created by biubiublue on 2018/7/5.
 //  Copyright © 2018年 biubiublue. All rights reserved.
 //
 
-#import "MusicPLCell.h"
-#import <Masonry/Masonry.h>
+#import "PlaylistCV.h"
 #import "BlueMusicPlayListModel.h"
+#import <Masonry/Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface MusicPLCell()
+@interface PlaylistCV()
 @property(nonatomic,strong) BlueMusicPlayListModel*plModel;
 @property(nonatomic,strong) UILabel *titleLabel;
 @property(nonatomic,strong) UIImageView *plPic;
 @end
 
-@implementation MusicPLCell
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+@implementation PlaylistCV
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier])
-    {
+    self = [super initWithFrame:frame];
+    if (self) {
         [self p_setupViews];
     }
     return self;
@@ -29,23 +29,25 @@
 
 -(void)p_setupViews
 {
+    self.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.plPic];
     [self addSubview:self.titleLabel];
     
     [self.plPic mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(80);
-        make.centerY.mas_equalTo(self);
-        make.left.mas_equalTo(10);
-        
+        make.width.mas_equalTo(self.mas_width);
+        make.height.mas_equalTo(self.mas_width);
+        make.centerX.mas_equalTo(self);
+        make.top.mas_equalTo(0);
+        make.left.mas_equalTo(0);
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.centerY.mas_equalTo(self);
-        make.top.mas_equalTo(self.plPic.mas_top);
-        make.bottom.mas_equalTo(self.plPic.mas_bottom);
-        make.left.mas_equalTo(self.plPic.mas_right).with.offset(10);
-        make.right.mas_equalTo(-10);
+        
+        make.centerX.mas_equalTo(self);
+        make.top.mas_equalTo(self.plPic.mas_bottom).with.offset(2);
+        make.left.mas_equalTo(self.plPic.mas_left);
+        make.right.mas_equalTo(self.plPic.mas_right);
+        make.bottom.mas_lessThanOrEqualTo(-2);
     }];
 }
 
@@ -56,6 +58,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.textColor = [UIColor blueColor];
         _titleLabel.text = @"歌单名称";
+        _titleLabel.font = [UIFont systemFontOfSize:10];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.numberOfLines = 0;
     }
@@ -79,7 +82,7 @@
     [self.plPic sd_setImageWithURL:picURL
                   placeholderImage:[UIImage imageNamed:@"placeholderImage.png"]
                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
-    }];
+                             
+                         }];
 }
 @end

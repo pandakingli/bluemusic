@@ -10,4 +10,5 @@ pod 'bluebox'
 pod 'ReactiveCocoa'
 pod 'AFNetworking'
 pod 'TFHpple'
+pod 'MJRefresh'
 end

@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		0AC1DDA820EB182200C15573 /* TFHpple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC1DDA720EB182200C15573 /* TFHpple.framework */; };
 		0AC1DDAB20EB273900C15573 /* BlueMusicPlayListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */; };
+		0AC979EA20EE163400AC3885 /* PlaylistCV.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC979E920EE163400AC3885 /* PlaylistCV.m */; };
 		0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */; };
 		0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B320EB8185002B3357 /* PLDetailVC.m */; };
 		0AE3F4B720EB84A2002B3357 /* PLDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B620EB84A2002B3357 /* PLDetailView.m */; };
 		0AE3F4B920EC6F87002B3357 /* defaultmusic.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B820EC6F86002B3357 /* defaultmusic.png */; };
+		0AE3F4BD20EDB838002B3357 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4BC20EDB838002B3357 /* HomeVC.m */; };
 		2B620F0A2CBCC41C5C7A61C1 /* Pods_blueMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */; };
 		E62989031FE274B4006F9B71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989021FE274B4006F9B71 /* AppDelegate.m */; };
 		E62989061FE274B4006F9B71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989051FE274B4006F9B71 /* ViewController.m */; };
@@ -77,6 +79,8 @@
 		0AC1DDA720EB182200C15573 /* TFHpple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TFHpple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC1DDA920EB273900C15573 /* BlueMusicPlayListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueMusicPlayListModel.h; sourceTree = "<group>"; };
 		0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueMusicPlayListModel.m; sourceTree = "<group>"; };
+		0AC979E820EE163400AC3885 /* PlaylistCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistCV.h; sourceTree = "<group>"; };
+		0AC979E920EE163400AC3885 /* PlaylistCV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistCV.m; sourceTree = "<group>"; };
 		0AE3F4AF20EB77A6002B3357 /* MusicPLCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicPLCell.h; sourceTree = "<group>"; };
 		0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPLCell.m; sourceTree = "<group>"; };
 		0AE3F4B220EB8185002B3357 /* PLDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailVC.h; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 		0AE3F4B520EB84A2002B3357 /* PLDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailView.h; sourceTree = "<group>"; };
 		0AE3F4B620EB84A2002B3357 /* PLDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLDetailView.m; sourceTree = "<group>"; };
 		0AE3F4B820EC6F86002B3357 /* defaultmusic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultmusic.png; sourceTree = "<group>"; };
+		0AE3F4BB20EDB838002B3357 /* HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
+		0AE3F4BC20EDB838002B3357 /* HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blueMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A85CAC3391D158371F209A3 /* Pods-blueMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blueMusic.release.xcconfig"; path = "Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic.release.xcconfig"; sourceTree = "<group>"; };
 		E62988FE1FE274B4006F9B71 /* blueMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blueMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +188,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AE3F4BA20EDB81E002B3357 /* MainVC */ = {
+			isa = PBXGroup;
+			children = (
+				0AE3F4BB20EDB838002B3357 /* HomeVC.h */,
+				0AE3F4BC20EDB838002B3357 /* HomeVC.m */,
+				0AC979E820EE163400AC3885 /* PlaylistCV.h */,
+				0AC979E920EE163400AC3885 /* PlaylistCV.m */,
+			);
+			path = MainVC;
+			sourceTree = "<group>";
+		};
 		4CD57B5AAC2B87ED5468E14C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +239,7 @@
 		E62989001FE274B4006F9B71 /* blueMusic */ = {
 			isa = PBXGroup;
 			children = (
+				0AE3F4BA20EDB81E002B3357 /* MainVC */,
 				E6634C2C20E8BDA900655ADD /* js */,
 				E629890F1FE274B4006F9B71 /* Info.plist */,
 				E62989421FE280FE006F9B71 /* Helper */,
@@ -512,6 +530,7 @@
 				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONModel/JSONModel.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
@@ -526,6 +545,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONModel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
@@ -587,7 +607,9 @@
 				E6C4C8001FE2836C005DDE0F /* songPlayView.m in Sources */,
 				E6634C2020E89C9300655ADD /* SecurityUtil.m in Sources */,
 				E6634C2320E89D1000655ADD /* NSData+Encryption.m in Sources */,
+				0AE3F4BD20EDB838002B3357 /* HomeVC.m in Sources */,
 				E629893D1FE280DA006F9B71 /* SearchMusicViewController.m in Sources */,
+				0AC979EA20EE163400AC3885 /* PlaylistCV.m in Sources */,
 				0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */,
 				E62A2E6020E317F100CCDABD /* BlueMusicModel.m in Sources */,
 				0AE3F4B720EB84A2002B3357 /* PLDetailView.m in Sources */,

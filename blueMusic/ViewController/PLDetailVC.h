@@ -2,7 +2,7 @@
 //  PLDetailVC.h
 //  blueMusic
 //
-//  Created by didi on 2018/7/3.
+//  Created by biubiublue on 2018/7/3.
 //  Copyright © 2018年 biubiublue. All rights reserved.
 //
 
