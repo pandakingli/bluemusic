@@ -145,6 +145,7 @@ UICollectionViewDelegateFlowLayout>
 }
 -(void)setuprightbutton
 {
+    [self.navigationItem setTitle:@"推荐歌单"];
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"正在播放" style:UIBarButtonItemStylePlain target:self action:@selector(nowPlaying:)];
     self.navigationItem.rightBarButtonItem = right;
     
@@ -159,20 +160,19 @@ UICollectionViewDelegateFlowLayout>
 
 -(void)addmyviews
 {
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionview];
 }
 
 -(void)addmyconstrains
 {
-    
-//    [self.collectionview mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(StatusBar_Height);
-//        make.left.mas_equalTo(0);
-//        make.width.mas_equalTo(IPHONE_WIDTH);
-//        make.height.mas_equalTo(IPHONE_HEIGHT);
-//    }];
-//    [self.view layoutIfNeeded];
+    [self.collectionview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(StatusBar_Height);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(self.view.mas_right);
+        make.bottom.mas_equalTo(-Tabbar_Height);
+    }];
+    [self.view layoutIfNeeded];
 }
 
 -(UICollectionView*)collectionview
@@ -191,7 +191,7 @@ UICollectionViewDelegateFlowLayout>
         _collectionview = [[UICollectionView alloc]initWithFrame:rr collectionViewLayout:layout];
         _collectionview.delegate = self;
         _collectionview.dataSource = self;
-        _collectionview.backgroundColor = [UIColor orangeColor];
+        _collectionview.backgroundColor = [UIColor whiteColor];
         [_collectionview registerClass:[PlaylistCV class] forCellWithReuseIdentifier:kReuseIdentifier_PlaylistCVCell];
         _collectionview.contentInset = UIEdgeInsetsMake(2, 6, 2, 6);
     }
