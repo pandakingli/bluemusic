@@ -23,17 +23,16 @@
 #import "MusicDataHandle.h"
 #import "songPlayView.h"
 
-//typedef void(^finishBlock)();
-
 typedef void(^finishURLBlock)(NSString *url);
 
 @interface PLDetailVC ()<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong) UIButton *closeBtn;
+
 @property(nonatomic,strong) UITableView *tableview;
 
-@property(nonatomic,strong) UIButton *bbBtn;
-
 @property(nonatomic,strong) NSMutableArray *dataarr;
+
+@property(nonatomic,strong) BlueMusicPlayListModel*plModel;
+
 @end
 
 @implementation PLDetailVC
@@ -48,35 +47,20 @@ typedef void(^finishURLBlock)(NSString *url);
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 }
 
 -(void)setupviews{
     
-    self.view.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:self.closeBtn];
-    [self.view addSubview:self.bbBtn];
+    self.view.backgroundColor = [UIColor whiteColor];
+
     [self.view addSubview:self.tableview];
-    [self.closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(38);
-        make.width.mas_equalTo(80);
-        make.right.mas_equalTo(-20);
-        make.top.mas_equalTo(100);
-    }];
-    
-    [self.bbBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(38);
-        make.width.mas_equalTo(80);
-        make.right.mas_equalTo(-20);
-        make.top.mas_equalTo(self.closeBtn.mas_bottom).with.offset(50);
-    }];
-    
+
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.mas_equalTo(self.view.mas_left);
         make.right.mas_equalTo(self.view.mas_right);
         make.bottom.mas_equalTo(-20);
-        make.top.mas_equalTo(self.bbBtn.mas_bottom).with.offset(10);
+        make.top.mas_equalTo(100);
     }];
 }
 
@@ -96,33 +80,6 @@ typedef void(^finishURLBlock)(NSString *url);
     }
     return _dataarr;
 }
--(UIButton*)closeBtn
-{
-    if (!_closeBtn)
-    {
-        _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_closeBtn setBackgroundColor:[UIColor orangeColor]];
-        [_closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
-        [_closeBtn addTarget:self action:@selector(goclose) forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    
-    return _closeBtn;
-}
-
--(UIButton*)bbBtn
-{
-    if (!_bbBtn)
-    {
-        _bbBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_bbBtn setBackgroundColor:[UIColor orangeColor]];
-        [_bbBtn setTitle:@"获取歌曲" forState:UIControlStateNormal];
-        [_bbBtn addTarget:self action:@selector(trytogetsongs) forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    
-    return _bbBtn;
-}
 
 -(UITableView*)tableview
 {
@@ -139,10 +96,7 @@ typedef void(^finishURLBlock)(NSString *url);
     
     return _tableview;
 }
--(void)goclose
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 -(void)trytogetsongs
 {
     [self showProgress];
@@ -347,5 +301,15 @@ typedef void(^finishURLBlock)(NSString *url);
              
          }];
     
+}
+
+-(void)updateplModel:(BlueMusicPlayListModel*)plmodel
+{
+    if (plmodel)
+    {
+        self.plModel = plmodel;
+        [self.navigationItem setTitle:plmodel.title];
+        [self trytogetsongs];
+    }
 }
 @end

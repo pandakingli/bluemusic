@@ -229,7 +229,7 @@ UICollectionViewDelegateFlowLayout>
     PLDetailVC *plVC = [[PLDetailVC alloc]init];
     
     BlueMusicPlayListModel *pp = [[MusicDataCenter shareInstance] musicPlayListWithIndex:indexPath.row];
-    plVC.plModel = pp;
+    [plVC updateplModel:pp];
     [self.navigationController pushViewController:plVC animated:YES];
 }
 

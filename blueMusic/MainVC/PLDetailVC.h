@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 @class BlueMusicPlayListModel;
 @interface PLDetailVC : UIViewController
-@property(nonatomic,strong) BlueMusicPlayListModel*plModel;
-
+-(void)updateplModel:(BlueMusicPlayListModel*)plmodel;
 -(void)trytogetsongs;
 @end

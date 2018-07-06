@@ -202,6 +202,8 @@
 				0AE3F4BC20EDB838002B3357 /* HomeVC.m */,
 				0AC979E820EE163400AC3885 /* PlaylistCV.h */,
 				0AC979E920EE163400AC3885 /* PlaylistCV.m */,
+				0AE3F4B220EB8185002B3357 /* PLDetailVC.h */,
+				0AE3F4B320EB8185002B3357 /* PLDetailVC.m */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -307,8 +309,6 @@
 				E629892E1FE280D9006F9B71 /* LoginViewController.m */,
 				E62989361FE280D9006F9B71 /* MusicListViewController.h */,
 				E62989351FE280D9006F9B71 /* MusicListViewController.m */,
-				0AE3F4B220EB8185002B3357 /* PLDetailVC.h */,
-				0AE3F4B320EB8185002B3357 /* PLDetailVC.m */,
 				0AE3F4B520EB84A2002B3357 /* PLDetailView.h */,
 				0AE3F4B620EB84A2002B3357 /* PLDetailView.m */,
 				E62989331FE280D9006F9B71 /* MusicPlayerViewController.h */,
