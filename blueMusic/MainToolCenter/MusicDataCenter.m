@@ -45,6 +45,15 @@ static MusicDataCenter *musicDataCenter=nil;
     
 }
 
+-(void)updateMusicdata:(NSArray*)plarray
+{
+    if (plarray.count>0)
+    {
+        [self.musicModelArray removeAllObjects];
+        self.musicModelArray = plarray.mutableCopy;
+    }
+}
+
 -(BlueMusicPlayListModel *)musicPlayListWithIndex:(NSInteger)index
 {
     
@@ -73,5 +82,10 @@ static MusicDataCenter *musicDataCenter=nil;
     }
     return nil;
     
+}
+
+-(NSMutableArray *)currentMusicPlayList
+{
+    return self.musicModelArray.mutableCopy;
 }
 @end

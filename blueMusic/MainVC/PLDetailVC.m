@@ -20,16 +20,15 @@
 #import "MBProgressHUD.h"
 #import "MusicModel.h"
 #import "MusicPlayerViewController.h"
-#import "MusicDataHandle.h"
 #import "songPlayView.h"
+#import "MusicNetWorkCenter.h"
+#import "MusicDataCenter.h"
 
 typedef void(^finishURLBlock)(NSString *url);
 
 @interface PLDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong) UITableView *tableview;
-
-@property(nonatomic,strong) NSMutableArray *dataarr;
 
 @property(nonatomic,strong) BlueMusicPlayListModel*plModel;
 
@@ -70,15 +69,6 @@ typedef void(^finishURLBlock)(NSString *url);
 
 -(void)hideProgress {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-}
-
--(NSMutableArray *)dataarr
-{
-    if (!_dataarr)
-    {
-        _dataarr = [NSMutableArray array];
-    }
-    return _dataarr;
 }
 
 -(UITableView*)tableview
@@ -134,52 +124,12 @@ typedef void(^finishURLBlock)(NSString *url);
 
 - (void)getNetData
 {
-    [self.dataarr removeAllObjects];
-    typeof(self) weakSelf = self;
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    
-    NSDictionary *params = [self testjs];
-    
-    NSString *url = @"http://music.163.com/weapi/v3/playlist/detail";
-    [manager.requestSerializer
-     setValue:@"application/x-www-form-urlencoded"
-     forHTTPHeaderField:@"Content-Type"];
-    
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    
-    [manager POST:url
-       parameters:params
-         progress:^(NSProgress * _Nonnull uploadProgress) {
-             
-         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            // NSLog(@"responseObject = %@",responseObject);
-            NSDictionary *playlist = [responseObject objectForKey:@"playlist"];
-             NSArray *tracks = [playlist objectForKey:@"tracks"];
-             if (tracks.count>0)
-             {
-                 
-                 for (NSDictionary *ddd in tracks)
-                 {
-                     MusicModel *m = [[MusicModel alloc]init];
-                     m.name = [ddd objectForKey:@"name"];
-                     NSNumber *num = [ddd objectForKey:@"dt"];
-                     m.duration = num.stringValue;
-                     m.songid = [ddd objectForKey:@"id"];
-                     [weakSelf.dataarr addObject:m];
-                 }
-                 
-             }
-             [weakSelf.tableview reloadData];
-             [weakSelf hideProgress];
-         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             NSLog(@"error = %@",error);
-              [weakSelf hideProgress];
-         }];
-    
+        typeof(self) weakSelf = self;
+    [[MusicNetWorkCenter shareInstance] netease_RequestMusicDataWithParameters:@{@"plid":self.plModel.pl_id?:@""} andFinishBlock:^{
+        [weakSelf.tableview reloadData];
+        [weakSelf hideProgress];
+    }];
+
 }
 #pragma mark --tableview相关
 
@@ -190,117 +140,30 @@ typedef void(^finishURLBlock)(NSString *url);
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell * cell =[tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    MusicModel *mm = [self.dataarr objectAtIndex:indexPath.row];
-    cell.textLabel.text = mm.name;
+    if (indexPath.row<[[MusicDataCenter shareInstance] musicDataCount])
+    {
+        MusicModel *mm = [[MusicDataCenter shareInstance] musicWithIndex:indexPath.row];
+        cell.textLabel.text = mm.name;
+    }
+    
     return cell;
-    
-    
-    
-    
+ 
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataarr.count;
+    return [[MusicDataCenter shareInstance] musicDataCount];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        typeof(self) weakSelf = self;
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    MusicModel *mm = [self.dataarr objectAtIndex:indexPath.row];
     
-    
-    songPlayView *vv = [songPlayView getDefaultMusicPlayView];
-    [vv updateSongList:self.dataarr andindex:indexPath.row];
-    [self.view addSubview:vv];
-    
-    
-    /*
-    [self getNetDataFromWangyiWithsongid:mm.songid WithFinishBlock:^(NSString *url) {
-        mm.mp3Url = url;
-        mm.MP3file_url = url;
-        mm.playurl_mp3 = url;
-        [MusicDataHandle shareMusicDataHandleWithFinishBlock:nil].musicArray = @[mm].mutableCopy;
-        
-        MusicPlayerViewController *songPVC = [[MusicPlayerViewController alloc]init];
-        songPVC.index = 0;
-        [weakSelf presentViewController:songPVC animated:YES completion:nil];
-    }];
-    
- */
-    
-}
-
-
--(NSDictionary*)getDicWithsongid:(NSString*)songid
-{
-    if (!songid) {
-        return nil;
+    if (indexPath.row<[[MusicDataCenter shareInstance] musicDataCount])
+    {
+        songPlayView *vv = [songPlayView getDefaultMusicPlayView];
+        [vv gotoplayIndex:indexPath.row];
+        [self.view addSubview:vv];
     }
-    NSString *aespath = [[NSBundle mainBundle] pathForResource:@"aes" ofType:@"js"];
-    NSString *aespathstr= [NSString stringWithContentsOfFile:aespath encoding:NSUTF8StringEncoding error:nil];
-    
-    NSString *bigint = [[NSBundle mainBundle] pathForResource:@"bigint" ofType:@"js"];
-    NSString *bigintstr = [NSString stringWithContentsOfFile:bigint encoding:NSUTF8StringEncoding error:nil];
-    
-    NSString *jshi = [[NSBundle mainBundle] pathForResource:@"jshi" ofType:@"js"];
-    NSString *jshiStr = [NSString stringWithContentsOfFile:jshi encoding:NSUTF8StringEncoding error:nil];
-    
-    JSContext *context = [[JSContext alloc] init];
-    [context evaluateScript:aespathstr];
-    [context evaluateScript:bigintstr];
-    [context evaluateScript:jshiStr];
-    
-    JSValue *function =context[@"go_request"];
-    
-    
-    JSValue *s = [function callWithArguments:@[songid]];
-    //NSLog(@"s=%@",[s toDictionary]);
-    
-    return [s toDictionary];
-}
-
-- (void)getNetDataFromWangyiWithsongid:(NSString *)songid WithFinishBlock:(finishURLBlock)finishblock;
-{
-    
-    typeof(self) weakSelf = self;
-  
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    NSDictionary *params = [self getDicWithsongid:songid];
- 
-    
-    NSString *url = @"http://music.163.com/weapi/song/enhance/player/url?csrf_token=";
-    [manager.requestSerializer
-     setValue:@"application/x-www-form-urlencoded"
-     forHTTPHeaderField:@"Content-Type"];
-    
-    
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [manager POST:url
-       parameters:params
-         progress:^(NSProgress * _Nonnull uploadProgress) {
-             
-         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-             NSArray *arr = [responseObject objectForKey:@"data"];
-             NSDictionary *data = arr.firstObject;
-             if (data)
-             {
-                 NSString *url = [data objectForKey:@"url"];
-                 
-                 finishblock(url);
-             }
-             
-  
-         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
-             
-         }];
-    
 }
 
 -(void)updateplModel:(BlueMusicPlayListModel*)plmodel
