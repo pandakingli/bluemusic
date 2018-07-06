@@ -10,7 +10,7 @@
 #import "BlueMusicPlayListModel.h"
 #import <Masonry/Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import <bluebox/bluebox.h>
 @interface PlaylistCV()
 @property(nonatomic,strong) BlueMusicPlayListModel*plModel;
 @property(nonatomic,strong) UILabel *titleLabel;
@@ -84,5 +84,23 @@
                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                              
                          }];
+    
+    if (plModel.personname)
+    {
+        bbxcolormodel *downleft = [bbxcolormodel createDefaultModel];
+        downleft.display_name = plModel.personname;
+        downleft.background_color = [UIColor redColor];
+        downleft.text_color = [UIColor blueColor];
+        [self.plPic showleftdownmarkWithModel:downleft];
+    }
+    
+    if (plModel.playnum)
+    {
+        bbxcolormodel *downleft = [bbxcolormodel createDefaultModel];
+        downleft.display_name = plModel.playnum;
+        downleft.background_color = [UIColor redColor];
+        downleft.text_color = [UIColor blueColor];
+        [self.plPic showrightupmarkWithModel:downleft];
+    }
 }
 @end
