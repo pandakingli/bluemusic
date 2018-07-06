@@ -126,8 +126,25 @@ static MusicNetWorkCenter *musicNWCenter=nil;
                 NSArray *array_divimg = [HppleElement searchWithXPathQuery:@"//div//img"];
                 TFHppleElement *imgsrc = array_divimg.firstObject;
                 NSString *img = imgsrc.attributes[@"src"];
+                 plModel.cover_img_url = img;
                 
-                plModel.cover_img_url = img;
+                
+                NSArray *array_person = [HppleElement searchWithXPathQuery:@"//p//a"];
+                if (array_person.count>1)
+                {
+                    TFHppleElement *person = [array_person objectAtIndex:1];
+                    NSString *personname = person.attributes[@"title"];
+                     plModel.personname = personname;
+                }
+                
+                NSArray *array_nb = [HppleElement searchWithXPathQuery:@"//div//div//span"];
+                if (array_nb.count>1)
+                {
+                    TFHppleElement *e_nb = [array_nb objectAtIndex:1];
+                    NSString *num = e_nb.content;
+                    plModel.playnum = num;
+                }
+               
                 
                 [array_pl addObject:plModel];
             }

@@ -13,4 +13,8 @@
 @property (strong, nonatomic) NSString<Optional>* title;
 @property (strong, nonatomic) NSString<Optional>* pl_id;
 @property (strong, nonatomic) NSString<Optional>* source_url;
+
+@property (strong, nonatomic) NSString<Optional>* personname;
+@property (strong, nonatomic) NSString<Optional>* playnum;
+
 @end
