@@ -31,4 +31,13 @@ CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].si
 #define Tabbar_Height       (IPHONE_X ? (49 + 34) : 49)
 //iPhone X底部高度
 #define Tabbar_Bottom_Margin  (IPHONE_X ? 34 : 0)
+
+
+//字体
+#define  kPingFangSCRegular(kk)    ([UIFont fontWithName:@"PingFangSC-Regular" size:kk]?:[UIFont systemFontOfSize:kk])
+#define  kPingFangSCBold(kk)    ([UIFont fontWithName:@"PingFangSC-Bold" size:kk]?:[UIFont boldSystemFontOfSize:kk])
+#define  kPingFangSemibold(kk)    ([UIFont fontWithName:@"PingFangSC-Semibold" size:kk]?:[UIFont boldSystemFontOfSize:kk])
+
+#define  kPingFangMedium(kk)    ([UIFont fontWithName:@"PingFangSC-Medium" size:kk]?:[UIFont boldSystemFontOfSize:kk])
+
 #endif /* MusicConstants_h */

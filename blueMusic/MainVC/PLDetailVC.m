@@ -68,9 +68,8 @@ typedef void(^finishURLBlock)(NSString *url);
         
         make.height.mas_equalTo(80);
         make.width.mas_equalTo(80);
-        make.top.mas_equalTo(self.view.mas_right);
         make.left.mas_equalTo(20);
-        make.top.mas_equalTo(StatusBar_Height+5);
+        make.top.mas_equalTo(StatusBar_Height+20);
     }];
     
     [self.pltitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -97,7 +96,7 @@ typedef void(^finishURLBlock)(NSString *url);
         make.left.mas_equalTo(self.view.mas_left);
         make.right.mas_equalTo(self.view.mas_right);
         make.bottom.mas_equalTo(-20);
-        make.top.mas_equalTo(100);
+        make.top.mas_equalTo(self.coverIMV.mas_bottom).with.offset(20);
     }];
 }
 
@@ -248,7 +247,9 @@ typedef void(^finishURLBlock)(NSString *url);
         [self.navigationItem setTitle:plmodel.title];
         NSURL *picurl = [NSURL URLWithString:plmodel.cover_img_url];
         [self.coverIMV sd_setImageWithURL:picurl placeholderImage:nil];
-        self.pltitle.text = plmodel.
+        self.pltitle.text = plmodel.title;
+        self.plauthor.text = plmodel.author;
+        self.plnplayumber.text = plmodel.playnumstr;
         [self trytogetsongs];
     }
 }

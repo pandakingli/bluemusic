@@ -24,6 +24,7 @@
 #import "MBProgressHUD.h"
 #import "MusicPlayerViewController.h"
 #import "MusicDataCenter.h"
+#import "MusicImage.h"
 
 //屏幕宽度
 #define kSCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
@@ -497,7 +498,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
         self.SingerName.text = model.singer;
         
         NSURL *songicon = [NSURL URLWithString:model.picUrl];
-        UIImage *pp = [UIImage imageNamed:@"defaultmusic"];
+        UIImage *pp = [MusicImage imageNamed:@"icon-cd"];
         
         [self.coverIMV sd_setImageWithURL:songicon
                          placeholderImage:pp

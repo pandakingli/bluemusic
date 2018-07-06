@@ -11,10 +11,11 @@
 		0AC1DDAB20EB273900C15573 /* BlueMusicPlayListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */; };
 		0AC979EA20EE163400AC3885 /* PlaylistCV.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC979E920EE163400AC3885 /* PlaylistCV.m */; };
 		0AC979EC20EF938700AC3885 /* request_netease.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AC979EB20EF938700AC3885 /* request_netease.js */; };
+		0AC97A0320EFBD4E00AC3885 /* MusicImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC97A0220EFBD4E00AC3885 /* MusicImage.m */; };
+		0AC97A1620EFC63900AC3885 /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AC97A1520EFC63900AC3885 /* icons.bundle */; };
 		0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */; };
 		0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B320EB8185002B3357 /* PLDetailVC.m */; };
 		0AE3F4B720EB84A2002B3357 /* PLDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B620EB84A2002B3357 /* PLDetailView.m */; };
-		0AE3F4B920EC6F87002B3357 /* defaultmusic.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B820EC6F86002B3357 /* defaultmusic.png */; };
 		0AE3F4BD20EDB838002B3357 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4BC20EDB838002B3357 /* HomeVC.m */; };
 		2B620F0A2CBCC41C5C7A61C1 /* Pods_blueMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */; };
 		E62989031FE274B4006F9B71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989021FE274B4006F9B71 /* AppDelegate.m */; };
@@ -23,14 +24,6 @@
 		E629890B1FE274B4006F9B71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E629890A1FE274B4006F9B71 /* Assets.xcassets */; };
 		E629890E1FE274B4006F9B71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E629890C1FE274B4006F9B71 /* LaunchScreen.storyboard */; };
 		E62989111FE274B4006F9B71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989101FE274B4006F9B71 /* main.m */; };
-		E62989221FE27FB3006F9B71 /* blue_share_white.png in Resources */ = {isa = PBXBuildFile; fileRef = E629891A1FE27FB3006F9B71 /* blue_share_white.png */; };
-		E62989231FE27FB3006F9B71 /* blue_user_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = E629891B1FE27FB3006F9B71 /* blue_user_blue.png */; };
-		E62989241FE27FB3006F9B71 /* blue_user_white.png in Resources */ = {isa = PBXBuildFile; fileRef = E629891C1FE27FB3006F9B71 /* blue_user_white.png */; };
-		E62989251FE27FB3006F9B71 /* blue_music_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = E629891D1FE27FB3006F9B71 /* blue_music_blue.png */; };
-		E62989261FE27FB3006F9B71 /* blue_search_white.png in Resources */ = {isa = PBXBuildFile; fileRef = E629891E1FE27FB3006F9B71 /* blue_search_white.png */; };
-		E62989271FE27FB3006F9B71 /* blue_share_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = E629891F1FE27FB3006F9B71 /* blue_share_blue.png */; };
-		E62989281FE27FB3006F9B71 /* blue_search_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = E62989201FE27FB3006F9B71 /* blue_search_blue.png */; };
-		E62989291FE27FB3006F9B71 /* blue_music_white.png in Resources */ = {isa = PBXBuildFile; fileRef = E62989211FE27FB3006F9B71 /* blue_music_white.png */; };
 		E62989391FE280DA006F9B71 /* ShareMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E629892B1FE280D9006F9B71 /* ShareMusicViewController.m */; };
 		E629893A1FE280DA006F9B71 /* MusicPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E629892C1FE280D9006F9B71 /* MusicPlayerViewController.m */; };
 		E629893B1FE280DA006F9B71 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E629892D1FE280D9006F9B71 /* RootTabBarController.m */; };
@@ -85,13 +78,15 @@
 		0AC979E820EE163400AC3885 /* PlaylistCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistCV.h; sourceTree = "<group>"; };
 		0AC979E920EE163400AC3885 /* PlaylistCV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistCV.m; sourceTree = "<group>"; };
 		0AC979EB20EF938700AC3885 /* request_netease.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = request_netease.js; sourceTree = "<group>"; };
+		0AC97A0120EFBD4E00AC3885 /* MusicImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicImage.h; sourceTree = "<group>"; };
+		0AC97A0220EFBD4E00AC3885 /* MusicImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicImage.m; sourceTree = "<group>"; };
+		0AC97A1520EFC63900AC3885 /* icons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icons.bundle; sourceTree = "<group>"; };
 		0AE3F4AF20EB77A6002B3357 /* MusicPLCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicPLCell.h; sourceTree = "<group>"; };
 		0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPLCell.m; sourceTree = "<group>"; };
 		0AE3F4B220EB8185002B3357 /* PLDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailVC.h; sourceTree = "<group>"; };
 		0AE3F4B320EB8185002B3357 /* PLDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLDetailVC.m; sourceTree = "<group>"; };
 		0AE3F4B520EB84A2002B3357 /* PLDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailView.h; sourceTree = "<group>"; };
 		0AE3F4B620EB84A2002B3357 /* PLDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLDetailView.m; sourceTree = "<group>"; };
-		0AE3F4B820EC6F86002B3357 /* defaultmusic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultmusic.png; sourceTree = "<group>"; };
 		0AE3F4BB20EDB838002B3357 /* HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		0AE3F4BC20EDB838002B3357 /* HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blueMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,14 +101,6 @@
 		E629890D1FE274B4006F9B71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E629890F1FE274B4006F9B71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E62989101FE274B4006F9B71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E629891A1FE27FB3006F9B71 /* blue_share_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_share_white.png; sourceTree = "<group>"; };
-		E629891B1FE27FB3006F9B71 /* blue_user_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_user_blue.png; sourceTree = "<group>"; };
-		E629891C1FE27FB3006F9B71 /* blue_user_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_user_white.png; sourceTree = "<group>"; };
-		E629891D1FE27FB3006F9B71 /* blue_music_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_music_blue.png; sourceTree = "<group>"; };
-		E629891E1FE27FB3006F9B71 /* blue_search_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_search_white.png; sourceTree = "<group>"; };
-		E629891F1FE27FB3006F9B71 /* blue_share_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_share_blue.png; sourceTree = "<group>"; };
-		E62989201FE27FB3006F9B71 /* blue_search_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_search_blue.png; sourceTree = "<group>"; };
-		E62989211FE27FB3006F9B71 /* blue_music_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_music_white.png; sourceTree = "<group>"; };
 		E629892B1FE280D9006F9B71 /* ShareMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMusicViewController.m; sourceTree = "<group>"; };
 		E629892C1FE280D9006F9B71 /* MusicPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerViewController.m; sourceTree = "<group>"; };
 		E629892D1FE280D9006F9B71 /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
@@ -258,8 +245,8 @@
 				E62989411FE280F9006F9B71 /* View */,
 				E62989401FE280F4006F9B71 /* Model */,
 				E629892A1FE2803C006F9B71 /* ViewController */,
-				E62989181FE27CB0006F9B71 /* Images */,
 				E62989171FE27CA1006F9B71 /* Main */,
+				0AC97A1520EFC63900AC3885 /* icons.bundle */,
 			);
 			path = blueMusic;
 			sourceTree = "<group>";
@@ -278,30 +265,6 @@
 				E62989101FE274B4006F9B71 /* main.m */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		E62989181FE27CB0006F9B71 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				0AE3F4B820EC6F86002B3357 /* defaultmusic.png */,
-				E62989191FE27CBE006F9B71 /* TabBar */,
-			);
-			path = Images;
-			sourceTree = "<group>";
-		};
-		E62989191FE27CBE006F9B71 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				E629891D1FE27FB3006F9B71 /* blue_music_blue.png */,
-				E62989211FE27FB3006F9B71 /* blue_music_white.png */,
-				E62989201FE27FB3006F9B71 /* blue_search_blue.png */,
-				E629891E1FE27FB3006F9B71 /* blue_search_white.png */,
-				E629891F1FE27FB3006F9B71 /* blue_share_blue.png */,
-				E629891A1FE27FB3006F9B71 /* blue_share_white.png */,
-				E629891B1FE27FB3006F9B71 /* blue_user_blue.png */,
-				E629891C1FE27FB3006F9B71 /* blue_user_white.png */,
-			);
-			path = TabBar;
 			sourceTree = "<group>";
 		};
 		E629892A1FE2803C006F9B71 /* ViewController */ = {
@@ -369,6 +332,8 @@
 				E6634C1F20E89C9300655ADD /* SecurityUtil.m */,
 				E6634C2120E89D1000655ADD /* NSData+Encryption.h */,
 				E6634C2220E89D1000655ADD /* NSData+Encryption.m */,
+				0AC97A0120EFBD4E00AC3885 /* MusicImage.h */,
+				0AC97A0220EFBD4E00AC3885 /* MusicImage.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -501,34 +466,26 @@
 				E6634C5020E8BDAA00655ADD /* kuwo.js in Resources */,
 				E6634C2520E8B42600655ADD /* jshi.js in Resources */,
 				E6634C5420E8BDAA00655ADD /* app.js in Resources */,
-				E62989251FE27FB3006F9B71 /* blue_music_blue.png in Resources */,
 				E6634C5A20E8BDAA00655ADD /* hotkeys.js in Resources */,
 				E629890E1FE274B4006F9B71 /* LaunchScreen.storyboard in Resources */,
 				E6634C4920E8BDAA00655ADD /* myplaylist.js in Resources */,
 				E6634C5C20E8BDAA00655ADD /* async.min.js in Resources */,
 				E6634C4C20E8BDAA00655ADD /* background.js in Resources */,
-				E62989291FE27FB3006F9B71 /* blue_music_white.png in Resources */,
 				E6634C5520E8BDAA00655ADD /* aes.js in Resources */,
-				0AE3F4B920EC6F87002B3357 /* defaultmusic.png in Resources */,
-				E62989231FE27FB3006F9B71 /* blue_user_blue.png in Resources */,
 				E6634C4720E8BDAA00655ADD /* lastfm.js in Resources */,
 				E6634C5E20E8BDAA00655ADD /* md5.js in Resources */,
 				E6634C4D20E8BDAA00655ADD /* loweb.js in Resources */,
 				E6634C5320E8BDAA00655ADD /* github.js in Resources */,
-				E62989241FE27FB3006F9B71 /* blue_user_white.png in Resources */,
 				E6634C5820E8BDAA00655ADD /* angular-ui-notification.js in Resources */,
-				E62989221FE27FB3006F9B71 /* blue_share_white.png in Resources */,
 				E6634C5620E8BDAA00655ADD /* angular.min.js in Resources */,
 				E6634C5B20E8BDAA00655ADD /* bigint.js in Resources */,
-				E62989261FE27FB3006F9B71 /* blue_search_white.png in Resources */,
-				E62989271FE27FB3006F9B71 /* blue_share_blue.png in Resources */,
-				E62989281FE27FB3006F9B71 /* blue_search_blue.png in Resources */,
 				E6634C5920E8BDAA00655ADD /* angular-soundmanager2.js in Resources */,
 				0AC979EC20EF938700AC3885 /* request_netease.js in Resources */,
 				E629890B1FE274B4006F9B71 /* Assets.xcassets in Resources */,
 				E6634C4A20E8BDAA00655ADD /* oauth_callback.js in Resources */,
 				E6634C4B20E8BDAA00655ADD /* github_api.js in Resources */,
 				E6634C5720E8BDAA00655ADD /* timer.js in Resources */,
+				0AC97A1620EFC63900AC3885 /* icons.bundle in Resources */,
 				E6634C4F20E8BDAA00655ADD /* qq.js in Resources */,
 				E6634C4820E8BDAA00655ADD /* lowebutil.js in Resources */,
 				E6634C5D20E8BDAA00655ADD /* jquery-2.2.3.min.js in Resources */,
@@ -625,6 +582,7 @@
 				0AE3F4B720EB84A2002B3357 /* PLDetailView.m in Sources */,
 				E629893C1FE280DA006F9B71 /* LoginViewController.m in Sources */,
 				0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */,
+				0AC97A0320EFBD4E00AC3885 /* MusicImage.m in Sources */,
 				E6C4C8071FE28374005DDE0F /* MusicPlayerHandle.m in Sources */,
 				E629893E1FE280DA006F9B71 /* MyMusicViewController.m in Sources */,
 				E62989111FE274B4006F9B71 /* main.m in Sources */,
