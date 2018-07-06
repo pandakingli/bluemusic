@@ -15,22 +15,15 @@
 		0AC97A1620EFC63900AC3885 /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AC97A1520EFC63900AC3885 /* icons.bundle */; };
 		0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */; };
 		0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B320EB8185002B3357 /* PLDetailVC.m */; };
-		0AE3F4B720EB84A2002B3357 /* PLDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B620EB84A2002B3357 /* PLDetailView.m */; };
 		0AE3F4BD20EDB838002B3357 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4BC20EDB838002B3357 /* HomeVC.m */; };
 		2B620F0A2CBCC41C5C7A61C1 /* Pods_blueMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */; };
 		E62989031FE274B4006F9B71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989021FE274B4006F9B71 /* AppDelegate.m */; };
-		E62989061FE274B4006F9B71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989051FE274B4006F9B71 /* ViewController.m */; };
 		E62989091FE274B4006F9B71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E62989071FE274B4006F9B71 /* Main.storyboard */; };
 		E629890B1FE274B4006F9B71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E629890A1FE274B4006F9B71 /* Assets.xcassets */; };
 		E629890E1FE274B4006F9B71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E629890C1FE274B4006F9B71 /* LaunchScreen.storyboard */; };
 		E62989111FE274B4006F9B71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989101FE274B4006F9B71 /* main.m */; };
-		E62989391FE280DA006F9B71 /* ShareMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E629892B1FE280D9006F9B71 /* ShareMusicViewController.m */; };
-		E629893A1FE280DA006F9B71 /* MusicPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E629892C1FE280D9006F9B71 /* MusicPlayerViewController.m */; };
 		E629893B1FE280DA006F9B71 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E629892D1FE280D9006F9B71 /* RootTabBarController.m */; };
 		E629893C1FE280DA006F9B71 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E629892E1FE280D9006F9B71 /* LoginViewController.m */; };
-		E629893D1FE280DA006F9B71 /* SearchMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989321FE280D9006F9B71 /* SearchMusicViewController.m */; };
-		E629893E1FE280DA006F9B71 /* MyMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989341FE280D9006F9B71 /* MyMusicViewController.m */; };
-		E629893F1FE280DA006F9B71 /* MusicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62989351FE280D9006F9B71 /* MusicListViewController.m */; };
 		E62A2E6020E317F100CCDABD /* BlueMusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E62A2E5F20E317F100CCDABD /* BlueMusicModel.m */; };
 		E6634C2020E89C9300655ADD /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E6634C1F20E89C9300655ADD /* SecurityUtil.m */; };
 		E6634C2320E89D1000655ADD /* NSData+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = E6634C2220E89D1000655ADD /* NSData+Encryption.m */; };
@@ -85,8 +78,6 @@
 		0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPLCell.m; sourceTree = "<group>"; };
 		0AE3F4B220EB8185002B3357 /* PLDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailVC.h; sourceTree = "<group>"; };
 		0AE3F4B320EB8185002B3357 /* PLDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLDetailVC.m; sourceTree = "<group>"; };
-		0AE3F4B520EB84A2002B3357 /* PLDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailView.h; sourceTree = "<group>"; };
-		0AE3F4B620EB84A2002B3357 /* PLDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLDetailView.m; sourceTree = "<group>"; };
 		0AE3F4BB20EDB838002B3357 /* HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		0AE3F4BC20EDB838002B3357 /* HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		26583FEA1E3F4033BD8976F9 /* Pods_blueMusic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_blueMusic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,27 +85,15 @@
 		E62988FE1FE274B4006F9B71 /* blueMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blueMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E62989011FE274B4006F9B71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E62989021FE274B4006F9B71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E62989041FE274B4006F9B71 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E62989051FE274B4006F9B71 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E62989081FE274B4006F9B71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E629890A1FE274B4006F9B71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E629890D1FE274B4006F9B71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E629890F1FE274B4006F9B71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E62989101FE274B4006F9B71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E629892B1FE280D9006F9B71 /* ShareMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMusicViewController.m; sourceTree = "<group>"; };
-		E629892C1FE280D9006F9B71 /* MusicPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerViewController.m; sourceTree = "<group>"; };
 		E629892D1FE280D9006F9B71 /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
 		E629892E1FE280D9006F9B71 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E629892F1FE280D9006F9B71 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		E62989301FE280D9006F9B71 /* SearchMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMusicViewController.h; sourceTree = "<group>"; };
 		E62989311FE280D9006F9B71 /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
-		E62989321FE280D9006F9B71 /* SearchMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMusicViewController.m; sourceTree = "<group>"; };
-		E62989331FE280D9006F9B71 /* MusicPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicPlayerViewController.h; sourceTree = "<group>"; };
-		E62989341FE280D9006F9B71 /* MyMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMusicViewController.m; sourceTree = "<group>"; };
-		E62989351FE280D9006F9B71 /* MusicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicListViewController.m; sourceTree = "<group>"; };
-		E62989361FE280D9006F9B71 /* MusicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicListViewController.h; sourceTree = "<group>"; };
-		E62989371FE280DA006F9B71 /* ShareMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMusicViewController.h; sourceTree = "<group>"; };
-		E62989381FE280DA006F9B71 /* MyMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMusicViewController.h; sourceTree = "<group>"; };
 		E62A2E5E20E317F100CCDABD /* BlueMusicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueMusicModel.h; sourceTree = "<group>"; };
 		E62A2E5F20E317F100CCDABD /* BlueMusicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueMusicModel.m; sourceTree = "<group>"; };
 		E6634C1E20E89C9300655ADD /* SecurityUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityUtil.h; sourceTree = "<group>"; };
@@ -257,8 +236,6 @@
 				E6C4C7F51FE28355005DDE0F /* Headers.h */,
 				E62989011FE274B4006F9B71 /* AppDelegate.h */,
 				E62989021FE274B4006F9B71 /* AppDelegate.m */,
-				E62989041FE274B4006F9B71 /* ViewController.h */,
-				E62989051FE274B4006F9B71 /* ViewController.m */,
 				E62989071FE274B4006F9B71 /* Main.storyboard */,
 				E629890A1FE274B4006F9B71 /* Assets.xcassets */,
 				E629890C1FE274B4006F9B71 /* LaunchScreen.storyboard */,
@@ -272,20 +249,8 @@
 			children = (
 				E629892F1FE280D9006F9B71 /* LoginViewController.h */,
 				E629892E1FE280D9006F9B71 /* LoginViewController.m */,
-				E62989361FE280D9006F9B71 /* MusicListViewController.h */,
-				E62989351FE280D9006F9B71 /* MusicListViewController.m */,
-				0AE3F4B520EB84A2002B3357 /* PLDetailView.h */,
-				0AE3F4B620EB84A2002B3357 /* PLDetailView.m */,
-				E62989331FE280D9006F9B71 /* MusicPlayerViewController.h */,
-				E629892C1FE280D9006F9B71 /* MusicPlayerViewController.m */,
-				E62989381FE280DA006F9B71 /* MyMusicViewController.h */,
-				E62989341FE280D9006F9B71 /* MyMusicViewController.m */,
 				E62989311FE280D9006F9B71 /* RootTabBarController.h */,
 				E629892D1FE280D9006F9B71 /* RootTabBarController.m */,
-				E62989301FE280D9006F9B71 /* SearchMusicViewController.h */,
-				E62989321FE280D9006F9B71 /* SearchMusicViewController.m */,
-				E62989371FE280DA006F9B71 /* ShareMusicViewController.h */,
-				E629892B1FE280D9006F9B71 /* ShareMusicViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -564,9 +529,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E62989391FE280DA006F9B71 /* ShareMusicViewController.m in Sources */,
-				E629893A1FE280DA006F9B71 /* MusicPlayerViewController.m in Sources */,
-				E62989061FE274B4006F9B71 /* ViewController.m in Sources */,
 				E629893B1FE280DA006F9B71 /* RootTabBarController.m in Sources */,
 				E6C4C8061FE28374005DDE0F /* MusicDataHandle.m in Sources */,
 				E67C901220EE5FF1001C0D31 /* MusicNetWorkCenter.m in Sources */,
@@ -575,20 +537,16 @@
 				E67C901520EE61AD001C0D31 /* MusicDataCenter.m in Sources */,
 				E6634C2320E89D1000655ADD /* NSData+Encryption.m in Sources */,
 				0AE3F4BD20EDB838002B3357 /* HomeVC.m in Sources */,
-				E629893D1FE280DA006F9B71 /* SearchMusicViewController.m in Sources */,
 				0AC979EA20EE163400AC3885 /* PlaylistCV.m in Sources */,
 				0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */,
 				E62A2E6020E317F100CCDABD /* BlueMusicModel.m in Sources */,
-				0AE3F4B720EB84A2002B3357 /* PLDetailView.m in Sources */,
 				E629893C1FE280DA006F9B71 /* LoginViewController.m in Sources */,
 				0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */,
 				0AC97A0320EFBD4E00AC3885 /* MusicImage.m in Sources */,
 				E6C4C8071FE28374005DDE0F /* MusicPlayerHandle.m in Sources */,
-				E629893E1FE280DA006F9B71 /* MyMusicViewController.m in Sources */,
 				E62989111FE274B4006F9B71 /* main.m in Sources */,
 				E6C4C8011FE2836C005DDE0F /* MusicListTableViewCell.m in Sources */,
 				E6C4C7FA1FE28364005DDE0F /* MusicModel.m in Sources */,
-				E629893F1FE280DA006F9B71 /* MusicListViewController.m in Sources */,
 				E6C4C80A1FE283B8005DDE0F /* LyricHandle.m in Sources */,
 				0AC1DDAB20EB273900C15573 /* BlueMusicPlayListModel.m in Sources */,
 				E62989031FE274B4006F9B71 /* AppDelegate.m in Sources */,

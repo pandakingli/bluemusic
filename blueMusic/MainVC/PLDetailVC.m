@@ -19,7 +19,6 @@
 #import "BlueMusicPlayListModel.h"
 #import "MBProgressHUD.h"
 #import "MusicModel.h"
-#import "MusicPlayerViewController.h"
 #import "songPlayView.h"
 #import "MusicNetWorkCenter.h"
 #import "MusicDataCenter.h"

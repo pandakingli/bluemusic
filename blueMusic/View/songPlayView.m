@@ -22,7 +22,6 @@
 #import <TFHpple/TFHpple.h>
 #import "BlueMusicPlayListModel.h"
 #import "MBProgressHUD.h"
-#import "MusicPlayerViewController.h"
 #import "MusicDataCenter.h"
 #import "MusicImage.h"
 
