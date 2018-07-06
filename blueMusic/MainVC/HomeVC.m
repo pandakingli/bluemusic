@@ -166,13 +166,14 @@ UICollectionViewDelegateFlowLayout>
 
 -(void)addmyconstrains
 {
-    
+
     [self.collectionview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(StatusBar_Height);
         make.left.mas_equalTo(0);
-        make.right.mas_equalTo(0);
+        make.right.mas_equalTo(self.view.mas_right);
         make.bottom.mas_equalTo(-Tabbar_Height);
     }];
+    [self.view layoutIfNeeded];
 
 }
 
@@ -230,7 +231,7 @@ UICollectionViewDelegateFlowLayout>
     PLDetailVC *plVC = [[PLDetailVC alloc]init];
     
     BlueMusicPlayListModel *pp = [[MusicDataCenter shareInstance] musicPlayListWithIndex:indexPath.row];
-    plVC.plModel = pp;
+    [plVC updateplModel:pp];
     [self.navigationController pushViewController:plVC animated:YES];
 }
 

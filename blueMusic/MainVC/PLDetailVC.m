@@ -1,0 +1,178 @@
+//
+//  PLDetailVC.m
+//  blueMusic
+//
+//  Created by biubiublue on 2018/7/3.
+//  Copyright © 2018年 biubiublue. All rights reserved.
+//
+
+#import "PLDetailVC.h"
+#import <Masonry/Masonry.h>
+#import "BlueMusicPlayListModel.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <AFNetworking/AFNetworking.h>
+#import <bluebox/bluebox.h>
+#import "SecurityUtil.h"
+#import "NSData+Encryption.h"
+#import <JavaScriptCore/JavaScriptCore.h>
+#import <TFHpple/TFHpple.h>
+#import "BlueMusicPlayListModel.h"
+#import "MBProgressHUD.h"
+#import "MusicModel.h"
+#import "MusicPlayerViewController.h"
+#import "songPlayView.h"
+#import "MusicNetWorkCenter.h"
+#import "MusicDataCenter.h"
+
+typedef void(^finishURLBlock)(NSString *url);
+
+@interface PLDetailVC ()<UITableViewDelegate,UITableViewDataSource>
+
+@property(nonatomic,strong) UITableView *tableview;
+
+@property(nonatomic,strong) BlueMusicPlayListModel*plModel;
+
+@end
+
+@implementation PLDetailVC
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setupviews];
+    }
+    return self;
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
+-(void)setupviews{
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+
+    [self.view addSubview:self.tableview];
+
+    [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.mas_equalTo(self.view.mas_left);
+        make.right.mas_equalTo(self.view.mas_right);
+        make.bottom.mas_equalTo(-20);
+        make.top.mas_equalTo(100);
+    }];
+}
+
+-(void)showProgress {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
+-(void)hideProgress {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+-(UITableView*)tableview
+{
+    if (!_tableview)
+    {
+        _tableview = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
+        _tableview.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-104);
+        _tableview.delegate=self;
+        _tableview.dataSource=self;
+        
+        [_tableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+       
+    }
+    
+    return _tableview;
+}
+
+-(void)trytogetsongs
+{
+    [self showProgress];
+    [self getNetData];
+}
+
+-(NSDictionary*)testjs
+{
+    NSString *aespath = [[NSBundle mainBundle] pathForResource:@"aes" ofType:@"js"];
+    NSString *aespathstr= [NSString stringWithContentsOfFile:aespath encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *bigint = [[NSBundle mainBundle] pathForResource:@"bigint" ofType:@"js"];
+    NSString *bigintstr = [NSString stringWithContentsOfFile:bigint encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *jshi = [[NSBundle mainBundle] pathForResource:@"jshi" ofType:@"js"];
+    NSString *jshiStr = [NSString stringWithContentsOfFile:jshi encoding:NSUTF8StringEncoding error:nil];
+    
+    JSContext *context = [[JSContext alloc] init];
+    [context evaluateScript:aespathstr];
+    [context evaluateScript:bigintstr];
+    [context evaluateScript:jshiStr];
+    
+    JSValue *function =context[@"go_requestpldetail"];
+    
+    NSString *ss = self.plModel.pl_id;
+    if (!ss)
+    {
+        ss=@"123";
+    }
+    JSValue *s = [function callWithArguments:@[ss]];//@"34144485"
+    //NSLog(@"s=%@",[s toDictionary]);
+    
+    return [s toDictionary];
+}
+
+- (void)getNetData
+{
+        typeof(self) weakSelf = self;
+    [[MusicNetWorkCenter shareInstance] netease_RequestMusicDataWithParameters:@{@"plid":self.plModel.pl_id?:@""} andFinishBlock:^{
+        [weakSelf.tableview reloadData];
+        [weakSelf hideProgress];
+    }];
+
+}
+#pragma mark --tableview相关
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 30;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell * cell =[tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    if (indexPath.row<[[MusicDataCenter shareInstance] musicDataCount])
+    {
+        MusicModel *mm = [[MusicDataCenter shareInstance] musicWithIndex:indexPath.row];
+        cell.textLabel.text = mm.name;
+    }
+    
+    return cell;
+ 
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [[MusicDataCenter shareInstance] musicDataCount];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if (indexPath.row<[[MusicDataCenter shareInstance] musicDataCount])
+    {
+        songPlayView *vv = [songPlayView getDefaultMusicPlayView];
+        [vv gotoplayIndex:indexPath.row];
+        [self.view addSubview:vv];
+    }
+}
+
+-(void)updateplModel:(BlueMusicPlayListModel*)plmodel
+{
+    if (plmodel)
+    {
+        self.plModel = plmodel;
+        [self.navigationItem setTitle:plmodel.title];
+        [self trytogetsongs];
+    }
+}
+@end

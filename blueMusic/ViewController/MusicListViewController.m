@@ -101,7 +101,7 @@
     */
     PLDetailVC *plVC = [[PLDetailVC alloc]init];
     BlueMusicPlayListModel *pp = [[MusicDataHandle shareMusicDataHandleWithFinishBlock:nil] musicPlayListWithIndex:indexPath.row];
-    plVC.plModel = pp;
+    [plVC updateplModel:pp];
     [self.navigationController pushViewController:plVC animated:YES];
 }
 #pragma mark 直接进入播放页面

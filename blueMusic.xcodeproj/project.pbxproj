@@ -10,6 +10,7 @@
 		0AC1DDA820EB182200C15573 /* TFHpple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC1DDA720EB182200C15573 /* TFHpple.framework */; };
 		0AC1DDAB20EB273900C15573 /* BlueMusicPlayListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */; };
 		0AC979EA20EE163400AC3885 /* PlaylistCV.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC979E920EE163400AC3885 /* PlaylistCV.m */; };
+		0AC979EC20EF938700AC3885 /* request_netease.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AC979EB20EF938700AC3885 /* request_netease.js */; };
 		0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */; };
 		0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B320EB8185002B3357 /* PLDetailVC.m */; };
 		0AE3F4B720EB84A2002B3357 /* PLDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B620EB84A2002B3357 /* PLDetailView.m */; };
@@ -83,6 +84,7 @@
 		0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueMusicPlayListModel.m; sourceTree = "<group>"; };
 		0AC979E820EE163400AC3885 /* PlaylistCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistCV.h; sourceTree = "<group>"; };
 		0AC979E920EE163400AC3885 /* PlaylistCV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistCV.m; sourceTree = "<group>"; };
+		0AC979EB20EF938700AC3885 /* request_netease.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = request_netease.js; sourceTree = "<group>"; };
 		0AE3F4AF20EB77A6002B3357 /* MusicPLCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicPLCell.h; sourceTree = "<group>"; };
 		0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPLCell.m; sourceTree = "<group>"; };
 		0AE3F4B220EB8185002B3357 /* PLDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailVC.h; sourceTree = "<group>"; };
@@ -202,6 +204,8 @@
 				0AE3F4BC20EDB838002B3357 /* HomeVC.m */,
 				0AC979E820EE163400AC3885 /* PlaylistCV.h */,
 				0AC979E920EE163400AC3885 /* PlaylistCV.m */,
+				0AE3F4B220EB8185002B3357 /* PLDetailVC.h */,
+				0AE3F4B320EB8185002B3357 /* PLDetailVC.m */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -307,8 +311,6 @@
 				E629892E1FE280D9006F9B71 /* LoginViewController.m */,
 				E62989361FE280D9006F9B71 /* MusicListViewController.h */,
 				E62989351FE280D9006F9B71 /* MusicListViewController.m */,
-				0AE3F4B220EB8185002B3357 /* PLDetailVC.h */,
-				0AE3F4B320EB8185002B3357 /* PLDetailVC.m */,
 				0AE3F4B520EB84A2002B3357 /* PLDetailView.h */,
 				0AE3F4B620EB84A2002B3357 /* PLDetailView.m */,
 				E62989331FE280D9006F9B71 /* MusicPlayerViewController.h */,
@@ -404,13 +406,11 @@
 		E6634C3C20E8BDA900655ADD /* vendor */ = {
 			isa = PBXGroup;
 			children = (
-				E6634C3D20E8BDA900655ADD /* aes.js */,
 				E6634C3E20E8BDA900655ADD /* angular.min.js */,
 				E6634C3F20E8BDA900655ADD /* timer.js */,
 				E6634C4020E8BDA900655ADD /* angular-ui-notification.js */,
 				E6634C4120E8BDA900655ADD /* angular-soundmanager2.js */,
 				E6634C4220E8BDA900655ADD /* hotkeys.js */,
-				E6634C4320E8BDA900655ADD /* bigint.js */,
 				E6634C4420E8BDA900655ADD /* async.min.js */,
 				E6634C4520E8BDA900655ADD /* jquery-2.2.3.min.js */,
 				E6634C4620E8BDA900655ADD /* md5.js */,
@@ -426,6 +426,9 @@
 				E67C901320EE61AD001C0D31 /* MusicDataCenter.h */,
 				E67C901420EE61AD001C0D31 /* MusicDataCenter.m */,
 				E67C901620EE6673001C0D31 /* MusicConstants.h */,
+				0AC979EB20EF938700AC3885 /* request_netease.js */,
+				E6634C3D20E8BDA900655ADD /* aes.js */,
+				E6634C4320E8BDA900655ADD /* bigint.js */,
 			);
 			path = MainToolCenter;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				E62989271FE27FB3006F9B71 /* blue_share_blue.png in Resources */,
 				E62989281FE27FB3006F9B71 /* blue_search_blue.png in Resources */,
 				E6634C5920E8BDAA00655ADD /* angular-soundmanager2.js in Resources */,
+				0AC979EC20EF938700AC3885 /* request_netease.js in Resources */,
 				E629890B1FE274B4006F9B71 /* Assets.xcassets in Resources */,
 				E6634C4A20E8BDAA00655ADD /* oauth_callback.js in Resources */,
 				E6634C4B20E8BDAA00655ADD /* github_api.js in Resources */,

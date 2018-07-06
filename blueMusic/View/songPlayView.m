@@ -12,7 +12,6 @@
 #import <Masonry/Masonry.h>
 #import <bluebox/bluebox.h>
 #import "MusicPlayerHandle.h"
-#import "MusicDataHandle.h"
 
 #import "BlueMusicPlayListModel.h"
 #import <AFNetworking/AFNetworking.h>
@@ -24,6 +23,7 @@
 #import "BlueMusicPlayListModel.h"
 #import "MBProgressHUD.h"
 #import "MusicPlayerViewController.h"
+#import "MusicDataCenter.h"
 
 //屏幕宽度
 #define kSCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
@@ -56,6 +56,7 @@ typedef void(^finishURLBlock)(NSString *url);
 
 @property(nonatomic,strong)MusicModel *musicModel;
 @property (nonatomic, assign) NSInteger index;
+@property(nonatomic,strong) MusicDataCenter *mc;
 @end
 
 static songPlayView *MusicPlayeViewCenter = nil;
@@ -473,15 +474,16 @@ static songPlayView *MusicPlayeViewCenter = nil;
 
 
 #pragma mark-- 更新数据
--(void)updateSongList:(NSArray*)arr andindex:(NSInteger)index
+-(void)gotoplayIndex:(NSInteger)index
 {
-    self.index = 0;
-    MusicDataHandle *hm = [MusicDataHandle shareMusicDataHandle];
-    hm.musicArray = arr.mutableCopy;
+    self.index = index;
+    MusicDataCenter *mc = [MusicDataCenter shareInstance];
+    NSMutableArray *arr = [mc currentMusicPlayList];
+    
     if (index<arr.count)
     {
         self.index = index;
-        MusicModel *m = [hm musicWithIndex:index];
+        MusicModel *m = [mc musicWithIndex:index];
         [self updatesongmodel:m];
     }
 }
@@ -620,11 +622,11 @@ static songPlayView *MusicPlayeViewCenter = nil;
     };
     
     [[LyricHandle shareLyricHandle]changeLyricString:model.lyric];
-    NSString *last_s = [MusicDataHandle shareMusicDataHandle].lastmp3Url;
+    NSString *last_s = self.mc.lastmp3Url;
     
     if (![last_s isEqualToString:model.MP3file_url]||self.corePlayer.playStatus==2)
     {
-        [MusicDataHandle shareMusicDataHandle].lastmp3Url=model.MP3file_url;
+        self.mc.lastmp3Url=model.MP3file_url;
         [self.corePlayer playWithURLString:model.MP3file_url];
     }
     [self.lyricsTable reloadData];
@@ -665,7 +667,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
 
 - (void)nextSongClick:(UIButton*)sender
 {
-    MusicDataHandle *hm = [MusicDataHandle shareMusicDataHandle];
+    MusicDataCenter *hm = self.mc;
     
     switch (self.corePlayer.playStatus)
     {
@@ -703,14 +705,14 @@ static songPlayView *MusicPlayeViewCenter = nil;
 {
     if (self.index == 0)
     {
-        self.index = [[MusicDataHandle shareMusicDataHandle]musicDataCount] - 1;
+        self.index = [self.mc musicDataCount] - 1;
     }
     else
     {
         self.index -= 1;
     }
     
-    self.musicModel = [[MusicDataHandle shareMusicDataHandle] musicWithIndex:self.index];
+    self.musicModel = [self.mc musicWithIndex:self.index];
     [self updatesongmodel:self.musicModel];
 }
 
@@ -807,5 +809,14 @@ static songPlayView *MusicPlayeViewCenter = nil;
 -(void)playlast
 {
     [self nextSongClick:nil];
+}
+
+-(MusicDataCenter*)mc
+{
+    if (!_mc)
+    {
+        _mc = [MusicDataCenter shareInstance];
+    }
+    return _mc;
 }
 @end

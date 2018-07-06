@@ -13,4 +13,6 @@
 +(instancetype)shareInstance;
 
 - (void)netease_RequestPlayListDataWithParameters:(NSDictionary*)parameters andFinishBlock:(finishBlock)finishblock;
+
+- (void)netease_RequestMusicDataWithParameters:(NSDictionary*)parameters andFinishBlock:(finishBlock)finishblock;
 @end
