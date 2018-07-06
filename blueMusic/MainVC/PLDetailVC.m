@@ -23,6 +23,7 @@
 #import "songPlayView.h"
 #import "MusicNetWorkCenter.h"
 #import "MusicDataCenter.h"
+#import "MusicConstants.h"
 
 typedef void(^finishURLBlock)(NSString *url);
 
@@ -32,6 +33,10 @@ typedef void(^finishURLBlock)(NSString *url);
 
 @property(nonatomic,strong) BlueMusicPlayListModel*plModel;
 
+@property(nonatomic,strong) UIImageView *coverIMV;
+@property(nonatomic,strong) UILabel *pltitle;
+@property(nonatomic,strong) UILabel *plauthor;
+@property(nonatomic,strong) UILabel *plnplayumber;
 @end
 
 @implementation PLDetailVC
@@ -52,8 +57,41 @@ typedef void(^finishURLBlock)(NSString *url);
     
     self.view.backgroundColor = [UIColor whiteColor];
 
+    [self.view addSubview:self.coverIMV];
+    [self.view addSubview:self.pltitle];
+    [self.view addSubview:self.plauthor];
+    [self.view addSubview:self.plnplayumber];
+    
     [self.view addSubview:self.tableview];
 
+    [self.coverIMV mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.height.mas_equalTo(80);
+        make.width.mas_equalTo(80);
+        make.top.mas_equalTo(self.view.mas_right);
+        make.left.mas_equalTo(20);
+        make.top.mas_equalTo(StatusBar_Height+5);
+    }];
+    
+    [self.pltitle mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.top.mas_equalTo(self.coverIMV);
+        make.left.mas_equalTo(self.coverIMV.mas_right).with.offset(5);
+        make.right.mas_equalTo(-20);
+    }];
+    
+    [self.plauthor mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.pltitle.mas_bottom).with.offset(5);
+        make.left.mas_equalTo(self.pltitle);
+        make.right.mas_equalTo(self.pltitle);
+    }];
+    
+    [self.plnplayumber mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.plauthor.mas_bottom).with.offset(5);
+        make.left.mas_equalTo(self.pltitle);
+        make.right.mas_equalTo(self.pltitle);
+    }];
+    
+    
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.mas_equalTo(self.view.mas_left);
@@ -69,6 +107,42 @@ typedef void(^finishURLBlock)(NSString *url);
 
 -(void)hideProgress {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+-(UILabel*)pltitle
+{
+    if (!_pltitle)
+    {
+        _pltitle = [[UILabel alloc]init];
+    }
+    return _pltitle;
+}
+
+-(UILabel*)plauthor
+{
+    if (!_plauthor)
+    {
+        _plauthor = [[UILabel alloc]init];
+    }
+    return _plauthor;
+}
+
+-(UILabel*)plnplayumber
+{
+    if (!_plnplayumber)
+    {
+        _plnplayumber = [[UILabel alloc]init];
+    }
+    return _plnplayumber;
+}
+
+-(UIImageView*)coverIMV
+{
+    if (!_coverIMV)
+    {
+        _coverIMV = [[UIImageView alloc]init];
+    }
+    return _coverIMV;
 }
 
 -(UITableView*)tableview
@@ -172,6 +246,9 @@ typedef void(^finishURLBlock)(NSString *url);
     {
         self.plModel = plmodel;
         [self.navigationItem setTitle:plmodel.title];
+        NSURL *picurl = [NSURL URLWithString:plmodel.cover_img_url];
+        [self.coverIMV sd_setImageWithURL:picurl placeholderImage:nil];
+        self.pltitle.text = plmodel.
         [self trytogetsongs];
     }
 }
