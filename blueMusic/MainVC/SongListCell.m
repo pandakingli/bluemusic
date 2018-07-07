@@ -26,6 +26,9 @@
 @property(nonatomic,strong) UIImageView *songicon;
 
 @property(nonatomic,strong) UIView *downline;
+
+@property(nonatomic,strong) UIImageView *moreIMV;
+@property(nonatomic,strong) UIControl *morebtn;
 @end
 
 @implementation SongListCell
@@ -49,6 +52,8 @@
     [self.containerOne addSubview:self.songname];
     [self.containerOne addSubview:self.singer];
     [self addSubview:self.downline];
+    [self addSubview:self.moreIMV];
+    [self addSubview:self.morebtn];
     
     [self.songindex mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
@@ -74,7 +79,7 @@
     [self.containerOne mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.songicon.mas_right).with.offset(10);
         make.centerY.mas_equalTo(self.songindex.mas_centerY);
-        make.right.mas_equalTo(-15);
+        make.right.mas_equalTo(self.morebtn.mas_left);
         make.top.mas_equalTo(8);
     }];
     
@@ -92,10 +97,24 @@
         
     }];
     
+    [self.moreIMV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(14);
+        make.centerY.mas_equalTo(0);
+        make.right.mas_equalTo(-15);
+        
+    }];
+    
+    [self.morebtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.left.mas_equalTo(self.moreIMV.mas_left).with.offset(-10);
+    }];
+    
     [self.downline mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.songindex_bg.mas_left);
         make.bottom.mas_equalTo(-kSingleLineWidthOrHeight);
-        make.right.mas_equalTo(self.songname.mas_right);
+        make.right.mas_equalTo(self.moreIMV.mas_right);
         make.height.mas_equalTo(kSingleLineWidthOrHeight);
         
     }];
@@ -182,6 +201,35 @@
     }
     return _downline;
 }
+
+- (UIImageView *)moreIMV
+{
+    if (!_moreIMV)
+    {
+        _moreIMV = [[UIImageView alloc]init];
+        UIImage *img = [MusicImage imageNamed:@"icon-more"];
+        _moreIMV.image = img;
+    }
+    return _moreIMV;
+}
+
+- (UIControl *)morebtn
+{
+    if (!_morebtn)
+    {
+        _morebtn = [[UIControl alloc]init];
+        
+        [_morebtn addTarget:self action:@selector(clickmore) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _morebtn;
+}
+
+-(void)clickmore
+{
+    NSLog(@"clickmore");
+}
+
 -(void)configModel:(MusicModel*)mModel andindex:(NSInteger)index
 {
     if (mModel)
