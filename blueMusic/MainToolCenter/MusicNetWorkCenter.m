@@ -199,6 +199,14 @@ static MusicNetWorkCenter *musicNWCenter=nil;
                          NSNumber *num = [ddd objectForKey:@"dt"];
                          m.duration = num.stringValue;
                          m.songid = [ddd objectForKey:@"id"];
+                         
+                         NSArray *ar_arr = [ddd objectForKey:@"ar"];
+                         NSDictionary *ar_dic = ar_arr.firstObject;
+                         if ([ar_dic objectForKey:@"name"])
+                         {
+                             m.artists_name = [ar_dic objectForKey:@"name"];
+                         }
+                         
                          [musicsArray addObject:m];
                      }
                      if (musicsArray.count>0)

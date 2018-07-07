@@ -23,6 +23,7 @@
 #import "MusicNetWorkCenter.h"
 #import "MusicDataCenter.h"
 #import "MusicConstants.h"
+#import "SongListCell.h"
 
 typedef void(^finishURLBlock)(NSString *url);
 
@@ -37,6 +38,8 @@ typedef void(^finishURLBlock)(NSString *url);
 @property(nonatomic,strong) UILabel *plauthor;
 @property(nonatomic,strong) UILabel *plnplayumber;
 @property(nonatomic,strong) UILabel *songcount;
+
+@property(nonatomic,strong) UIView *middleline;
 @end
 
 @implementation PLDetailVC
@@ -62,7 +65,7 @@ typedef void(^finishURLBlock)(NSString *url);
     [self.view addSubview:self.plauthor];
     [self.view addSubview:self.plnplayumber];
     [self.view addSubview:self.songcount];
-    
+    [self.view addSubview:self.middleline];
     [self.view addSubview:self.tableview];
 
     [self.coverIMV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -95,6 +98,13 @@ typedef void(^finishURLBlock)(NSString *url);
         make.top.mas_equalTo(self.plnplayumber.mas_bottom).with.offset(5);
         make.left.mas_equalTo(self.pltitle);
         make.right.mas_equalTo(self.pltitle);
+    }];
+    
+    [self.middleline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.coverIMV.mas_bottom).with.offset(20-kSingleLineWidthOrHeight);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.height.mas_equalTo(kSingleLineWidthOrHeight);
     }];
     
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -168,6 +178,15 @@ typedef void(^finishURLBlock)(NSString *url);
     return _coverIMV;
 }
 
+- (UIView *)middleline
+{
+    if (!_middleline)
+    {
+        _middleline = [[UIView alloc]init];
+        _middleline.backgroundColor = bbx_ColorByStr(@"#A9A9A9");
+    }
+    return _middleline;
+}
 -(UITableView*)tableview
 {
     if (!_tableview)
@@ -176,8 +195,8 @@ typedef void(^finishURLBlock)(NSString *url);
         _tableview.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-104);
         _tableview.delegate=self;
         _tableview.dataSource=self;
-        
-        [_tableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+        _tableview.separatorStyle = UITableViewCellSelectionStyleNone;
+        [_tableview registerClass:[SongListCell class] forCellReuseIdentifier:@"SongListCell"];
        
     }
     
@@ -233,16 +252,16 @@ typedef void(^finishURLBlock)(NSString *url);
 #pragma mark --tableview相关
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 30;
+    return 50;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell * cell =[tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    SongListCell * cell =[tableView dequeueReusableCellWithIdentifier:@"SongListCell" forIndexPath:indexPath];
     if (indexPath.row<[[MusicDataCenter shareInstance] musicDataCount])
     {
         MusicModel *mm = [[MusicDataCenter shareInstance] musicWithIndex:indexPath.row];
-        cell.textLabel.text = mm.name;
+        [cell configModel:mm andindex:indexPath.row+1];
     }
     
     return cell;

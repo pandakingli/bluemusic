@@ -40,4 +40,7 @@ CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].si
 
 #define  kPingFangMedium(kk)    ([UIFont fontWithName:@"PingFangSC-Medium" size:kk]?:[UIFont boldSystemFontOfSize:kk])
 
+
+//一像素直线宽度
+#define kSingleLineWidthOrHeight (1 / UIScreen.mainScreen.scale)
 #endif /* MusicConstants_h */

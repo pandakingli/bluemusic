@@ -13,6 +13,7 @@
 		0AC979EC20EF938700AC3885 /* request_netease.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AC979EB20EF938700AC3885 /* request_netease.js */; };
 		0AC97A0320EFBD4E00AC3885 /* MusicImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC97A0220EFBD4E00AC3885 /* MusicImage.m */; };
 		0AC97A1620EFC63900AC3885 /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AC97A1520EFC63900AC3885 /* icons.bundle */; };
+		0AC97A1920F064EC00AC3885 /* SongListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC97A1820F064EC00AC3885 /* SongListCell.m */; };
 		0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */; };
 		0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B320EB8185002B3357 /* PLDetailVC.m */; };
 		0AE3F4BD20EDB838002B3357 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4BC20EDB838002B3357 /* HomeVC.m */; };
@@ -74,6 +75,8 @@
 		0AC97A0120EFBD4E00AC3885 /* MusicImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicImage.h; sourceTree = "<group>"; };
 		0AC97A0220EFBD4E00AC3885 /* MusicImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicImage.m; sourceTree = "<group>"; };
 		0AC97A1520EFC63900AC3885 /* icons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icons.bundle; sourceTree = "<group>"; };
+		0AC97A1720F064EC00AC3885 /* SongListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongListCell.h; sourceTree = "<group>"; };
+		0AC97A1820F064EC00AC3885 /* SongListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SongListCell.m; sourceTree = "<group>"; };
 		0AE3F4AF20EB77A6002B3357 /* MusicPLCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicPLCell.h; sourceTree = "<group>"; };
 		0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPLCell.m; sourceTree = "<group>"; };
 		0AE3F4B220EB8185002B3357 /* PLDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailVC.h; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				0AC979E920EE163400AC3885 /* PlaylistCV.m */,
 				0AE3F4B220EB8185002B3357 /* PLDetailVC.h */,
 				0AE3F4B320EB8185002B3357 /* PLDetailVC.m */,
+				0AC97A1720F064EC00AC3885 /* SongListCell.h */,
+				0AC97A1820F064EC00AC3885 /* SongListCell.m */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				E62988FB1FE274B4006F9B71 /* Frameworks */,
 				E62988FC1FE274B4006F9B71 /* Resources */,
 				5798EA83D726F260543843AE /* [CP] Embed Pods Frameworks */,
+				45DF6AA38D41B1798D86CB8F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -464,6 +470,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		45DF6AA38D41B1798D86CB8F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5798EA83D726F260543843AE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -544,6 +565,7 @@
 				0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */,
 				0AC97A0320EFBD4E00AC3885 /* MusicImage.m in Sources */,
 				E6C4C8071FE28374005DDE0F /* MusicPlayerHandle.m in Sources */,
+				0AC97A1920F064EC00AC3885 /* SongListCell.m in Sources */,
 				E62989111FE274B4006F9B71 /* main.m in Sources */,
 				E6C4C8011FE2836C005DDE0F /* MusicListTableViewCell.m in Sources */,
 				E6C4C7FA1FE28364005DDE0F /* MusicModel.m in Sources */,
