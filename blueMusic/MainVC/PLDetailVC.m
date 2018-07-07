@@ -36,6 +36,7 @@ typedef void(^finishURLBlock)(NSString *url);
 @property(nonatomic,strong) UILabel *pltitle;
 @property(nonatomic,strong) UILabel *plauthor;
 @property(nonatomic,strong) UILabel *plnplayumber;
+@property(nonatomic,strong) UILabel *songcount;
 @end
 
 @implementation PLDetailVC
@@ -60,13 +61,14 @@ typedef void(^finishURLBlock)(NSString *url);
     [self.view addSubview:self.pltitle];
     [self.view addSubview:self.plauthor];
     [self.view addSubview:self.plnplayumber];
+    [self.view addSubview:self.songcount];
     
     [self.view addSubview:self.tableview];
 
     [self.coverIMV mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.height.mas_equalTo(80);
-        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(150);
+        make.width.mas_equalTo(150);
         make.left.mas_equalTo(20);
         make.top.mas_equalTo(StatusBar_Height+20);
     }];
@@ -89,6 +91,11 @@ typedef void(^finishURLBlock)(NSString *url);
         make.right.mas_equalTo(self.pltitle);
     }];
     
+    [self.songcount mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.plnplayumber.mas_bottom).with.offset(5);
+        make.left.mas_equalTo(self.pltitle);
+        make.right.mas_equalTo(self.pltitle);
+    }];
     
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -112,6 +119,9 @@ typedef void(^finishURLBlock)(NSString *url);
     if (!_pltitle)
     {
         _pltitle = [[UILabel alloc]init];
+        _pltitle.numberOfLines = 0;
+        _pltitle.font = bbx_PingFangSCBold(15);
+        _pltitle.textColor = [UIColor blackColor];
     }
     return _pltitle;
 }
@@ -121,6 +131,8 @@ typedef void(^finishURLBlock)(NSString *url);
     if (!_plauthor)
     {
         _plauthor = [[UILabel alloc]init];
+        _plauthor.font = bbx_PingFangSCRegular(10);
+        _plauthor.textColor = [UIColor blackColor];
     }
     return _plauthor;
 }
@@ -130,8 +142,21 @@ typedef void(^finishURLBlock)(NSString *url);
     if (!_plnplayumber)
     {
         _plnplayumber = [[UILabel alloc]init];
+        _plnplayumber.font = bbx_PingFangSCRegular(10);
+        _plnplayumber.textColor = [UIColor blackColor];
     }
     return _plnplayumber;
+}
+
+-(UILabel*)songcount
+{
+    if (!_songcount)
+    {
+        _songcount = [[UILabel alloc]init];
+        _songcount.font = bbx_PingFangSCRegular(10);
+        _songcount.textColor = [UIColor blackColor];
+    }
+    return _songcount;
 }
 
 -(UIImageView*)coverIMV
@@ -200,6 +225,8 @@ typedef void(^finishURLBlock)(NSString *url);
     [[MusicNetWorkCenter shareInstance] netease_RequestMusicDataWithParameters:@{@"plid":self.plModel.pl_id?:@""} andFinishBlock:^{
         [weakSelf.tableview reloadData];
         [weakSelf hideProgress];
+        NSString *s = [NSString stringWithFormat:@"共%@首歌曲",@([[MusicDataCenter shareInstance] musicDataCount]).stringValue];
+        weakSelf.songcount.text = s;
     }];
 
 }
@@ -249,6 +276,7 @@ typedef void(^finishURLBlock)(NSString *url);
         self.pltitle.text = plmodel.title;
         self.plauthor.text = plmodel.author;
         self.plnplayumber.text = plmodel.playnumstr;
+        
         [self trytogetsongs];
     }
 }
