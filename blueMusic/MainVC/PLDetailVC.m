@@ -24,6 +24,7 @@
 #import "MusicDataCenter.h"
 #import "MusicConstants.h"
 #import "SongListCell.h"
+#import "MusicImage.h"
 
 typedef void(^finishURLBlock)(NSString *url);
 
@@ -40,6 +41,7 @@ typedef void(^finishURLBlock)(NSString *url);
 @property(nonatomic,strong) UILabel *songcount;
 
 @property(nonatomic,strong) UIView *middleline;
+@property(nonatomic,strong) UIView *head_bg;
 @end
 
 @implementation PLDetailVC
@@ -59,7 +61,8 @@ typedef void(^finishURLBlock)(NSString *url);
 -(void)setupviews{
     
     self.view.backgroundColor = [UIColor whiteColor];
-
+   
+    [self.view addSubview:self.head_bg];
     [self.view addSubview:self.coverIMV];
     [self.view addSubview:self.pltitle];
     [self.view addSubview:self.plauthor];
@@ -113,6 +116,14 @@ typedef void(^finishURLBlock)(NSString *url);
         make.right.mas_equalTo(self.view.mas_right);
         make.bottom.mas_equalTo(-20);
         make.top.mas_equalTo(self.coverIMV.mas_bottom).with.offset(20);
+    }];
+    
+    [self.head_bg mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.mas_equalTo(StatusBar_Height);
+        make.left.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.middleline.mas_top);
+        make.right.mas_equalTo(0);
     }];
 }
 
@@ -186,6 +197,16 @@ typedef void(^finishURLBlock)(NSString *url);
         _middleline.backgroundColor = bbx_ColorByStr(@"#A9A9A9");
     }
     return _middleline;
+}
+
+- (UIView *)head_bg
+{
+    if (!_head_bg)
+    {
+        _head_bg = [[UIView alloc]init];
+        _head_bg.backgroundColor =  bbx_ColorByStr(@"#405F9EA0");
+    }
+    return _head_bg;
 }
 -(UITableView*)tableview
 {
@@ -291,7 +312,7 @@ typedef void(^finishURLBlock)(NSString *url);
         self.plModel = plmodel;
         [self.navigationItem setTitle:plmodel.title];
         NSURL *picurl = [NSURL URLWithString:plmodel.cover_img_url];
-        [self.coverIMV sd_setImageWithURL:picurl placeholderImage:nil];
+        [self.coverIMV sd_setImageWithURL:picurl placeholderImage:[MusicImage imageNamed:@"compact-disc"]];
         self.pltitle.text = plmodel.title;
         self.plauthor.text = plmodel.author;
         self.plnplayumber.text = plmodel.playnumstr;

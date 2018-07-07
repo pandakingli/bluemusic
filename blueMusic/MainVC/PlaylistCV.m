@@ -11,6 +11,8 @@
 #import <Masonry/Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <bluebox/bluebox.h>
+#import "MusicImage.h"
+
 @interface PlaylistCV()
 @property(nonatomic,strong) BlueMusicPlayListModel*plModel;
 @property(nonatomic,strong) UILabel *titleLabel;
@@ -29,7 +31,7 @@
 
 -(void)p_setupViews
 {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = bbx_ColorByStr(@"#405F9EA0");
     [self addSubview:self.plPic];
     [self addSubview:self.titleLabel];
     
@@ -81,7 +83,7 @@
     self.titleLabel.text = self.plModel.title;
     NSURL *picURL = [NSURL URLWithString:self.plModel.cover_img_url];
     [self.plPic sd_setImageWithURL:picURL
-                  placeholderImage:[UIImage imageNamed:@"placeholderImage.png"]
+                  placeholderImage:[MusicImage imageNamed:@"compact-disc"]
                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                              
                          }];
