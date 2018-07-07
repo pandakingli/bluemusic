@@ -57,10 +57,10 @@
     if (!_titleLabel)
     {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.textColor = [UIColor blueColor];
+        _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.text = @"歌单名称";
         _titleLabel.font = [UIFont systemFontOfSize:10];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.numberOfLines = 0;
     }
     return _titleLabel;
