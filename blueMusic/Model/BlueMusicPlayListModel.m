@@ -14,7 +14,7 @@
     NSString *s = @"作者：";
     if (self.personname)
     {
-        s = [NSString stringWithFormat:@"作者：%@",self.personname];
+        s = [NSString stringWithFormat:@"by:%@",self.personname];
     }
     return s;
 }
@@ -24,7 +24,7 @@
     NSString *s = @"播放量";
     if (self.personname)
     {
-        s = [NSString stringWithFormat:@"播放量：%@",self.playnum];
+        s = [NSString stringWithFormat:@"%@播放",self.playnum];
     }
     return s;
     

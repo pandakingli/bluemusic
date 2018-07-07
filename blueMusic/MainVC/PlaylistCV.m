@@ -49,6 +49,7 @@
         make.right.mas_equalTo(self.plPic.mas_right);
         make.bottom.mas_lessThanOrEqualTo(-2);
     }];
+    [self layoutIfNeeded];
 }
 
 -(UILabel*)titleLabel
@@ -84,23 +85,25 @@
                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                              
                          }];
-    
-    if (plModel.personname)
+    [self.plPic hideAllMarks];
+    if (self.plModel.personname)
     {
-        bbxcolormodel *downleft = [bbxcolormodel createDefaultModel];
-        downleft.display_name = plModel.personname;
-        downleft.background_color = [UIColor redColor];
-        downleft.text_color = [UIColor blueColor];
-        [self.plPic showleftdownmarkWithModel:downleft];
+        bbxcolormodel *ld = [bbxcolormodel createDefaultModel];
+        ld.display_name = self.plModel.author;
+        ld.background_color = bbx_ColorByStr(@"#CCFFB6C1");
+        ld.text_color = [UIColor blackColor];//bbx_ColorByStr(@"#90CEDE");
+        ld.tFont = [UIFont systemFontOfSize:10];
+        [self.plPic showleftdownmarkWithModel:ld];
     }
     
-    if (plModel.playnum)
+    if (self.plModel.playnumstr)
     {
-        bbxcolormodel *downleft = [bbxcolormodel createDefaultModel];
-        downleft.display_name = plModel.playnum;
-        downleft.background_color = [UIColor redColor];
-        downleft.text_color = [UIColor blueColor];
-        [self.plPic showrightupmarkWithModel:downleft];
+        bbxcolormodel *ru = [bbxcolormodel createDefaultModel];
+        ru.display_name = self.plModel.playnumstr;
+        ru.background_color = bbx_ColorByStr(@"#66DCDCDC");
+        ru.text_color = [UIColor blackColor];
+        [self.plPic showrightupmarkWithModel:ru];
     }
+  
 }
 @end
