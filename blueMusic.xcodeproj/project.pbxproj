@@ -29,7 +29,6 @@
 		E62A2E6020E317F100CCDABD /* BlueMusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E62A2E5F20E317F100CCDABD /* BlueMusicModel.m */; };
 		E6634C2020E89C9300655ADD /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E6634C1F20E89C9300655ADD /* SecurityUtil.m */; };
 		E6634C2320E89D1000655ADD /* NSData+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = E6634C2220E89D1000655ADD /* NSData+Encryption.m */; };
-		E6634C2520E8B42600655ADD /* jshi.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2420E8B42500655ADD /* jshi.js */; };
 		E6634C2720E8B46E00655ADD /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6634C2620E8B46E00655ADD /* JavaScriptCore.framework */; };
 		E6634C4720E8BDAA00655ADD /* lastfm.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2D20E8BDA900655ADD /* lastfm.js */; };
 		E6634C4820E8BDAA00655ADD /* lowebutil.js in Resources */ = {isa = PBXBuildFile; fileRef = E6634C2E20E8BDA900655ADD /* lowebutil.js */; };
@@ -106,7 +105,6 @@
 		E6634C1F20E89C9300655ADD /* SecurityUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecurityUtil.m; sourceTree = "<group>"; };
 		E6634C2120E89D1000655ADD /* NSData+Encryption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Encryption.h"; sourceTree = "<group>"; };
 		E6634C2220E89D1000655ADD /* NSData+Encryption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Encryption.m"; sourceTree = "<group>"; };
-		E6634C2420E8B42500655ADD /* jshi.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jshi.js; sourceTree = "<group>"; };
 		E6634C2620E8B46E00655ADD /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		E6634C2D20E8BDA900655ADD /* lastfm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = lastfm.js; sourceTree = "<group>"; };
 		E6634C2E20E8BDA900655ADD /* lowebutil.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = lowebutil.js; sourceTree = "<group>"; };
@@ -296,7 +294,6 @@
 		E62989421FE280FE006F9B71 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				E6634C2420E8B42500655ADD /* jshi.js */,
 				E6C4C8091FE283B8005DDE0F /* LyricHandle.h */,
 				E6C4C8081FE283B7005DDE0F /* LyricHandle.m */,
 				E6C4C8031FE28373005DDE0F /* MusicDataHandle.h */,
@@ -440,7 +437,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6634C5020E8BDAA00655ADD /* kuwo.js in Resources */,
-				E6634C2520E8B42600655ADD /* jshi.js in Resources */,
 				E6634C5420E8BDAA00655ADD /* app.js in Resources */,
 				E6634C5A20E8BDAA00655ADD /* hotkeys.js in Resources */,
 				E629890E1FE274B4006F9B71 /* LaunchScreen.storyboard in Resources */,
