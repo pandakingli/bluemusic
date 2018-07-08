@@ -25,12 +25,14 @@
 #import "MusicDataCenter.h"
 #import "MusicImage.h"
 
+#import "MusicNetWorkCenter.h"
+
 //屏幕宽度
 #define kSCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
 //屏幕高度
 #define kSCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
 
-typedef void(^finishURLBlock)(NSString *url);
+
 
 @interface songPlayView ()<UITableViewDataSource, UITableViewDelegate,MusicPlayerHandleDelegate>
 @property (strong, nonatomic)  UIView *mini_bg;
@@ -562,8 +564,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
          typeof(self) weakSelf = self;
         
         [self showProgress];
-        
-        [self getNetDataFromWangyiWithsongid:self.musicModel.songid WithFinishBlock:^(NSString *url) {
+        [[MusicNetWorkCenter shareInstance] netease_RequestMusicSongurlDataWithParameters:@{@"songid":self.musicModel.songid?:@""} andFinishBlock:^(NSString *url) {
             if (weakSelf&&url&&![url isKindOfClass:[NSNull class]])
             {
                 weakSelf.musicModel.mp3Url = url;
@@ -573,8 +574,8 @@ static songPlayView *MusicPlayeViewCenter = nil;
                 [weakSelf hideProgress];
                 [weakSelf changeMusic:weakSelf.musicModel];
             }
-           
         }];
+        
     }
 }
 
@@ -761,78 +762,6 @@ static songPlayView *MusicPlayeViewCenter = nil;
     
     self.musicModel = [self.mc musicWithIndex:self.index];
     [self updatesongmodel:self.musicModel];
-}
-
-#pragma mark-- 获取数据
-- (void)getNetDataFromWangyiWithsongid:(NSString *)songid WithFinishBlock:(finishURLBlock)finishblock;
-{
-    
-    typeof(self) weakSelf = self;
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    NSDictionary *params = [self getDicWithsongid:songid];
-    
-    
-    NSString *url = @"http://music.163.com/weapi/song/enhance/player/url?csrf_token=";
-    [manager.requestSerializer
-     setValue:@"application/x-www-form-urlencoded"
-     forHTTPHeaderField:@"Content-Type"];
-    
-    
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [manager POST:url
-       parameters:params
-         progress:^(NSProgress * _Nonnull uploadProgress) {
-             
-         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-             
-             NSArray *arr = [responseObject objectForKey:@"data"];
-             NSDictionary *data = arr.firstObject;
-             if (data)
-             {
-                 NSString *url = [data objectForKey:@"url"];
-                 
-                 finishblock(url);
-             }
-             
-             
-         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-             
-             
-         }];
-    
-}
-
--(NSDictionary*)getDicWithsongid:(NSString*)songid
-{
-    if (!songid) {
-        return nil;
-    }
-    NSString *aespath = [[NSBundle mainBundle] pathForResource:@"aes" ofType:@"js"];
-    NSString *aespathstr= [NSString stringWithContentsOfFile:aespath encoding:NSUTF8StringEncoding error:nil];
-    
-    NSString *bigint = [[NSBundle mainBundle] pathForResource:@"bigint" ofType:@"js"];
-    NSString *bigintstr = [NSString stringWithContentsOfFile:bigint encoding:NSUTF8StringEncoding error:nil];
-    
-    NSString *jshi = [[NSBundle mainBundle] pathForResource:@"jshi" ofType:@"js"];
-    NSString *jshiStr = [NSString stringWithContentsOfFile:jshi encoding:NSUTF8StringEncoding error:nil];
-    
-    JSContext *context = [[JSContext alloc] init];
-    [context evaluateScript:aespathstr];
-    [context evaluateScript:bigintstr];
-    [context evaluateScript:jshiStr];
-    
-    JSValue *function =context[@"go_request"];
-    
-    
-    JSValue *s = [function callWithArguments:@[songid]];
-    //NSLog(@"s=%@",[s toDictionary]);
-    
-    return [s toDictionary];
 }
 
 - (void)musicPlayTimecache:(NSString*)time

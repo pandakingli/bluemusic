@@ -2,7 +2,7 @@
 //  MusicImage.h
 //  blueMusic
 //
-//  Created by didi on 2018/7/6.
+//  Created by biubiublue on 2018/7/6.
 //  Copyright © 2018年 biubiublue. All rights reserved.
 //
 

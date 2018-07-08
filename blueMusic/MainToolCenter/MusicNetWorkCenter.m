@@ -315,4 +315,75 @@ static MusicNetWorkCenter *musicNWCenter=nil;
    
     return paramsDict;
 }
+
+- (void)netease_RequestMusicSongurlDataWithParameters:(NSDictionary*)parameters andFinishBlock:(finishURLBlock)finishblock
+{
+    typeof(self) weakSelf = self;
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSString *songid = [parameters objectForKey:@"songid"];
+    NSDictionary *params = [self getSongdicWithsongid:songid?:@""];
+    
+    
+    NSString *url = @"http://music.163.com/weapi/song/enhance/player/url?csrf_token=";
+    [manager.requestSerializer
+     setValue:@"application/x-www-form-urlencoded"
+     forHTTPHeaderField:@"Content-Type"];
+    
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:url
+       parameters:params
+         progress:^(NSProgress * _Nonnull uploadProgress) {
+             
+         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+             
+             NSArray *arr = [responseObject objectForKey:@"data"];
+             NSDictionary *data = arr.firstObject;
+             if (data)
+             {
+                 NSString *url = [data objectForKey:@"url"];
+                 
+                 finishblock(url);
+             }
+             
+             
+         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             
+             finishblock(nil);
+         }];
+}
+
+//根据歌曲id获取参数
+-(NSDictionary*)getSongdicWithsongid:(NSString*)songid
+{
+    NSString *aespath = [[NSBundle mainBundle] pathForResource:@"aes" ofType:@"js"];
+    NSString *aespathstr= [NSString stringWithContentsOfFile:aespath encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *bigint = [[NSBundle mainBundle] pathForResource:@"bigint" ofType:@"js"];
+    NSString *bigintstr = [NSString stringWithContentsOfFile:bigint encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *request_netease = [[NSBundle mainBundle] pathForResource:@"request_netease" ofType:@"js"];
+    NSString *request_neteaseStr = [NSString stringWithContentsOfFile:request_netease encoding:NSUTF8StringEncoding error:nil];
+    
+    JSContext *context = [[JSContext alloc] init];
+    [context evaluateScript:aespathstr];
+    [context evaluateScript:bigintstr];
+    [context evaluateScript:request_neteaseStr];
+    
+    JSValue *function =context[@"go_request"];
+    
+    if (!songid)
+    {
+        songid=@"123";
+    }
+    JSValue *s = [function callWithArguments:@[songid]];
+    
+    return [s toDictionary];
+}
+
 @end

@@ -8,7 +8,8 @@
 
 #ifndef MusicConstants_h
 #define MusicConstants_h
-typedef void(^finishBlock) ();
+typedef void(^finishURLBlock)(NSString *url);
+typedef void(^finishBlock)();
 /**
  *  是否是iphoneX
  */

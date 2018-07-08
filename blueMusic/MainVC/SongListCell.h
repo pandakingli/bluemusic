@@ -2,7 +2,7 @@
 //  SongListCell.h
 //  blueMusic
 //
-//  Created by didi on 2018/7/7.
+//  Created by biubiublue on 2018/7/7.
 //  Copyright © 2018年 biubiublue. All rights reserved.
 //
 
