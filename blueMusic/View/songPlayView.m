@@ -26,6 +26,8 @@
 #import "MusicImage.h"
 
 #import "MusicNetWorkCenter.h"
+#import "LyricModel.h"
+#import "LyricHandle.h"
 
 //屏幕宽度
 #define kSCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
@@ -564,7 +566,14 @@ static songPlayView *MusicPlayeViewCenter = nil;
          typeof(self) weakSelf = self;
         
         [self showProgress];
-        [[MusicNetWorkCenter shareInstance] netease_RequestMusicSongurlDataWithParameters:@{@"songid":self.musicModel.songid?:@""} andFinishBlock:^(NSString *url) {
+        
+        NSDictionary*dic = @{@"songid":self.musicModel.songid?:@""};
+        
+        dispatch_group_t group = dispatch_group_create();
+        
+        dispatch_group_enter(group);
+        
+        [[MusicNetWorkCenter shareInstance] netease_RequestMusicSongurlDataWithParameters:dic andFinishBlock:^(NSString *url) {
             if (weakSelf&&url&&![url isKindOfClass:[NSNull class]])
             {
                 weakSelf.musicModel.mp3Url = url;
@@ -574,14 +583,24 @@ static songPlayView *MusicPlayeViewCenter = nil;
                 [weakSelf hideProgress];
                 [weakSelf changeMusic:weakSelf.musicModel];
             }
+             dispatch_group_leave(group);
         }];
         
+        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+            
+            [[MusicNetWorkCenter shareInstance] netease_RequestMusicLyricDataWithParameters:dic andFinishBlock:^(NSString *url) {
+                if (weakSelf&&url&&![url isKindOfClass:[NSNull class]])
+                {
+                    weakSelf.musicModel.lyric = url;
+                    [[LyricHandle shareLyricHandle]changeLyricString:url];
+                    [weakSelf.lyricsTable reloadData];
+                }
+            }];
+        });
+        
+       
+        
     }
-}
-
--(void)downloadmp3
-{
-    
 }
 
 -(void)setupcurrentplaystatus:(NSInteger)playStatus
@@ -605,17 +624,24 @@ static songPlayView *MusicPlayeViewCenter = nil;
 #pragma mark tableview
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    NSInteger m = [[LyricHandle shareLyricHandle] lyricItemCount];
+    return m;
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"_lyricsTableUITableViewCell" forIndexPath:indexPath];
     
-    cell.textLabel.highlightedTextColor = [UIColor redColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:12];
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.text = [[LyricHandle shareLyricHandle] lyricStringWithIndex:indexPath.row];
     
+    cell.textLabel.highlightedTextColor = [UIColor redColor];
+    
+    cell.textLabel.font = [UIFont systemFontOfSize:12];
+    
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;//居中显示
+
+
     return  cell;
 }
 

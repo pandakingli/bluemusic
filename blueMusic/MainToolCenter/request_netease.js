@@ -178,3 +178,15 @@ function go_requestpldetail(pl_id) {
     return data;
 }
 
+function go_requestsonglyric(song_id) {
+    
+    var d = {
+        "id": song_id,
+        "lv": -1,
+        "tv": -1,
+        "csrf_token": ""
+    }
+    
+    var data = encrypted_request(d);
+    return data;
+}

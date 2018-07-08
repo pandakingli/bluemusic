@@ -13,6 +13,7 @@
 #import "MusicDataCenter.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "MusicModel.h"
+#import <bluebox/bluebox.h>
 
 #define kNetease_playlist  @"http://music.163.com/discover/playlist/"
 
@@ -318,8 +319,7 @@ static MusicNetWorkCenter *musicNWCenter=nil;
 
 - (void)netease_RequestMusicSongurlDataWithParameters:(NSDictionary*)parameters andFinishBlock:(finishURLBlock)finishblock
 {
-    typeof(self) weakSelf = self;
-    
+   
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
@@ -386,4 +386,72 @@ static MusicNetWorkCenter *musicNWCenter=nil;
     return [s toDictionary];
 }
 
+- (void)netease_RequestMusicLyricDataWithParameters:(NSDictionary*)parameters andFinishBlock:(finishURLBlock)finishblock
+{
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSString *songid = [parameters objectForKey:@"songid"];
+    NSDictionary *params = [self getSongLyricdicWithsongid:songid?:@""];
+    
+    NSString *url = @"http://music.163.com/weapi/song/lyric?csrf_token=";
+    [manager.requestSerializer
+     setValue:@"application/x-www-form-urlencoded"
+     forHTTPHeaderField:@"Content-Type"];
+    
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:url
+       parameters:params
+         progress:^(NSProgress * _Nonnull uploadProgress) {
+             
+         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+             
+             NSDictionary *dic = [responseObject objectForKey:@"lrc"];
+             NSString *lyric = [dic objectForKey:@"lyric"];
+             if (bbx_StringValid(lyric))
+             {
+                 finishblock(lyric);
+             }
+             else
+             {
+                 finishblock(nil);
+             }
+             
+         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             
+             finishblock(nil);
+         }];
+}
+
+//根据歌曲id获取参数-获取歌词
+-(NSDictionary*)getSongLyricdicWithsongid:(NSString*)songid
+{
+    NSString *aespath = [[NSBundle mainBundle] pathForResource:@"aes" ofType:@"js"];
+    NSString *aespathstr= [NSString stringWithContentsOfFile:aespath encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *bigint = [[NSBundle mainBundle] pathForResource:@"bigint" ofType:@"js"];
+    NSString *bigintstr = [NSString stringWithContentsOfFile:bigint encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *request_netease = [[NSBundle mainBundle] pathForResource:@"request_netease" ofType:@"js"];
+    NSString *request_neteaseStr = [NSString stringWithContentsOfFile:request_netease encoding:NSUTF8StringEncoding error:nil];
+    
+    JSContext *context = [[JSContext alloc] init];
+    [context evaluateScript:aespathstr];
+    [context evaluateScript:bigintstr];
+    [context evaluateScript:request_neteaseStr];
+    
+    JSValue *function =context[@"go_requestsonglyric"];
+    
+    if (!songid)
+    {
+        songid=@"123";
+    }
+    JSValue *s = [function callWithArguments:@[songid]];
+    
+    return [s toDictionary];
+}
 @end
