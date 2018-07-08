@@ -17,7 +17,4 @@
 -(void)showplayerview;
 -(void)gotoplayIndex:(NSInteger)index;
 
--(void)pause;
--(void)playnext;
--(void)playlast;
 @end

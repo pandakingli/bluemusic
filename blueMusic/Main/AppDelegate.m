@@ -69,15 +69,15 @@ void uncaughtExceptionHandler(NSException *exception) {
         switch (receivedEvent.subtype) {
                 
             case UIEventSubtypeRemoteControlTogglePlayPause:
-                [[songPlayView getDefaultMusicPlayView] pause];
+               // [[songPlayView getDefaultMusicPlayView] pause];
                 NSLog(@"RemoteControlEvents: pause");
                 break;
             case UIEventSubtypeRemoteControlNextTrack:
-                [[songPlayView getDefaultMusicPlayView] playnext];
+               // [[songPlayView getDefaultMusicPlayView] playnext];
                 NSLog(@"RemoteControlEvents: playModeNext");
                 break;
             case UIEventSubtypeRemoteControlPreviousTrack:
-                [[songPlayView getDefaultMusicPlayView] playlast];
+                //[[songPlayView getDefaultMusicPlayView] playlast];
                 NSLog(@"RemoteControlEvents: playPrev");
                 break;
             default:

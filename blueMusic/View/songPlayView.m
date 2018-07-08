@@ -33,6 +33,10 @@
 typedef void(^finishURLBlock)(NSString *url);
 
 @interface songPlayView ()<UITableViewDataSource, UITableViewDelegate,MusicPlayerHandleDelegate>
+@property (strong, nonatomic)  UIView *mini_bg;
+@property (strong, nonatomic)  UIImageView *miniIMV;
+@property (strong, nonatomic)  UIControl *minicontrol;
+
 @property (strong, nonatomic)  UILabel *SongName;
 @property (strong, nonatomic)  UILabel *SingerName;
 
@@ -45,7 +49,6 @@ typedef void(^finishURLBlock)(NSString *url);
 @property (strong, nonatomic)  UIButton *lastBtn;
 @property (strong, nonatomic)  UIButton *playBtn;
 @property (strong, nonatomic)  UIButton *nextBtn;
-@property (strong, nonatomic)  UIButton *backBtn;
 @property (strong, nonatomic)  UISlider *progressBar;
 
 @property (strong, nonatomic)  UILabel *timeNow;//当前播放时间
@@ -117,8 +120,11 @@ static songPlayView *MusicPlayeViewCenter = nil;
 
 -(void)addmysubviews
 {
-    self.backgroundColor = [UIColor yellowColor];
-    [self addSubview:self.backBtn];
+    self.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.mini_bg];
+    [self addSubview:self.miniIMV];
+    [self addSubview:self.minicontrol];
+    
     [self addSubview:self.SongName];
     [self addSubview:self.SingerName];
     
@@ -140,17 +146,11 @@ static songPlayView *MusicPlayeViewCenter = nil;
 
 -(void)addmyconstrains
 {
-    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(40);
-        make.height.mas_equalTo(30);
-        make.left.mas_equalTo(20);
-        make.top.mas_equalTo(100);
-    }];
     
     [self.SongName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(20);
         make.right.mas_equalTo(-20);
-        make.top.mas_equalTo(self.backBtn.mas_bottom);
+        make.top.mas_equalTo(bbx_IPHONE_STATUSBAR_HEIGHT+10);
     }];
     
     [self.SingerName mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -159,11 +159,32 @@ static songPlayView *MusicPlayeViewCenter = nil;
         make.top.mas_equalTo(self.SongName.mas_bottom).with.offset(5);
     }];
     
+    [self.miniIMV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(20);
+        make.left.mas_equalTo(20);
+        make.top.mas_equalTo(self.SingerName.mas_bottom).with.offset(8);
+    }];
+    
+    [self.minicontrol mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.top.mas_equalTo(self.miniIMV.mas_top).with.offset(-8);
+        make.right.mas_equalTo(self.miniIMV.mas_right).with.offset(10);
+        make.bottom.mas_equalTo(self.miniIMV.mas_bottom).with.offset(8);
+    }];
+    
+    [self.mini_bg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(-20);
+        make.top.mas_equalTo(self.miniIMV.mas_top).with.offset(-6);
+        make.right.mas_equalTo(self.miniIMV.mas_right).with.offset(10);
+        make.bottom.mas_equalTo(self.miniIMV.mas_bottom).with.offset(6);
+    }];
+    
+    
     [self.bgSV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(self);
         make.height.mas_equalTo(0.4*kSCREEN_HEIGHT);
         make.left.mas_equalTo(0);
-        make.top.mas_equalTo(0.2*kSCREEN_HEIGHT);
+        make.top.mas_equalTo(self.minicontrol.mas_bottom).with.offset(10);
     }];
     
     [self.blurIMV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -257,6 +278,40 @@ static songPlayView *MusicPlayeViewCenter = nil;
     }];
     
 }
+- (UIView *)mini_bg
+{
+    if (!_mini_bg)
+    {
+        _mini_bg = [[UIImageView alloc]init];
+        _mini_bg.backgroundColor = bbx_ColorByStr(@"#4CA9A9A9");;
+        _mini_bg.layer.cornerRadius = 16;
+    }
+    return _mini_bg;
+}
+- (UIImageView *)miniIMV
+{
+    if (!_miniIMV)
+    {
+        _miniIMV = [[UIImageView alloc]init];
+        _miniIMV.image = [MusicImage imageNamed:@"icon-minimize"];
+    }
+    return _miniIMV;
+}
+
+- (UIControl *)minicontrol
+{
+    if (!_minicontrol)
+    {
+        _minicontrol = [[UIControl alloc]init];
+        [_minicontrol addTarget:self action:@selector(closeplayer) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _minicontrol;
+}
+
+-(void)closeplayer
+{
+    [self removeFromSuperview];
+}
 
 -(UIImageView*)coverIMV
 {
@@ -339,18 +394,6 @@ static songPlayView *MusicPlayeViewCenter = nil;
     }
     
     return _SongName;
-}
-
--(UIButton*)backBtn
-{
-    if (!_backBtn)
-    {
-        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backBtn setTitle:@"关闭" forState:UIControlStateNormal];
-        [_backBtn setBackgroundColor:[UIColor orangeColor]];
-        [_backBtn addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _backBtn;
 }
 
 -(UISlider*)progressBar
@@ -499,8 +542,11 @@ static songPlayView *MusicPlayeViewCenter = nil;
     if (model)
     {
         self.musicModel = model;
-        self.SongName.text   = model.name;
-        self.SingerName.text = model.singer;
+        NSString *sname = [NSString stringWithFormat:@"歌曲：%@",self.musicModel.name];
+        self.SongName.text   = sname;
+        
+        NSString *singername = [NSString stringWithFormat:@"演唱者：%@",self.musicModel.artists_name];
+        self.SingerName.text = singername;
         
         NSURL *songicon = [NSURL URLWithString:model.picUrl];
         UIImage *pp = [MusicImage imageNamed:@"icon-cd"];
@@ -518,7 +564,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
         [self showProgress];
         
         [self getNetDataFromWangyiWithsongid:self.musicModel.songid WithFinishBlock:^(NSString *url) {
-            if (weakSelf&&url)
+            if (weakSelf&&url&&![url isKindOfClass:[NSNull class]])
             {
                 weakSelf.musicModel.mp3Url = url;
                 weakSelf.musicModel.MP3file_url = url;
@@ -654,11 +700,6 @@ static songPlayView *MusicPlayeViewCenter = nil;
     
 }
 #pragma mark-- 按钮事件
--(void)backButtonAction:(UIButton*)sender
-{
-    [self removeFromSuperview];
-}
-
 - (void)modButtonClick:(id)sender
 {
     self.corePlayer.playStatus++;
@@ -802,19 +843,6 @@ static songPlayView *MusicPlayeViewCenter = nil;
 -(void)currentMusicDidFinish
 {
      [self nextSongClick:nil];
-}
-
--(void)pause
-{
-    [self playSongAction:nil];
-}
--(void)playnext
-{
-    [self backButtonAction:nil];
-}
--(void)playlast
-{
-    [self nextSongClick:nil];
 }
 
 -(MusicDataCenter*)mc
