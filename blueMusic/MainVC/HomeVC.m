@@ -134,8 +134,7 @@ UICollectionViewDelegateFlowLayout>
 #pragma mark 直接进入播放页面
 -(void)nowPlaying:(UIBarButtonItem*)sender
 {
-    songPlayView *vv = [songPlayView getDefaultMusicPlayView];
-    [self.view addSubview:vv];
+    [[songPlayView getDefaultMusicPlayView] showplayerview];
 }
 
 -(void)addmyviews

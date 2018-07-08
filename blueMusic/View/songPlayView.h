@@ -14,7 +14,7 @@
 +(instancetype)getDefaultMusicPlayView;
 
 +(instancetype)shareMusicPlayView;
-
+-(void)showplayerview;
 -(void)gotoplayIndex:(NSInteger)index;
 
 -(void)pause;

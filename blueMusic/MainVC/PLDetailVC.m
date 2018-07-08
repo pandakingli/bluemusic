@@ -299,9 +299,9 @@ typedef void(^finishURLBlock)(NSString *url);
     
     if (indexPath.row<[[MusicDataCenter shareInstance] musicDataCount])
     {
-        songPlayView *vv = [songPlayView getDefaultMusicPlayView];
-        [vv gotoplayIndex:indexPath.row];
-        [self.view addSubview:vv];
+        [[songPlayView getDefaultMusicPlayView] showplayerview];
+        [[songPlayView getDefaultMusicPlayView] gotoplayIndex:indexPath.row];
+       
     }
 }
 

@@ -93,6 +93,12 @@ static songPlayView *MusicPlayeViewCenter = nil;
     return MusicPlayeViewCenter;
 }
 
+-(void)showplayerview
+{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:self];
+}
+
 - (instancetype)init
 {
     self = [super init];

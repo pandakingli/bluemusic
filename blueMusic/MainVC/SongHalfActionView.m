@@ -176,7 +176,7 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
     
     [self.header mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(5);
-        make.left.mas_equalTo(20);
+        make.left.mas_equalTo(15);
         make.right.mas_equalTo(self.closebtn.mas_left).with.offset(-15);
     }];
     
@@ -250,7 +250,6 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
 {
     if (!_header)
     {
-        
         _header = [[UILabel alloc]init];
     }
     return _header;
@@ -300,7 +299,9 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
     if (mModel)
     {
         self.mModel = mModel;
-        self.header.text = self.mModel.name;
+        NSString *s = [NSString stringWithFormat:@"歌曲：%@",self.mModel.name];
+        
+        self.header.text = s;
         [self downviewgoup];
         [self.tableview reloadData];
     }
