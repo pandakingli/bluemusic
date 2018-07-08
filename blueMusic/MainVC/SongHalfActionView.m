@@ -11,6 +11,7 @@
 #import "MusicImage.h"
 #import "MusicModel.h"
 #import <Masonry/masonry.h>
+#import "MusicConstants.h"
 
 #define kImg1_download [MusicImage imageNamed:@"icon-download"]
 #define kImg2_add      [MusicImage imageNamed:@"icon-add"]
@@ -22,6 +23,8 @@
 @interface SongHAVCell:UITableViewCell
 @property(nonatomic,strong) UIImageView *icon;
 @property(nonatomic,strong) UILabel *name;
+@property(nonatomic,strong) UIView *downline;
+
 @end
 
 @implementation SongHAVCell
@@ -40,6 +43,7 @@
 {
     [self addSubview:self.icon];
     [self addSubview:self.name];
+    [self addSubview:self.downline];
 }
 
 -(void)addmyconstrains
@@ -55,12 +59,29 @@
         make.left.mas_equalTo(self.icon.mas_right).with.offset(8);
         make.right.mas_equalTo(-15);
     }];
+    
+    [self.downline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(kSingleLineWidthOrHeight);
+        make.bottom.mas_equalTo(-kSingleLineWidthOrHeight);
+        make.left.mas_equalTo(self.icon.mas_left);
+        make.right.mas_equalTo(self.name.mas_right);
+    }];
 }
 
 -(void)updateicon:(UIImage*)icon andname:(NSString*)name
 {
     self.icon.image = icon;
     self.name.text = name;
+}
+
+- (UIView *)downline
+{
+    if (!_downline)
+    {
+        _downline = [[UIView alloc]init];
+        _downline.backgroundColor = bbx_ColorByStr(@"#A9A9A9");
+    }
+    return _downline;
 }
 
 - (UIImageView *)icon
@@ -92,6 +113,9 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
 @property(nonatomic,strong) UITableView *tableview;
 @property(nonatomic,strong) MusicModel *mModel;
 @property(nonatomic,strong) UIControl *allcontrol;
+
+@property(nonatomic,strong) UIView *midline;
+
 @end
 
 @implementation SongHalfActionView
@@ -134,6 +158,7 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
     [self addSubview:self.allcontrol];
     [self addSubview:self.downView];
     [self.downView addSubview:self.header];
+    [self.downView addSubview:self.midline];
     [self.downView addSubview:self.closeIMV];
     [self.downView addSubview:self.closebtn];
     [self.downView addSubview:self.tableview];
@@ -156,7 +181,7 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
     }];
     
     [self.closeIMV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.width.mas_equalTo(20);
+        make.height.width.mas_equalTo(12);
         make.centerY.mas_equalTo(self.header.mas_centerY);
         make.right.mas_equalTo(-15);
     }];
@@ -168,12 +193,29 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
         make.bottom.mas_equalTo(self.closeIMV.mas_bottom).with.offset(5);
     }];
     
+    [self.midline mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(kSingleLineWidthOrHeight);
+        make.bottom.mas_equalTo(self.tableview.mas_top);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+    }];
+    
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(self.header.mas_bottom).with.offset(5);
         make.width.mas_equalTo(self.downView.mas_width);
         make.bottom.mas_equalTo(0);
     }];
+}
+
+- (UIView *)midline
+{
+    if (!_midline)
+    {
+        _midline = [[UIView alloc]init];
+        _midline.backgroundColor = bbx_ColorByStr(@"#A9A9A9");
+    }
+    return _midline;
 }
 
 - (UITableView *)tableview
