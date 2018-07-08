@@ -14,6 +14,7 @@
 		0AC97A0320EFBD4E00AC3885 /* MusicImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC97A0220EFBD4E00AC3885 /* MusicImage.m */; };
 		0AC97A1620EFC63900AC3885 /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0AC97A1520EFC63900AC3885 /* icons.bundle */; };
 		0AC97A1920F064EC00AC3885 /* SongListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC97A1820F064EC00AC3885 /* SongListCell.m */; };
+		0AC97A1C20F11F0F00AC3885 /* SongHalfActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC97A1B20F11F0F00AC3885 /* SongHalfActionView.m */; };
 		0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */; };
 		0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4B320EB8185002B3357 /* PLDetailVC.m */; };
 		0AE3F4BD20EDB838002B3357 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE3F4BC20EDB838002B3357 /* HomeVC.m */; };
@@ -77,6 +78,8 @@
 		0AC97A1520EFC63900AC3885 /* icons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icons.bundle; sourceTree = "<group>"; };
 		0AC97A1720F064EC00AC3885 /* SongListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongListCell.h; sourceTree = "<group>"; };
 		0AC97A1820F064EC00AC3885 /* SongListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SongListCell.m; sourceTree = "<group>"; };
+		0AC97A1A20F11F0F00AC3885 /* SongHalfActionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SongHalfActionView.h; sourceTree = "<group>"; };
+		0AC97A1B20F11F0F00AC3885 /* SongHalfActionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SongHalfActionView.m; sourceTree = "<group>"; };
 		0AE3F4AF20EB77A6002B3357 /* MusicPLCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicPLCell.h; sourceTree = "<group>"; };
 		0AE3F4B020EB77A6002B3357 /* MusicPLCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPLCell.m; sourceTree = "<group>"; };
 		0AE3F4B220EB8185002B3357 /* PLDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDetailVC.h; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				0AE3F4B320EB8185002B3357 /* PLDetailVC.m */,
 				0AC97A1720F064EC00AC3885 /* SongListCell.h */,
 				0AC97A1820F064EC00AC3885 /* SongListCell.m */,
+				0AC97A1A20F11F0F00AC3885 /* SongHalfActionView.h */,
+				0AC97A1B20F11F0F00AC3885 /* SongHalfActionView.m */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -552,6 +557,7 @@
 			files = (
 				E629893B1FE280DA006F9B71 /* RootTabBarController.m in Sources */,
 				E6C4C8061FE28374005DDE0F /* MusicDataHandle.m in Sources */,
+				0AC97A1C20F11F0F00AC3885 /* SongHalfActionView.m in Sources */,
 				E67C901220EE5FF1001C0D31 /* MusicNetWorkCenter.m in Sources */,
 				E6C4C8001FE2836C005DDE0F /* songPlayView.m in Sources */,
 				E6634C2020E89C9300655ADD /* SecurityUtil.m in Sources */,
