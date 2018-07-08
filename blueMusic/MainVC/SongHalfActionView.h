@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MusicModel;
 @interface SongHalfActionView : UIView
-
++(instancetype)shareMusicSHAView;
+-(void)goupwithmodel:(MusicModel*)mModel;
 @end

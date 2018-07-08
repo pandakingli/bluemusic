@@ -14,6 +14,7 @@
 #import "MusicImage.h"
 #import "MusicModel.h"
 #import "MusicConstants.h"
+#import "SongHalfActionView.h"
 
 @interface SongListCell()
 @property(nonatomic,strong) MusicModel *mModel;
@@ -228,6 +229,7 @@
 -(void)clickmore
 {
     NSLog(@"clickmore");
+    [[SongHalfActionView shareMusicSHAView] goupwithmodel:self.mModel];
 }
 
 -(void)configModel:(MusicModel*)mModel andindex:(NSInteger)index

@@ -11,6 +11,14 @@
 #import "MusicImage.h"
 #import "MusicModel.h"
 #import <Masonry/masonry.h>
+
+#define kImg1_download [MusicImage imageNamed:@"icon-download"]
+#define kImg2_add      [MusicImage imageNamed:@"icon-add"]
+#define kImg3_cds      [MusicImage imageNamed:@"icon-record"]
+#define kImg4_singer   [MusicImage imageNamed:@"icon-mic"]
+
+
+
 @interface SongHAVCell:UITableViewCell
 @property(nonatomic,strong) UIImageView *icon;
 @property(nonatomic,strong) UILabel *name;
@@ -22,7 +30,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        
+        [self setupviews];
+        [self addmyconstrains];
     }
     return self;
 }
@@ -35,7 +44,17 @@
 
 -(void)addmyconstrains
 {
+    [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(20);
+        make.centerY.mas_equalTo(self);
+        make.left.mas_equalTo(15);
+    }];
     
+    [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self);
+        make.left.mas_equalTo(self.icon.mas_right).with.offset(8);
+        make.right.mas_equalTo(-15);
+    }];
 }
 
 -(void)updateicon:(UIImage*)icon andname:(NSString*)name
@@ -43,7 +62,27 @@
     self.icon.image = icon;
     self.name.text = name;
 }
+
+- (UIImageView *)icon
+{
+    if (!_icon)
+    {
+        _icon = [[UIImageView alloc]init];
+    }
+    return _icon;
+}
+
+- (UILabel *)name
+{
+    if (!_name)
+    {
+        _name = [[UILabel alloc]init];
+    }
+    return _name;
+}
 @end
+
+static SongHalfActionView *MusicSHAViewCenter = nil;
 
 @interface SongHalfActionView()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UIView *downView;
@@ -52,9 +91,24 @@
 @property(nonatomic,strong) UIControl *closebtn;
 @property(nonatomic,strong) UITableView *tableview;
 @property(nonatomic,strong) MusicModel *mModel;
+@property(nonatomic,strong) UIControl *allcontrol;
 @end
 
 @implementation SongHalfActionView
++(instancetype)shareMusicSHAView
+{
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        if (MusicSHAViewCenter == nil)
+        {
+            MusicSHAViewCenter = [[SongHalfActionView alloc]initWithFrame:CGRectZero];
+        }
+    });
+    
+    return MusicSHAViewCenter;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -68,7 +122,8 @@
 
 -(void)setupmyviews
 {
-    self.backgroundColor = bbx_ColorByStr(@"0CA9A9A9");
+    self.backgroundColor = bbx_ColorByStr(@"3FA9A9A9");
+
     CGFloat x,y,w,h;
     x = 0;
     y = 0;
@@ -76,7 +131,7 @@
     h = bbx_IPHONE_HEIGHT;
     CGRect r_rect = (CGRect){x,y,w,h};
     self.frame = r_rect;
-    
+    [self addSubview:self.allcontrol];
     [self addSubview:self.downView];
     [self.downView addSubview:self.header];
     [self.downView addSubview:self.closeIMV];
@@ -87,6 +142,13 @@
 
 -(void)addmyconstraints
 {
+    [self.allcontrol mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(bbx_IPHONE_HEIGHT*0.5);
+    }];
+    
     [self.header mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(5);
         make.left.mas_equalTo(20);
@@ -119,7 +181,7 @@
     if (!_tableview)
     {
         _tableview = [[UITableView alloc]init];
-        _tableview.delegate =self;
+        _tableview.delegate = self;
         _tableview.dataSource = self;
         [_tableview registerClass:[SongHAVCell class] forCellReuseIdentifier:@"SongHAVCell"];
         _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -162,6 +224,16 @@
     return _closeIMV;
 }
 
+- (UIControl *)allcontrol
+{
+    if (!_allcontrol)
+    {
+        _allcontrol = [[UIControl alloc]init];
+        [_allcontrol addTarget:self action:@selector(clickclose) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _allcontrol;
+}
+
 - (UIControl *)closebtn
 {
     if (!_closebtn)
@@ -175,30 +247,100 @@
 
 -(void)clickclose
 {
-    NSLog(@"clickclose");
+    [self downviewgodown];
 }
 
 -(void)goupwithmodel:(MusicModel*)mModel
 {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:self];
+    
     if (mModel)
     {
         self.mModel = mModel;
         self.header.text = self.mModel.name;
+        [self downviewgoup];
+        [self.tableview reloadData];
     }
+}
+
+-(void)downviewgoup
+{
+    CGFloat x,y,w,h;
+    x = 0;
+    y = bbx_IPHONE_HEIGHT*0.5;
+    w = bbx_IPHONE_WIDTH;
+    h = bbx_IPHONE_HEIGHT*0.5;
+    CGRect r_rect = (CGRect){x,y,w,h};
+    
+    [UIView animateWithDuration:0.5f animations:^{
+        self.downView.frame = r_rect;
+    } completion:^(BOOL finished) {
+        self.downView.frame = r_rect;    }];
+}
+
+-(void)downviewgodown
+{
+    CGFloat x,y,w,h;
+    x = 0;
+    y = bbx_IPHONE_HEIGHT;
+    w = bbx_IPHONE_WIDTH;
+    h = bbx_IPHONE_HEIGHT*0.5;
+    CGRect r_rect = (CGRect){x,y,w,h};
+    
+    [UIView animateWithDuration:0.5f animations:^{
+        self.downView.frame = r_rect;
+    } completion:^(BOOL finished) {
+        self.downView.frame = r_rect;
+        [self removeFromSuperview];
+
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SongHAVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SongHAVCell" forIndexPath:indexPath];
-    
+    switch (indexPath.row)
+    {
+        case 0:
+            [cell updateicon:kImg1_download andname:@"下载"];
+            break;
+            
+        case 1:
+            [cell updateicon:kImg2_add andname:@"收藏"];
+            break;
+            
+        case 2:
+            [cell updateicon:kImg3_cds andname:@"专辑"];
+            break;
+            
+        case 3:
+        {
+            NSString *s = [NSString stringWithFormat:@"歌手：%@",self.mModel.artists_name];
+            [cell updateicon:kImg4_singer andname:s];
+        }
+            break;
+        default:
+            break;
+    }
     
     return cell;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 4;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 1;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"didSelectRowAtIndexPath");
+}
+
 @end
 
 
