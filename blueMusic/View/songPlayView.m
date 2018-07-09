@@ -634,12 +634,9 @@ static songPlayView *MusicPlayeViewCenter = nil;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"_lyricsTableUITableViewCell" forIndexPath:indexPath];
     
     cell.textLabel.text = [[LyricHandle shareLyricHandle] lyricStringWithIndex:indexPath.row];
-    
     cell.textLabel.highlightedTextColor = [UIColor redColor];
-    
     cell.textLabel.font = [UIFont systemFontOfSize:12];
-    
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;//居中显示
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
 
 
     return  cell;

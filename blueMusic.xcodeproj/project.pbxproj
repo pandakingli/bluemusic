@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3C924A20F2391D0070C39A /* MusicCacheCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C924920F2391D0070C39A /* MusicCacheCenter.m */; };
 		0AC1DDA820EB182200C15573 /* TFHpple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC1DDA720EB182200C15573 /* TFHpple.framework */; };
 		0AC1DDAB20EB273900C15573 /* BlueMusicPlayListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */; };
 		0AC979EA20EE163400AC3885 /* PlaylistCV.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC979E920EE163400AC3885 /* PlaylistCV.m */; };
@@ -66,6 +67,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A3C924820F2391D0070C39A /* MusicCacheCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicCacheCenter.h; sourceTree = "<group>"; };
+		0A3C924920F2391D0070C39A /* MusicCacheCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicCacheCenter.m; sourceTree = "<group>"; };
 		0AC1DDA720EB182200C15573 /* TFHpple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TFHpple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC1DDA920EB273900C15573 /* BlueMusicPlayListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueMusicPlayListModel.h; sourceTree = "<group>"; };
 		0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueMusicPlayListModel.m; sourceTree = "<group>"; };
@@ -362,6 +365,8 @@
 				E67C901120EE5FF1001C0D31 /* MusicNetWorkCenter.m */,
 				E67C901320EE61AD001C0D31 /* MusicDataCenter.h */,
 				E67C901420EE61AD001C0D31 /* MusicDataCenter.m */,
+				0A3C924820F2391D0070C39A /* MusicCacheCenter.h */,
+				0A3C924920F2391D0070C39A /* MusicCacheCenter.m */,
 				E67C901620EE6673001C0D31 /* MusicConstants.h */,
 				0AC979EB20EF938700AC3885 /* request_netease.js */,
 				E6634C3D20E8BDA900655ADD /* aes.js */,
@@ -572,6 +577,7 @@
 				E6C4C8011FE2836C005DDE0F /* MusicListTableViewCell.m in Sources */,
 				E6C4C7FA1FE28364005DDE0F /* MusicModel.m in Sources */,
 				E6C4C80A1FE283B8005DDE0F /* LyricHandle.m in Sources */,
+				0A3C924A20F2391D0070C39A /* MusicCacheCenter.m in Sources */,
 				0AC1DDAB20EB273900C15573 /* BlueMusicPlayListModel.m in Sources */,
 				E62989031FE274B4006F9B71 /* AppDelegate.m in Sources */,
 				E6C4C7FB1FE28364005DDE0F /* LyricModel.m in Sources */,
