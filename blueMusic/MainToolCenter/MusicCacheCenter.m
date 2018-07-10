@@ -25,6 +25,7 @@ static MusicCacheCenter *musicCacheCenter=nil;
         {
             musicCacheCenter = [[MusicCacheCenter alloc]init];
             musicCacheCenter.cacheQueue = [[NSOperationQueue alloc]init];
+            musicCacheCenter.cacheQueue.maxConcurrentOperationCount = 1;
         }
     });
     
