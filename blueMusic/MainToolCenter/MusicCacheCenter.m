@@ -13,6 +13,17 @@ static MusicCacheCenter *musicCacheCenter=nil;
 
 @interface MusicCacheCenter()
 @property(nonatomic,strong)NSOperationQueue *cacheQueue;
+
+/**
+ 最大同时下载线程数目
+ */
+@property (nonatomic, assign) NSInteger maximumActiveDownloads;
+
+
+/**
+ 当前活动的下载线程数目
+ */
+@property (nonatomic, assign) NSInteger activeRequestCount;
 @end
 
 @implementation MusicCacheCenter
