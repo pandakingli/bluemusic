@@ -414,6 +414,7 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
         [vv godownloadmodel:self.mModel];
         if(self.fVC)
         {
+            [self downviewgodown];
             [self.fVC.navigationController pushViewController:vv animated:YES];
         }
     }
