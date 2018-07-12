@@ -12,6 +12,7 @@
 #import "MusicModel.h"
 #import <Masonry/masonry.h>
 #import "MusicConstants.h"
+#import "DownloadSongOneVC.h"
 
 #define kImg1_download [MusicImage imageNamed:@"icon-download"]
 #define kImg2_add      [MusicImage imageNamed:@"icon-add"]
@@ -382,6 +383,40 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"didSelectRowAtIndexPath");
+    switch (indexPath.row)
+    {
+        case 0:
+        //下载
+        [self gotodownload];
+        break;
+        
+        case 1:
+        //收藏
+        break;
+        
+        case 2:
+        //专辑
+        break;
+        
+        case 3:
+        //歌手
+        break;
+        default:
+        break;
+    }
+}
+
+-(void)gotodownload
+{
+    if(self.mModel)
+    {
+        DownloadSongOneVC *vv = [[DownloadSongOneVC alloc]init];
+        [vv godownloadmodel:self.mModel];
+        if(self.fVC)
+        {
+            [self.fVC.navigationController pushViewController:vv animated:YES];
+        }
+    }
 }
 
 @end

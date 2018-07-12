@@ -11,4 +11,5 @@
 @interface SongHalfActionView : UIView
 +(instancetype)shareMusicSHAView;
 -(void)goupwithmodel:(MusicModel*)mModel;
+@property(nonatomic,weak) UIViewController *fVC;
 @end

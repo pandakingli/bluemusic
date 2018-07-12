@@ -25,6 +25,7 @@
 #import "MusicConstants.h"
 #import "SongListCell.h"
 #import "MusicImage.h"
+#import "SongHalfActionView.h"
 
 typedef void(^finishURLBlock)(NSString *url);
 
@@ -56,6 +57,7 @@ typedef void(^finishURLBlock)(NSString *url);
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [SongHalfActionView shareMusicSHAView].fVC = self;
 }
 
 -(void)setupviews{

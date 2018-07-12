@@ -229,6 +229,7 @@
 -(void)clickmore
 {
     NSLog(@"clickmore");
+    
     [[SongHalfActionView shareMusicSHAView] goupwithmodel:self.mModel];
 }
 
