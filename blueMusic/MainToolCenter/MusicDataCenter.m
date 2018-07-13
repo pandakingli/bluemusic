@@ -88,4 +88,20 @@ static MusicDataCenter *musicDataCenter=nil;
 {
     return self.musicModelArray.mutableCopy;
 }
+
+-(NSString *)localMusicPathWithName:(NSString*)name
+{
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    
+    NSString *s = [NSString stringWithFormat:@"/music/%@.mp3",name];
+    NSString *newFilePath = [documentsPath stringByAppendingPathComponent:s];
+    return newFilePath;
+}
+
+-(NSString *)localMusicPathFolder
+{
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *createPath = [documentsPath stringByAppendingPathComponent:@"/music"];
+    return createPath;
+}
 @end

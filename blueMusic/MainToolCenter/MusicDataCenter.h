@@ -23,4 +23,7 @@
 -(NSMutableArray *)currentMusicPlayList;
 //记录上次播放的音乐
 @property (nonatomic, copy) NSString *lastmp3Url;
+
+-(NSString *)localMusicPathWithName:(NSString*)name;
+-(NSString *)localMusicPathFolder;
 @end

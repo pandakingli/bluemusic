@@ -9,6 +9,7 @@
 #import "localMusicVC.h"
 #import <Masonry/Masonry.h>
 #import "MusicPlayerHandle.h"
+#import "MusicDataCenter.h"
 
 @interface localMusicVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableview;
@@ -22,16 +23,14 @@
     [super viewDidLoad];
     self.title = @"已下载音乐";
     self.songnames = [NSMutableArray array];
-    // 文件将要移动到的指定目录
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *s = @"/music";
-    // 新文件路径
-    NSString *newFilePath = [documentsPath stringByAppendingPathComponent:s];
+    
+    NSString *newFilePath = [[MusicDataCenter shareInstance] localMusicPathFolder];
     
     
     //fileNameList中即为该imagesFolder文件夹下的所有文件的名称数组
     NSArray *fileNameList=[[NSFileManager defaultManager]
-                           contentsOfDirectoryAtPath:newFilePath error:nil];
+                           contentsOfDirectoryAtPath:newFilePath
+                           error:nil];
     
     self.songnames = fileNameList.mutableCopy;
     
