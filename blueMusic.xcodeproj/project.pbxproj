@@ -65,6 +65,7 @@
 		E6C4C8071FE28374005DDE0F /* MusicPlayerHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C4C8051FE28374005DDE0F /* MusicPlayerHandle.m */; };
 		E6C4C80A1FE283B8005DDE0F /* LyricHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C4C8081FE283B7005DDE0F /* LyricHandle.m */; };
 		E6FC60D420F7965100F9D8D1 /* DownloadSongOneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FC60D320F7965100F9D8D1 /* DownloadSongOneVC.m */; };
+		E6FC60D720F829E200F9D8D1 /* localMusicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FC60D620F829E200F9D8D1 /* localMusicVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +157,8 @@
 		E6C4C8091FE283B8005DDE0F /* LyricHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricHandle.h; sourceTree = "<group>"; };
 		E6FC60D220F7965100F9D8D1 /* DownloadSongOneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadSongOneVC.h; sourceTree = "<group>"; };
 		E6FC60D320F7965100F9D8D1 /* DownloadSongOneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadSongOneVC.m; sourceTree = "<group>"; };
+		E6FC60D520F829E200F9D8D1 /* localMusicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = localMusicVC.h; sourceTree = "<group>"; };
+		E6FC60D620F829E200F9D8D1 /* localMusicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = localMusicVC.m; sourceTree = "<group>"; };
 		F65E5E8FA33FBA12A2268A82 /* Pods-blueMusic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-blueMusic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-blueMusic/Pods-blueMusic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -265,6 +268,8 @@
 			children = (
 				E629892F1FE280D9006F9B71 /* LoginViewController.h */,
 				E629892E1FE280D9006F9B71 /* LoginViewController.m */,
+				E6FC60D520F829E200F9D8D1 /* localMusicVC.h */,
+				E6FC60D620F829E200F9D8D1 /* localMusicVC.m */,
 				E62989311FE280D9006F9B71 /* RootTabBarController.h */,
 				E629892D1FE280D9006F9B71 /* RootTabBarController.m */,
 			);
@@ -566,6 +571,7 @@
 				E62989111FE274B4006F9B71 /* main.m in Sources */,
 				E6C4C8011FE2836C005DDE0F /* MusicListTableViewCell.m in Sources */,
 				E6C4C7FA1FE28364005DDE0F /* MusicModel.m in Sources */,
+				E6FC60D720F829E200F9D8D1 /* localMusicVC.m in Sources */,
 				E6C4C80A1FE283B8005DDE0F /* LyricHandle.m in Sources */,
 				0A3C924A20F2391D0070C39A /* MusicCacheCenter.m in Sources */,
 				0AC1DDAB20EB273900C15573 /* BlueMusicPlayListModel.m in Sources */,
