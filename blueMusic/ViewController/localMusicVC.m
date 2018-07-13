@@ -8,6 +8,8 @@
 
 #import "localMusicVC.h"
 #import <Masonry/Masonry.h>
+#import "MusicPlayerHandle.h"
+
 @interface localMusicVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableview;
 
@@ -84,9 +86,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
+    NSString *s = [self.songnames objectAtIndex:indexPath.row];
+    [self goplaywithname:s];
     
 }
 
+-(void)goplaywithname:(NSString*)name
+{
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    
+    NSString *createPath = [documentsPath stringByAppendingPathComponent:@"/music"];
+    NSString *s = [NSString stringWithFormat:@"/music/%@",name];
+        NSString *newFilePath = [documentsPath stringByAppendingPathComponent:s];
+    [[MusicPlayerHandle shareMusicPlayerHandle] playWithFileURL:newFilePath];
+}
 
 @end

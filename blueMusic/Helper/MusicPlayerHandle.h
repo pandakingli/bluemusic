@@ -61,4 +61,5 @@ typedef void(^musicPlaySBlock) (float progress,NSString* currenttime,NSString* c
 //获取播放到的时间
 - (void)seekToTime:(float)time;
 
+-(void)playWithFileURL:(NSString*)fileurl;
 @end

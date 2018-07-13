@@ -144,4 +144,16 @@ static MusicPlayerHandle *myMusicPlayer=nil;
         [self.delegate currentMusicDidFinish];
     }
 }
+
+-(void)playWithFileURL:(NSString*)fileurl
+{
+    NSURL *movieURL = [NSURL fileURLWithPath:fileurl];
+    
+    AVPlayerItem *songItem = [AVPlayerItem playerItemWithURL:movieURL];
+    
+    [self.player replaceCurrentItemWithPlayerItem:songItem];
+    
+    [self play];
+    
+}
 @end
