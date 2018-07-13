@@ -286,7 +286,7 @@ typedef void(^finishURLBlock)(NSString *url);
         MusicModel *mm = [[MusicDataCenter shareInstance] musicWithIndex:indexPath.row];
         [cell configModel:mm andindex:indexPath.row+1];
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
  
 }
