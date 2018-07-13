@@ -7,11 +7,10 @@
 
 #import "LoginViewController.h"
 #import <Masonry/Masonry.h>
+#import "localMusicVC.h"
 
 @interface LoginViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView *tableview;
-
-@property(nonatomic,strong)NSMutableArray *songnames;
 
 @end
 
@@ -19,20 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.title = @"已下载音乐";
-    self.songnames = [NSMutableArray array];
-    // 文件将要移动到的指定目录
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *s = @"/music";
-    // 新文件路径
-    NSString *newFilePath = [documentsPath stringByAppendingPathComponent:s];
-    
-    
-    //fileNameList中即为该imagesFolder文件夹下的所有文件的名称数组
-    NSArray *fileNameList=[[NSFileManager defaultManager]
-                           contentsOfDirectoryAtPath:newFilePath error:nil];
-    
-    self.songnames = fileNameList.mutableCopy;
+     self.title = @"我的";
     
     [self.view addSubview:self.tableview];
     
@@ -60,32 +46,65 @@
 
 #pragma mark --tableview相关
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 50;
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     UITableViewCell * cell =[tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
    
-    if(indexPath.row<self.songnames.count)
+    switch (indexPath.row)
     {
-        NSString *s = [self.songnames objectAtIndex:indexPath.row];
-        cell.textLabel.text=s;
+        case 0:
+        cell.textLabel.text = @"未登录";
+        break;
+      
+        case 1:
+        cell.textLabel.text = @"已下载音乐";
+        break;
+        
+        case 2:
+        cell.textLabel.text = @"其他";
+        break;
+        default:
+        break;
     }
-    
+   
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.songnames.count;
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-  
+   
+    switch (indexPath.row)
+    {
+        case 0:
+        
+        break;
+        
+        case 1:
+        {
+            localMusicVC *oneVC = [[localMusicVC alloc]init];
+            [self.navigationController pushViewController:oneVC animated:YES];
+        }
+        break;
+        
+        case 2:
+        
+        break;
+        default:
+        break;
+    }
 }
 @end
