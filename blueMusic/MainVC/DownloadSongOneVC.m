@@ -108,9 +108,9 @@ didFinishDownloadingToURL:(NSURL *)location
 {
     // 文件将要移动到的指定目录
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    
+    NSString *s = [NSString stringWithFormat:@"\\music\\%@.mp3",self.musicModel.name];
     // 新文件路径
-    NSString *newFilePath = [documentsPath stringByAppendingPathComponent:@"111.mp3"];
+    NSString *newFilePath = [documentsPath stringByAppendingPathComponent:s];
     
     NSLog(@"File downloaded to: %@",newFilePath);
     
