@@ -108,10 +108,21 @@ didFinishDownloadingToURL:(NSURL *)location
 {
     // 文件将要移动到的指定目录
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *s = [NSString stringWithFormat:@"\\music\\%@.mp3",self.musicModel.name];
+   
+     NSString *createPath = [documentsPath stringByAppendingPathComponent:@"/music"];
+    NSString *s = [NSString stringWithFormat:@"/music/%@.mp3",self.musicModel.name];
     // 新文件路径
     NSString *newFilePath = [documentsPath stringByAppendingPathComponent:s];
     
+    
+    //判断createPath路径文件夹是否已存在，此处createPath为需要新建的文件夹的绝对路径
+    if (![[NSFileManager defaultManager] fileExistsAtPath:createPath]) {
+        //创建文件夹
+        [[NSFileManager defaultManager] createDirectoryAtPath:createPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+        
+
+        
     NSLog(@"File downloaded to: %@",newFilePath);
     
     // 移动文件到新路径
