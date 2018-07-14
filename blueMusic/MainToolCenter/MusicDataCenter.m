@@ -93,9 +93,10 @@ static MusicDataCenter *musicDataCenter=nil;
 {
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
-    NSString *s = [NSString stringWithFormat:@"/music/%@.mp3",name];
-    NSString *newFilePath = [documentsPath stringByAppendingPathComponent:s];
-    return newFilePath;
+    NSString *newFilePath = [documentsPath stringByAppendingPathComponent:@"/music"];
+    
+    NSString *s = [NSString stringWithFormat:@"%@/%@",newFilePath,name];
+    return s;
 }
 
 -(NSString *)localMusicPathFolder

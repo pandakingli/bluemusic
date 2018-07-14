@@ -92,11 +92,9 @@
 
 -(void)goplaywithname:(NSString*)name
 {
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
-    NSString *createPath = [documentsPath stringByAppendingPathComponent:@"/music"];
-    NSString *s = [NSString stringWithFormat:@"/music/%@",name];
-        NSString *newFilePath = [documentsPath stringByAppendingPathComponent:s];
+    NSString *newFilePath = [[MusicDataCenter shareInstance] localMusicPathWithName:name];
+    
     [[MusicPlayerHandle shareMusicPlayerHandle] playWithFileURL:newFilePath];
 }
 
