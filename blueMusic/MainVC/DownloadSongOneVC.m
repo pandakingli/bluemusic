@@ -108,21 +108,8 @@
 didFinishDownloadingToURL:(NSURL *)location
 {
     NSString *name = [NSString stringWithFormat:@"%@.mp3",self.musicModel.name];
-    NSString *createPath = [[MusicDataCenter shareInstance] localMusicPathWithName:name];
-   
-    
-    NSString *folder = [[MusicDataCenter shareInstance] localMusicPathFolder];
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:createPath])
-    {
-        
-        [[NSFileManager defaultManager] createDirectoryAtPath:folder
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:nil];
-    }
-    
-    [[NSFileManager defaultManager] moveItemAtPath:location.path toPath:createPath error:nil];
+    NSString *filePath = [[MusicDataCenter shareInstance] localMusicPathWithName:name];
+    [[NSFileManager defaultManager] moveItemAtPath:location.path toPath:filePath error:nil];
     
 }
 

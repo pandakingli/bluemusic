@@ -10,7 +10,8 @@
 #import "MusicModel.h"
 #import "BlueMusicPlayListModel.h"
 
-
+#define DOCUMENTS_FOLDER_MUSIC @"music" //你定义的audio对应的文件目录
+#define DOCUMENTS_FOLDER_VEDIO @"" //你定义的vedio对应的文件目录
 
 static MusicDataCenter *musicDataCenter=nil;
 
@@ -30,6 +31,7 @@ static MusicDataCenter *musicDataCenter=nil;
             musicDataCenter = [[MusicDataCenter alloc]init];
             musicDataCenter.musicModelArray =[NSMutableArray array];
             musicDataCenter.musicPlayListArray =[NSMutableArray array];
+            [musicDataCenter checkDirectories];
         }
     });
     
@@ -104,5 +106,39 @@ static MusicDataCenter *musicDataCenter=nil;
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     NSString *createPath = [documentsPath stringByAppendingPathComponent:@"/music"];
     return createPath;
+}
+
+
+
+
+- (void)checkDirectories
+{
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *folder = [self localMusicPathFolder];
+    BOOL isDir = FALSE;
+    BOOL isDirExist = [fileManager fileExistsAtPath:folder
+                                        isDirectory:&isDir];
+    
+    
+    if(!(isDirExist && isDir))
+    
+    {
+        
+        BOOL bCreateDir = [fileManager createDirectoryAtPath:folder
+                                 withIntermediateDirectories:YES
+                                                  attributes:nil
+                                                       error:nil];
+        
+        if(!bCreateDir)
+        {
+            
+            NSLog(@"Create Muisc Directory Failed.");
+            
+        }
+    }
+    
+    
+    
 }
 @end
