@@ -555,9 +555,10 @@ static songPlayView *MusicPlayeViewCenter = nil;
         NSURL *songicon = [NSURL URLWithString:model.coverurl];
         UIImage *pp = [MusicImage imageNamed:@"icon-cd"];
         
-        [self.coverIMV sd_setImageWithURL:songicon
-                         placeholderImage:pp
-                                  options:SDWebImageProgressiveDownload];
+        [self.coverIMV sd_setImageWithURL:songicon placeholderImage:pp completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            
+        }];
+        
         
         NSURL *songback = [NSURL URLWithString:model.coverurl];
         
