@@ -300,7 +300,7 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
     if (mModel)
     {
         self.mModel = mModel;
-        NSString *s = [NSString stringWithFormat:@"歌曲：%@",self.mModel.name];
+        NSString *s = [NSString stringWithFormat:@"歌曲：%@",self.mModel.songname];
         
         self.header.text = s;
         [self downviewgoup];
@@ -360,7 +360,7 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
             
         case 3:
         {
-            NSString *s = [NSString stringWithFormat:@"歌手：%@",self.mModel.artists_name];
+            NSString *s = [NSString stringWithFormat:@"歌手：%@",self.mModel.singer];
             [cell updateicon:kImg4_singer andname:s];
         }
             break;

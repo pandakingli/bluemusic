@@ -76,9 +76,7 @@
     [[MusicNetWorkCenter shareInstance] netease_RequestMusicSongurlDataWithParameters:dic andFinishBlock:^(NSString *url) {
         if (weakSelf&&url&&![url isKindOfClass:[NSNull class]])
         {
-            weakSelf.musicModel.mp3Url = url;
-            weakSelf.musicModel.MP3file_url = url;
-            weakSelf.musicModel.playurl_mp3 = url;
+            weakSelf.musicModel.playurl = url;
             [weakSelf godownloadwithurl:url];
         }
       
@@ -107,7 +105,7 @@
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
 didFinishDownloadingToURL:(NSURL *)location
 {
-    NSString *name = [NSString stringWithFormat:@"%@.mp3",self.musicModel.name];
+    NSString *name = [NSString stringWithFormat:@"%@.mp3",self.musicModel.songname];
     NSString *filePath = [[MusicDataCenter shareInstance] localMusicPathWithName:name];
     [[NSFileManager defaultManager] moveItemAtPath:location.path toPath:filePath error:nil];
     

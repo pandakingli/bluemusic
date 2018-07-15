@@ -239,8 +239,8 @@
     {
         self.mModel = mModel;
         self.songindex.text = @(index).stringValue;
-        self.songname.text =self.mModel.name;
-        self.singer.text = self.mModel.artists_name;
+        self.songname.text =self.mModel.songname;
+        self.singer.text = self.mModel.singer;
         [self layoutIfNeeded];
     }
     

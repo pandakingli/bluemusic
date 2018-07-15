@@ -83,15 +83,15 @@
 
 //提供给外部绑定数据的方法
 - (void)bindModel:(MusicModel *)model{
-    self.MusicNameLabel.text = model.name;
+    self.MusicNameLabel.text = model.songname;
     self.PlayerNameLabel.text = model.singer;
     //显示图片
     //[self.MyMusicIMV sd_setImageWithURL:[NSURL URLWithString:model.picUrl]];
     
     //显示图片--同时获取到图像
     
-    [self.MyMusicIMV sd_setImageWithURL:[NSURL URLWithString:model.picfile_url] placeholderImage:[UIImage imageNamed:@"placeholderImage.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        model.image=image;
+    [self.MyMusicIMV sd_setImageWithURL:[NSURL URLWithString:model.coverurl] placeholderImage:[UIImage imageNamed:@"placeholderImage.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+       // model.image=image;
     }];
      
      

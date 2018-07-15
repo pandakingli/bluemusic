@@ -196,7 +196,7 @@ static MusicNetWorkCenter *musicNWCenter=nil;
                      for (NSDictionary *ddd in tracks)
                      {
                          MusicModel *m = [[MusicModel alloc]init];
-                         m.name = [ddd objectForKey:@"name"];
+                         m.songname = [ddd objectForKey:@"name"];
                          NSNumber *num = [ddd objectForKey:@"dt"];
                          m.duration = num.stringValue;
                          m.songid = [ddd objectForKey:@"id"];
@@ -205,7 +205,7 @@ static MusicNetWorkCenter *musicNWCenter=nil;
                          NSDictionary *ar_dic = ar_arr.firstObject;
                          if ([ar_dic objectForKey:@"name"])
                          {
-                             m.artists_name = [ar_dic objectForKey:@"name"];
+                             m.singer = [ar_dic objectForKey:@"name"];
                          }
                          
                          [musicsArray addObject:m];

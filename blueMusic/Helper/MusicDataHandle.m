@@ -309,7 +309,7 @@ static MusicDataHandle *musicHandle=nil;
 -(BOOL)haveThisMp3:(MusicModel*)m
 {
     AVQuery *query = [AVQuery queryWithClassName:@"musicAtLC"];
-    [query whereKey:@"name" equalTo:m.name];
+    [query whereKey:@"name" equalTo:m.songname];
     NSArray *postArray = [query findObjects];
     if (postArray.count>0)
     {
@@ -320,6 +320,7 @@ static MusicDataHandle *musicHandle=nil;
 
 -(void)updatetoLC:(MusicModel*)m
 {
+    /*
     // 第一个参数是 className，第二个参数是 objectId
     AVObject *todo =[AVObject objectWithClassName:@"musicAtLC" objectId:m.objectid];
     // 修改属性
@@ -331,6 +332,7 @@ static MusicDataHandle *musicHandle=nil;
     
     // 保存到云端
     [todo saveInBackground];
+     */
 }
 
 -(BOOL)savetoLC:(MusicModel*)m
@@ -469,11 +471,13 @@ static MusicDataHandle *musicHandle=nil;
             NSString *url = [data objectForKey:@"url"];
             NSNumber *title = [data objectForKey:@"id"];
             MusicModel *m = [[MusicModel alloc]init];
+            /*
             m.name = title.stringValue;
             m.mp3Url = url;
             m.playurl_mp3 = url;
             m.MP3file_url = url;
             m.duration =@303000;
+             */
               [weakSelf.musicArray addObject:m];
         }
         

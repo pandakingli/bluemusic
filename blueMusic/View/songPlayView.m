@@ -546,20 +546,20 @@ static songPlayView *MusicPlayeViewCenter = nil;
     if (model)
     {
         self.musicModel = model;
-        NSString *sname = [NSString stringWithFormat:@"歌曲：%@",self.musicModel.name];
+        NSString *sname = [NSString stringWithFormat:@"歌曲：%@",self.musicModel.songname];
         self.SongName.text   = sname;
         
-        NSString *singername = [NSString stringWithFormat:@"演唱者：%@",self.musicModel.artists_name];
+        NSString *singername = [NSString stringWithFormat:@"演唱者：%@",self.musicModel.singer];
         self.SingerName.text = singername;
         
-        NSURL *songicon = [NSURL URLWithString:model.picUrl];
+        NSURL *songicon = [NSURL URLWithString:model.coverurl];
         UIImage *pp = [MusicImage imageNamed:@"icon-cd"];
         
         [self.coverIMV sd_setImageWithURL:songicon
                          placeholderImage:pp
                                   options:SDWebImageProgressiveDownload];
         
-        NSURL *songback = [NSURL URLWithString:model.picurl_blur];
+        NSURL *songback = [NSURL URLWithString:model.coverurl];
         
         [self.blurIMV sd_setImageWithURL:songback];
         
@@ -576,9 +576,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
         [[MusicNetWorkCenter shareInstance] netease_RequestMusicSongurlDataWithParameters:dic andFinishBlock:^(NSString *url) {
             if (weakSelf&&url&&![url isKindOfClass:[NSNull class]])
             {
-                weakSelf.musicModel.mp3Url = url;
-                weakSelf.musicModel.MP3file_url = url;
-                weakSelf.musicModel.playurl_mp3 = url;
+                weakSelf.musicModel.playurl = url;
                 weakSelf.timeTotal.text = weakSelf.musicModel.durationstring;
                 [weakSelf hideProgress];
                 [weakSelf changeMusic:weakSelf.musicModel];
@@ -700,10 +698,10 @@ static songPlayView *MusicPlayeViewCenter = nil;
     [[LyricHandle shareLyricHandle]changeLyricString:model.lyric];
     NSString *last_s = self.mc.lastmp3Url;
     
-    if (![last_s isEqualToString:model.MP3file_url]||self.corePlayer.playStatus==2)
+    if (![last_s isEqualToString:model.playurl]||self.corePlayer.playStatus==2)
     {
-        self.mc.lastmp3Url=model.MP3file_url;
-        [self.corePlayer playWithURLString:model.MP3file_url];
+        self.mc.lastmp3Url=model.playurl;
+        [self.corePlayer playWithURLString:model.playurl];
     }
     [self.lyricsTable reloadData];
     

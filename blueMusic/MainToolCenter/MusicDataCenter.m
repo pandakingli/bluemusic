@@ -108,9 +108,7 @@ static MusicDataCenter *musicDataCenter=nil;
     return createPath;
 }
 
-
-
-
+//检查music文件夹是否存在，不存在就创建一个
 - (void)checkDirectories
 {
     
@@ -119,7 +117,6 @@ static MusicDataCenter *musicDataCenter=nil;
     BOOL isDir = FALSE;
     BOOL isDirExist = [fileManager fileExistsAtPath:folder
                                         isDirectory:&isDir];
-    
     
     if(!(isDirExist && isDir))
     
@@ -137,8 +134,6 @@ static MusicDataCenter *musicDataCenter=nil;
             
         }
     }
-    
-    
-    
+   
 }
 @end
