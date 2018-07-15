@@ -208,6 +208,12 @@ static MusicNetWorkCenter *musicNWCenter=nil;
                              m.singer = [ar_dic objectForKey:@"name"];
                          }
                          
+                          NSDictionary *al_dic = [ddd objectForKey:@"al"];
+                         if ([al_dic objectForKey:@"picUrl"])
+                         {
+                             m.coverurl = [al_dic objectForKey:@"picUrl"];
+                         }
+                         
                          [musicsArray addObject:m];
                      }
                      if (musicsArray.count>0)
