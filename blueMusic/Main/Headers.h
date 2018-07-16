@@ -1,6 +1,5 @@
 #import "LoginViewController.h"
 #import "RootTabBarController.h"
-#import "MusicDataHandle.h"
 #import "MusicPlayerHandle.h"
 #import "LyricHandle.h"
 #import "MusicListTableViewCell.h"
