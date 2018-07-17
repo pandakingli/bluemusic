@@ -37,7 +37,7 @@ static MusicPlayerHandle *myMusicPlayer=nil;
     NSURL *url = [NSURL URLWithString:urlString];
     if (self.player.currentItem)
     {
-        AVPlayerItem *item = self.player.currentItem;
+       // AVPlayerItem *item = self.player.currentItem;
        // [item removeObserver:self forKeyPath:@" loadedTimeRanges"];
        
     }
