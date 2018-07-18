@@ -12,7 +12,7 @@
 -(void)goBlurByCoreImageWithImage:(UIImage*)img
 {
  
-    [self goBlurByCoreImageWithImage:img andBlurValue:30];
+    [self goBlurByCoreImageWithImage:img andBlurValue:40];
     
 }
 

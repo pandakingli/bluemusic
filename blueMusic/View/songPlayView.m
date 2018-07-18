@@ -155,12 +155,12 @@ static songPlayView *MusicPlayeViewCenter = nil;
 
 -(void)addmyconstrains
 {
-    
+ 
     [self.BCblurIMV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(0);
-        make.top.mas_equalTo(0);
-        make.width.mas_equalTo(self);
-        make.bottom.mas_equalTo(0);
+        make.left.mas_equalTo(-20);
+        make.top.mas_equalTo(-20);
+        make.right.mas_equalTo(20);
+        make.bottom.mas_equalTo(20);
     }];
     
     [self.SongName mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -300,6 +300,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
     if (!_BCblurIMV)
     {
         _BCblurIMV = [[UIImageView alloc]init];
+        _BCblurIMV.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _BCblurIMV;
 }
@@ -406,6 +407,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
     {
         _SingerName = [[UILabel alloc]init];
         _SingerName.textAlignment = NSTextAlignmentCenter;
+        _SingerName.textColor = [UIColor whiteColor];
         _SingerName.font = [UIFont systemFontOfSize:10];
     }
     
@@ -419,6 +421,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
         _SongName = [[UILabel alloc]init];
         _SongName.textAlignment = NSTextAlignmentCenter;
         _SongName.font = [UIFont systemFontOfSize:15];
+        _SongName.textColor = [UIColor whiteColor];
     }
     
     return _SongName;
