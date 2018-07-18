@@ -7,7 +7,7 @@
 //
 #import "Headers.h"
 #import <Foundation/Foundation.h>
-
+@class MusicModel;
 typedef void(^finishBlock) ();
 
 //实时的音乐播放位置
