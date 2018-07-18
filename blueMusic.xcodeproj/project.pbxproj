@@ -64,6 +64,7 @@
 		E6C4C8061FE28374005DDE0F /* MusicDataHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C4C8041FE28373005DDE0F /* MusicDataHandle.m */; };
 		E6C4C8071FE28374005DDE0F /* MusicPlayerHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C4C8051FE28374005DDE0F /* MusicPlayerHandle.m */; };
 		E6C4C80A1FE283B8005DDE0F /* LyricHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C4C8081FE283B7005DDE0F /* LyricHandle.m */; };
+		E6C6BA2A20FF758000BE1D5C /* UIImageView+bbx_blurImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C6BA2920FF758000BE1D5C /* UIImageView+bbx_blurImage.m */; };
 		E6FC60D420F7965100F9D8D1 /* DownloadSongOneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FC60D320F7965100F9D8D1 /* DownloadSongOneVC.m */; };
 		E6FC60D720F829E200F9D8D1 /* localMusicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E6FC60D620F829E200F9D8D1 /* localMusicVC.m */; };
 /* End PBXBuildFile section */
@@ -155,6 +156,8 @@
 		E6C4C8051FE28374005DDE0F /* MusicPlayerHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerHandle.m; sourceTree = "<group>"; };
 		E6C4C8081FE283B7005DDE0F /* LyricHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricHandle.m; sourceTree = "<group>"; };
 		E6C4C8091FE283B8005DDE0F /* LyricHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricHandle.h; sourceTree = "<group>"; };
+		E6C6BA2820FF758000BE1D5C /* UIImageView+bbx_blurImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+bbx_blurImage.h"; sourceTree = "<group>"; };
+		E6C6BA2920FF758000BE1D5C /* UIImageView+bbx_blurImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+bbx_blurImage.m"; sourceTree = "<group>"; };
 		E6FC60D220F7965100F9D8D1 /* DownloadSongOneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadSongOneVC.h; sourceTree = "<group>"; };
 		E6FC60D320F7965100F9D8D1 /* DownloadSongOneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadSongOneVC.m; sourceTree = "<group>"; };
 		E6FC60D520F829E200F9D8D1 /* localMusicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = localMusicVC.h; sourceTree = "<group>"; };
@@ -381,6 +384,8 @@
 				0AC979EB20EF938700AC3885 /* request_netease.js */,
 				E6634C3D20E8BDA900655ADD /* aes.js */,
 				E6634C4320E8BDA900655ADD /* bigint.js */,
+				E6C6BA2820FF758000BE1D5C /* UIImageView+bbx_blurImage.h */,
+				E6C6BA2920FF758000BE1D5C /* UIImageView+bbx_blurImage.m */,
 			);
 			path = MainToolCenter;
 			sourceTree = "<group>";
@@ -562,6 +567,7 @@
 				0AE3F4BD20EDB838002B3357 /* HomeVC.m in Sources */,
 				0AC979EA20EE163400AC3885 /* PlaylistCV.m in Sources */,
 				0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */,
+				E6C6BA2A20FF758000BE1D5C /* UIImageView+bbx_blurImage.m in Sources */,
 				E62A2E6020E317F100CCDABD /* BlueMusicModel.m in Sources */,
 				E629893C1FE280DA006F9B71 /* LoginViewController.m in Sources */,
 				0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */,
@@ -711,13 +717,15 @@
 			baseConfigurationReference = F65E5E8FA33FBA12A2268A82 /* Pods-blueMusic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S9HRLGS74P;
 				INFOPLIST_FILE = blueMusic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = biubiublue.xxmusic;
+				PRODUCT_BUNDLE_IDENTIFIER = biubiublue.xxxmusicx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -727,13 +735,15 @@
 			baseConfigurationReference = 3A85CAC3391D158371F209A3 /* Pods-blueMusic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S9HRLGS74P;
 				INFOPLIST_FILE = blueMusic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = biubiublue.xxmusic;
+				PRODUCT_BUNDLE_IDENTIFIER = biubiublue.xxxmusicx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

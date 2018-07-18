@@ -28,6 +28,7 @@
 #import "MusicNetWorkCenter.h"
 #import "LyricModel.h"
 #import "LyricHandle.h"
+#import "UIImageView+bbx_blurImage.h"
 
 //屏幕宽度
 #define kSCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
@@ -43,6 +44,8 @@
 
 @property (strong, nonatomic)  UILabel *SongName;
 @property (strong, nonatomic)  UILabel *SingerName;
+
+@property (strong, nonatomic)  UIImageView *BCblurIMV;
 
 @property (strong, nonatomic)  UIImageView *blurIMV;
 @property (strong, nonatomic)  UIImageView *coverIMV;
@@ -125,6 +128,8 @@ static songPlayView *MusicPlayeViewCenter = nil;
 -(void)addmysubviews
 {
     self.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.BCblurIMV];
+    
     [self addSubview:self.mini_bg];
     [self addSubview:self.miniIMV];
     [self addSubview:self.minicontrol];
@@ -150,6 +155,13 @@ static songPlayView *MusicPlayeViewCenter = nil;
 
 -(void)addmyconstrains
 {
+    
+    [self.BCblurIMV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.top.mas_equalTo(0);
+        make.width.mas_equalTo(self);
+        make.bottom.mas_equalTo(0);
+    }];
     
     [self.SongName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(20);
@@ -282,6 +294,16 @@ static songPlayView *MusicPlayeViewCenter = nil;
     }];
     
 }
+
+- (UIImageView *)BCblurIMV
+{
+    if (!_BCblurIMV)
+    {
+        _BCblurIMV = [[UIImageView alloc]init];
+    }
+    return _BCblurIMV;
+}
+
 - (UIView *)mini_bg
 {
     if (!_mini_bg)
@@ -325,6 +347,8 @@ static songPlayView *MusicPlayeViewCenter = nil;
         _coverIMV.layer.masksToBounds=YES;
         _coverIMV.layer.cornerRadius =120;
         _coverIMV.layer.anchorPoint=CGPointMake(0.5, 0.5);
+        _coverIMV.layer.borderWidth = 15;
+        _coverIMV.layer.borderColor = [UIColor bbx_byString:@"#7f7f7f"].CGColor;
     }
     return _coverIMV;
 }
@@ -539,6 +563,8 @@ static songPlayView *MusicPlayeViewCenter = nil;
         MusicModel *m = [mc musicWithIndex:index];
         [self updatesongmodel:m];
     }
+    
+    
 }
 
 -(void)updatesongmodel:(MusicModel*)model
@@ -554,17 +580,19 @@ static songPlayView *MusicPlayeViewCenter = nil;
         
         NSURL *songicon = [NSURL URLWithString:model.coverurl];
         UIImage *pp = [MusicImage imageNamed:@"icon-cd"];
-        
-        [self.coverIMV sd_setImageWithURL:songicon placeholderImage:pp completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            
+        self.blurIMV.hidden = YES;
+        self.bgSV.backgroundColor = [UIColor clearColor];
+        typeof(self) weakSelf = self;
+        [self.coverIMV sd_setImageWithURL:songicon
+                         placeholderImage:pp
+                                completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                                    if (image&&weakSelf)
+                                    {
+                                       // [weakSelf.blurIMV goBlurByCoreImageWithImage:image];
+                                        [weakSelf.BCblurIMV goBlurByCoreImageWithImage:image];
+                                    }
         }];
         
-        
-        NSURL *songback = [NSURL URLWithString:model.coverurl];
-        
-        [self.blurIMV sd_setImageWithURL:songback];
-        
-         typeof(self) weakSelf = self;
         
         [self showProgress];
         
@@ -685,13 +713,8 @@ static songPlayView *MusicPlayeViewCenter = nil;
                 [weakSelf.lyricsTable selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
                 
             }
-            if (weakSelf.progressBar.value==weakSelf.progressBar.maximumValue)
-            {
-               // [weakSelf nextSongClick:nil];
-            }
             
             weakSelf.timeNow.text = currenttime;
-           // weakSelf.timeCache.text = cachetime;
         }
 
     };
@@ -796,6 +819,11 @@ static songPlayView *MusicPlayeViewCenter = nil;
      [self nextSongClick:nil];
 }
 
+- (void)musicPlayTime:(float)time {
+    
+}
+
+
 -(MusicDataCenter*)mc
 {
     if (!_mc)
@@ -804,4 +832,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
     }
     return _mc;
 }
+
+
+
 @end

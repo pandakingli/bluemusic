@@ -8,7 +8,7 @@
 #import "Headers.h"
 #import <Foundation/Foundation.h>
 @class MusicModel;
-typedef void(^finishBlock) ();
+typedef void(^finishBlock)();
 
 //实时的音乐播放位置
 typedef void(^musicPlayTimeBlock) (float);
@@ -18,7 +18,7 @@ typedef void(^musicPlayTBlock) (float progress,float currenttime,float cachetime
 typedef void(^musicPlaySBlock) (float progress,NSString* currenttime,NSString* cachetime);
 
 @protocol MusicPlayerHandleDelegate <NSObject>
-
+@optional
 // 当前音乐播放的时间
 - (void)musicPlayTime:(float)time;
 
