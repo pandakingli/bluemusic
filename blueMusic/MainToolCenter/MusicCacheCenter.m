@@ -9,6 +9,8 @@
 #import "MusicCacheCenter.h"
 #import "MusicModel.h"
 #import <AFNetworking/AFNetworking.h>
+#import <ReactiveObjC/ReactiveObjC.h>
+
 static MusicCacheCenter *musicCacheCenter=nil;
 
 @interface MusicCacheCenter()
