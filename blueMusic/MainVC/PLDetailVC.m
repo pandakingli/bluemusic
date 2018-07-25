@@ -57,6 +57,7 @@ typedef void(^finishURLBlock)(NSString *url);
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.hidesBottomBarWhenPushed = YES;
     [SongHalfActionView shareMusicSHAView].fVC = self;
 }
 
