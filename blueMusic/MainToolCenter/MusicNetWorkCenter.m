@@ -4,7 +4,7 @@
 //
 //  Created by lining on 2018/7/5.
 //  Copyright © 2018年 biubiublue. All rights reserved.
-//
+// #1
 
 #import "MusicNetWorkCenter.h"
 #import <AFNetworking/AFNetworking.h>
@@ -355,6 +355,10 @@ static MusicNetWorkCenter *musicNWCenter=nil;
                  NSString *url = [data objectForKey:@"url"];
                  
                  finishblock(url);
+             }
+             else
+             {
+                  finishblock(nil);
              }
              
              

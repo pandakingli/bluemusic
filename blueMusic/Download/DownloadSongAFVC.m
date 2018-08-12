@@ -1,24 +1,33 @@
 //
-//  DownloadSongOneVC.m
+//  DownloadSongAFVC.m
 //  blueMusic
 //
-//  Created by lining on 2018/7/12.
+//  Created by lining on 2018/7/26.
 //  Copyright © 2018年 biubiublue. All rights reserved.
 //
 
-#import "DownloadSongOneVC.h"
+#import "DownloadSongAFVC.h"
+
 #import "MusicModel.h"
 #import "MusicNetWorkCenter.h"
 #import <Masonry/Masonry.h>
 #import "MusicDataCenter.h"
+#import <AFNetworking/AFNetworking.h>
 
-@interface DownloadSongOneVC ()<NSURLSessionDownloadDelegate>
+@interface DownloadSongAFVC ()<NSURLSessionDownloadDelegate>
 @property(nonatomic,strong) MusicModel*musicModel;
 @property (nonatomic,strong) UIProgressView *progress;
 @property (nonatomic,strong) UILabel *plabel;
+
+/** 下载任务 */
+@property (nonatomic, strong) NSURLSessionDataTask *downloadTask;
+/* AFURLSessionManager */
+@property (nonatomic, strong) AFURLSessionManager *manager;
+
 @end
 
-@implementation DownloadSongOneVC
+@implementation DownloadSongAFVC
+
 
 - (void)viewDidLoad
 {
@@ -60,10 +69,55 @@
     return _plabel;
 }
 
+/**
+ * manager的懒加载
+ */
+- (AFURLSessionManager *)manager {
+    if (!_manager) {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        // 1. 创建会话管理者
+        _manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    }
+    return _manager;
+}
+
+-(void)godownloadWithAFUrl:(NSString*)url
+{
+    
+    NSURL *URL = [NSURL URLWithString:url];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDownloadTask *downloadTask = [self.manager downloadTaskWithRequest:request progress:^(NSProgress *downloadProgress) {
+      
+        NSOperationQueue* mainQueue = [NSOperationQueue mainQueue];
+        [mainQueue addOperationWithBlock:^{
+            // 下载进度
+            self.progress.progress = 1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount;
+            self.plabel.text = [NSString stringWithFormat:@"当前下载进度:%.2f%%",100.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount];
+        }];
+        
+        
+    } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        
+        NSString *name = [NSString stringWithFormat:@"%@.mp3",self.musicModel.songname];
+        NSString *realPath = [[MusicDataCenter shareInstance] localMusicPathWithName:name];
+        [[NSFileManager defaultManager] moveItemAtPath:targetPath.path toPath:realPath error:nil];
+        
+        return [NSURL URLWithString:realPath];
+        
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        NSLog(@"File downloaded to: %@", filePath);
+    }];
+    
+
+    [downloadTask resume];
+    
+}
+
 -(void)godownloadmodel:(MusicModel*)mmodel
 {
     
-     typeof(self) weakSelf = self;
+    typeof(self) weakSelf = self;
     
     self.musicModel = mmodel;
     
@@ -77,9 +131,10 @@
         if (weakSelf&&url&&![url isKindOfClass:[NSNull class]])
         {
             weakSelf.musicModel.playurl = url;
-            [weakSelf godownloadwithurl:url];
+            //[weakSelf godownloadwithurl:url];
+            [weakSelf godownloadWithAFUrl:url];
         }
-      
+        
     }];
     
 }
@@ -88,16 +143,16 @@
 {
     if(url)
     {
-        // 创建下载路径
         NSURL *durl = [NSURL URLWithString:url];
         
-        // 创建NSURLSession对象，并设计代理方法。其中NSURLSessionConfiguration为默认配置
-        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+        NSURLSessionConfiguration *dConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+        NSOperationQueue* dQueue = [NSOperationQueue mainQueue];
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:dConfig
+                                                              delegate:self
+                                                         delegateQueue:dQueue];
         
-        // 创建任务
         NSURLSessionDownloadTask *downloadTask = [session downloadTaskWithURL:durl];
         
-        // 开始任务
         [downloadTask resume];
     }
 }
@@ -111,7 +166,8 @@ didFinishDownloadingToURL:(NSURL *)location
     
 }
 
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask
       didWriteData:(int64_t)bytesWritten
  totalBytesWritten:(int64_t)totalBytesWritten
 totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
@@ -131,6 +187,5 @@ expectedTotalBytes:(int64_t)expectedTotalBytes
 {
     
 }
-
 
 @end

@@ -10,6 +10,7 @@
 		0A3C924A20F2391D0070C39A /* MusicCacheCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C924920F2391D0070C39A /* MusicCacheCenter.m */; };
 		0AC1DDA820EB182200C15573 /* TFHpple.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC1DDA720EB182200C15573 /* TFHpple.framework */; };
 		0AC1DDAB20EB273900C15573 /* BlueMusicPlayListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */; };
+		0AC5D88B2109A4C8005E5433 /* DownloadSongAFVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC5D88A2109A4C8005E5433 /* DownloadSongAFVC.m */; };
 		0AC979EA20EE163400AC3885 /* PlaylistCV.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC979E920EE163400AC3885 /* PlaylistCV.m */; };
 		0AC979EC20EF938700AC3885 /* request_netease.js in Resources */ = {isa = PBXBuildFile; fileRef = 0AC979EB20EF938700AC3885 /* request_netease.js */; };
 		0AC97A0320EFBD4E00AC3885 /* MusicImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC97A0220EFBD4E00AC3885 /* MusicImage.m */; };
@@ -28,6 +29,7 @@
 		E629893B1FE280DA006F9B71 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E629892D1FE280D9006F9B71 /* RootTabBarController.m */; };
 		E629893C1FE280DA006F9B71 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E629892E1FE280D9006F9B71 /* LoginViewController.m */; };
 		E62A2E6020E317F100CCDABD /* BlueMusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E62A2E5F20E317F100CCDABD /* BlueMusicModel.m */; };
+		E64EA8AF210F520800D401F3 /* DownloadSongsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E64EA8AE210F520800D401F3 /* DownloadSongsVC.m */; };
 		E6634C2020E89C9300655ADD /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E6634C1F20E89C9300655ADD /* SecurityUtil.m */; };
 		E6634C2320E89D1000655ADD /* NSData+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = E6634C2220E89D1000655ADD /* NSData+Encryption.m */; };
 		E6634C2720E8B46E00655ADD /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6634C2620E8B46E00655ADD /* JavaScriptCore.framework */; };
@@ -75,6 +77,8 @@
 		0AC1DDA720EB182200C15573 /* TFHpple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TFHpple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC1DDA920EB273900C15573 /* BlueMusicPlayListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueMusicPlayListModel.h; sourceTree = "<group>"; };
 		0AC1DDAA20EB273900C15573 /* BlueMusicPlayListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueMusicPlayListModel.m; sourceTree = "<group>"; };
+		0AC5D8892109A4C8005E5433 /* DownloadSongAFVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadSongAFVC.h; sourceTree = "<group>"; };
+		0AC5D88A2109A4C8005E5433 /* DownloadSongAFVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadSongAFVC.m; sourceTree = "<group>"; };
 		0AC979E820EE163400AC3885 /* PlaylistCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistCV.h; sourceTree = "<group>"; };
 		0AC979E920EE163400AC3885 /* PlaylistCV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistCV.m; sourceTree = "<group>"; };
 		0AC979EB20EF938700AC3885 /* request_netease.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = request_netease.js; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 		E62989311FE280D9006F9B71 /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
 		E62A2E5E20E317F100CCDABD /* BlueMusicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueMusicModel.h; sourceTree = "<group>"; };
 		E62A2E5F20E317F100CCDABD /* BlueMusicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueMusicModel.m; sourceTree = "<group>"; };
+		E64EA8AD210F520800D401F3 /* DownloadSongsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadSongsVC.h; sourceTree = "<group>"; };
+		E64EA8AE210F520800D401F3 /* DownloadSongsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadSongsVC.m; sourceTree = "<group>"; };
 		E6634C1E20E89C9300655ADD /* SecurityUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityUtil.h; sourceTree = "<group>"; };
 		E6634C1F20E89C9300655ADD /* SecurityUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecurityUtil.m; sourceTree = "<group>"; };
 		E6634C2120E89D1000655ADD /* NSData+Encryption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Encryption.h"; sourceTree = "<group>"; };
@@ -192,8 +198,6 @@
 				0AC97A1820F064EC00AC3885 /* SongListCell.m */,
 				0AC97A1A20F11F0F00AC3885 /* SongHalfActionView.h */,
 				0AC97A1B20F11F0F00AC3885 /* SongHalfActionView.m */,
-				E6FC60D220F7965100F9D8D1 /* DownloadSongOneVC.h */,
-				E6FC60D320F7965100F9D8D1 /* DownloadSongOneVC.m */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -238,6 +242,7 @@
 		E62989001FE274B4006F9B71 /* blueMusic */ = {
 			isa = PBXGroup;
 			children = (
+				E64EA8B0210F53A100D401F3 /* Download */,
 				E67C900F20EE5FD2001C0D31 /* MainToolCenter */,
 				0AE3F4BA20EDB81E002B3357 /* MainVC */,
 				E6634C2C20E8BDA900655ADD /* js */,
@@ -324,6 +329,19 @@
 				0AC97A0220EFBD4E00AC3885 /* MusicImage.m */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		E64EA8B0210F53A100D401F3 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				E6FC60D220F7965100F9D8D1 /* DownloadSongOneVC.h */,
+				E6FC60D320F7965100F9D8D1 /* DownloadSongOneVC.m */,
+				0AC5D8892109A4C8005E5433 /* DownloadSongAFVC.h */,
+				0AC5D88A2109A4C8005E5433 /* DownloadSongAFVC.m */,
+				E64EA8AD210F520800D401F3 /* DownloadSongsVC.h */,
+				E64EA8AE210F520800D401F3 /* DownloadSongsVC.m */,
+			);
+			path = Download;
 			sourceTree = "<group>";
 		};
 		E6634C2C20E8BDA900655ADD /* js */ = {
@@ -503,9 +521,7 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework",
 				"${BUILT_PRODUCTS_DIR}/bluebox/bluebox.framework",
@@ -518,9 +534,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TFHpple.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bluebox.framework",
@@ -566,6 +580,7 @@
 				E6634C2320E89D1000655ADD /* NSData+Encryption.m in Sources */,
 				0AE3F4BD20EDB838002B3357 /* HomeVC.m in Sources */,
 				0AC979EA20EE163400AC3885 /* PlaylistCV.m in Sources */,
+				E64EA8AF210F520800D401F3 /* DownloadSongsVC.m in Sources */,
 				0AE3F4B420EB8185002B3357 /* PLDetailVC.m in Sources */,
 				E6C6BA2A20FF758000BE1D5C /* UIImageView+bbx_blurImage.m in Sources */,
 				E62A2E6020E317F100CCDABD /* BlueMusicModel.m in Sources */,
@@ -573,6 +588,7 @@
 				0AE3F4B120EB77A6002B3357 /* MusicPLCell.m in Sources */,
 				0AC97A0320EFBD4E00AC3885 /* MusicImage.m in Sources */,
 				E6C4C8071FE28374005DDE0F /* MusicPlayerHandle.m in Sources */,
+				0AC5D88B2109A4C8005E5433 /* DownloadSongAFVC.m in Sources */,
 				0AC97A1920F064EC00AC3885 /* SongListCell.m in Sources */,
 				E62989111FE274B4006F9B71 /* main.m in Sources */,
 				E6C4C8011FE2836C005DDE0F /* MusicListTableViewCell.m in Sources */,

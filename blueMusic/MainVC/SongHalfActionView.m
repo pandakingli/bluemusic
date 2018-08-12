@@ -13,6 +13,7 @@
 #import <Masonry/masonry.h>
 #import "MusicConstants.h"
 #import "DownloadSongOneVC.h"
+#import "DownloadSongAFVC.h"
 
 #define kImg1_download [MusicImage imageNamed:@"icon-download"]
 #define kImg2_add      [MusicImage imageNamed:@"icon-add"]
@@ -410,7 +411,11 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
 {
     if(self.mModel)
     {
-        DownloadSongOneVC *vv = [[DownloadSongOneVC alloc]init];
+        
+        //DownloadSongOneVC *vv = [[DownloadSongOneVC alloc]init];
+        //[vv godownloadmodel:self.mModel];
+        
+        DownloadSongAFVC *vv = [[DownloadSongAFVC alloc]init];
         [vv godownloadmodel:self.mModel];
         if(self.fVC)
         {

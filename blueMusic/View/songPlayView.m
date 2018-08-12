@@ -350,6 +350,7 @@ static songPlayView *MusicPlayeViewCenter = nil;
         _coverIMV.layer.anchorPoint=CGPointMake(0.5, 0.5);
         _coverIMV.layer.borderWidth = 15;
         _coverIMV.layer.borderColor = [UIColor bbx_byString:@"#7f7f7f"].CGColor;
+        _coverIMV.image = [MusicImage imageNamed:@"icon-cd"];
     }
     return _coverIMV;
 }
@@ -582,19 +583,19 @@ static songPlayView *MusicPlayeViewCenter = nil;
         self.SingerName.text = singername;
         
         NSURL *songicon = [NSURL URLWithString:model.coverurl];
-        UIImage *pp = [MusicImage imageNamed:@"icon-cd"];
+        
         self.blurIMV.hidden = YES;
         self.bgSV.backgroundColor = [UIColor clearColor];
         typeof(self) weakSelf = self;
         [self.coverIMV sd_setImageWithURL:songicon
-                         placeholderImage:pp
                                 completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                                    if (image&&weakSelf)
-                                    {
-                                       // [weakSelf.blurIMV goBlurByCoreImageWithImage:image];
-                                        [weakSelf.BCblurIMV goBlurByCoreImageWithImage:image];
-                                    }
+            if (image&&weakSelf)
+            {
+                // [weakSelf.blurIMV goBlurByCoreImageWithImage:image];
+                [weakSelf.BCblurIMV goBlurByCoreImageWithImage:image];
+            }
         }];
+        
         
         
         [self showProgress];
@@ -606,13 +607,14 @@ static songPlayView *MusicPlayeViewCenter = nil;
         dispatch_group_enter(group);
         
         [[MusicNetWorkCenter shareInstance] netease_RequestMusicSongurlDataWithParameters:dic andFinishBlock:^(NSString *url) {
-            if (weakSelf&&url&&![url isKindOfClass:[NSNull class]])
+            if (url&&![url isKindOfClass:[NSNull class]])
             {
                 weakSelf.musicModel.playurl = url;
                 weakSelf.timeTotal.text = weakSelf.musicModel.durationstring;
-                [weakSelf hideProgress];
+               
                 [weakSelf changeMusic:weakSelf.musicModel];
             }
+             [weakSelf hideProgress];
              dispatch_group_leave(group);
         }];
         
