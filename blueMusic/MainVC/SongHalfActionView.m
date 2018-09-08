@@ -426,20 +426,3 @@ static SongHalfActionView *MusicSHAViewCenter = nil;
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
